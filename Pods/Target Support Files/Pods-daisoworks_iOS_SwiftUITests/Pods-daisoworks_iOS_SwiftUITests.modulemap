@@ -1,0 +1,6 @@
+framework module Pods_daisoworks_iOS_SwiftUITests {
+  umbrella header "Pods-daisoworks_iOS_SwiftUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
