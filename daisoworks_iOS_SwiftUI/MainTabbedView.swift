@@ -47,6 +47,8 @@ struct MainTabbedView: View {
     @State var barcodeNo:String = ""
     @State var buyCd:String = ""
     @State var comCode1:String = ""
+    @State var sujubCode:String = ""
+    @State var sujuMgno:String = ""
     @State var passKey:String = ""
     
 
@@ -70,7 +72,7 @@ struct MainTabbedView: View {
                 
                 TabView(selection: $selectedSideMenuTab) {
                   
-                    HomeView(presentSideMenu: $presentSideMenu)
+                    HomeView(presentSideMenu: $presentSideMenu , selectedSideMenuTab : $selectedSideMenuTab, itemNo: $itemNo,   comCode1: $comCode1 , sujubCode: $sujubCode , sujuMgno: $sujuMgno , passKey: $passKey )
                         .tabItem{
                             (Image(systemName: "house"))
                             (Text("홈"))
@@ -95,7 +97,7 @@ struct MainTabbedView: View {
                         }
                         .tag(2)
                     
-                SujuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu  , itemNo: $itemNo , barcodeNo:$barcodeNo , buyCd: $buyCd,  passKey: $passKey , comCode1: $comCode1 )
+                    SujuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu  , itemNo: $itemNo , barcodeNo:$barcodeNo , buyCd: $buyCd,  passKey: $passKey , comCode1: $comCode1 , sujubCode: $sujubCode , sujuMgno: $sujuMgno)
                         .tabItem{
                             (Image(systemName: "rosette"))
                             (Text("수주조회"))

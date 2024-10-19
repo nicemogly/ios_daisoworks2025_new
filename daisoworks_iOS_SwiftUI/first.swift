@@ -65,7 +65,18 @@ struct HerpSuju: Identifiable {
 
 struct first: View {
     
+    @Binding var selectedSideMenuTab: Int
+    @Binding var comCode1: String
+    @Binding var itemNo: String
+    
+    @Binding var sujubCode: String
+    @Binding var sujuMgno: String
+
+    
+    
+    @Binding var passKey: String
     @State var isNExpanded: Bool = false
+    
     
     
     
@@ -294,6 +305,16 @@ struct first: View {
                             Image(systemName: "magnifyingglass.circle.fill" )
                                 .resizable()
                                 .frame(width:50 , height:50  , alignment: .bottomTrailing)
+                                .onTapGesture {
+                                    selectedSideMenuTab = 3
+                                    comCode1 = "10005"
+                                    itemNo = "1000382"
+                                    sujubCode = "8819910003825"
+                                    sujuMgno = "2018030681"
+                                    
+                                    
+                                    passKey = "OK"
+                                }
                             
                         }.frame(maxWidth:.infinity , alignment: .bottomTrailing)
                     }.padding(.leading , 10  )
@@ -318,13 +339,17 @@ struct first: View {
             
             
         }.padding(15)
-                
+             
     }
         VStack{
             Spacer()
             Spacer()
             Spacer()
         }.frame(minHeight: 100)
+        
+      
 }
+    
+  
 }
 

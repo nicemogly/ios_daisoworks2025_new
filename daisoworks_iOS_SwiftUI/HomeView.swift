@@ -11,6 +11,16 @@ import SwiftUI
 struct HomeView: View {
     
     @Binding var presentSideMenu: Bool
+    @Binding var selectedSideMenuTab: Int
+    
+    @Binding var itemNo: String
+    @Binding  var comCode1: String
+    
+    @Binding var sujubCode: String
+    @Binding var sujuMgno: String
+    @Binding  var passKey: String
+
+    
     @State private var selectedTab = 0
     
     private let tabs = [TabData(id:0 , name:"HERP")
@@ -33,7 +43,7 @@ struct HomeView: View {
             TabView(selection: $selectedTab){
                 ForEach(tabs, id:\.id){ tab in
                     if(tab.id == 0 ) {
-                        first()
+                        first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
                     } else if(tab.id == 1) {
                         second()
                     }

@@ -91,6 +91,11 @@ struct SujuView: View {
     @Binding var buyCd: String
     @Binding var passKey: String
     @Binding var comCode1: String
+    @Binding var sujubCode: String
+    @Binding var sujuMgno: String
+    
+
+    
     
     @State private var selection  = "바이어 선택"
     
@@ -621,6 +626,7 @@ struct SujuView: View {
                 
             Spacer()
         }.padding(5)
+            .onAppear(perform: INIT_1)
     }
     
     func loadData(){
@@ -703,10 +709,10 @@ struct SujuView: View {
     
     func loadData2(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-//        print("str1-in:\(str1)")
-//        print("selection-in:\(selection)")
-//        print("sujumgno-in:\(sujumgno)")
-//        print("sujubcode-in:\(sujubcode)")
+        print("str1-in:\(str1)")
+        print("selection-in:\(selection)")
+        print("sujumgno-in:\(sujumgno)")
+        print("sujubcode-in:\(sujubcode)")
         guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview1?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
@@ -1006,7 +1012,19 @@ struct SujuView: View {
     }
     
     
-
+    func INIT_1(){
+        //메인에서 넘어왔다면
+        if passKey == "OK" {
+            selection = comCode1
+            itemId = itemNo
+            sujubcode = sujubCode
+            sujumgno = sujuMgno
+            resultflag = false
+            loadData2()
+            print("Loading:firstView-IN")
+        }
+        print("Loading:firstView")
+    }
     
 }
 

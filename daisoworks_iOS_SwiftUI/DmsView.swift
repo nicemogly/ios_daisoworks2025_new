@@ -18,10 +18,10 @@ struct DmsView: View {
         VStack{
             HStack{
                 
-                NavigationLink(destination: first()) {
+             //   NavigationLink(destination: first()) {
                     Text("Dms VIew")
                     
-                }
+               // }
                 
                 
             }
