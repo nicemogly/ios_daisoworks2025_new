@@ -276,10 +276,12 @@ struct ProductView: View {
                                 VStack(alignment: .leading, spacing: 0) {
                                     ForEach(itemview1, id: \.barcodeNo) { item2 in
                                         Spacer()
-                                        AsyncImage(url: URL(string: "https://cdn.daisomall.co.kr/file/PD/20240708/fDLihH42tRGSTqojDpSQ1029927_00_00fDLihH42tRGSTqojDpSQ.jpg/dims/optimize/dims/resize/100x150"))
+                                     //   AsyncImage(url: URL(string: "https://cdn.daisomall.co.kr/file/PD/20240708/fDLihH42tRGSTqojDpSQ1029927_00_00fDLihH42tRGSTqojDpSQ.jpg/dims/optimize/dims/resize/100x150"))
                                         
-                                            .frame(maxWidth:.infinity , alignment: .center)
+                                        AsyncImage(url: URL(string: "http://herp.asunghmp.biz/FTP/Images/SUJU/10000/10005/2405055527_8819910005522_0.JPG"))
+                                          //  .frame( alignment: .center , width:100 , height:150)
                                         
+                                            .frame(width:300 , height:300 , alignment: .center)
                                         HStack(spacing:0) {
                                             Text("\(item2.itemNo ?? "" )")
                                             Spacer()
@@ -309,9 +311,10 @@ struct ProductView: View {
                                             Spacer()
                                             Spacer()
                                         }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
+                               //itemPictureUrl
                                         HStack() {
-                                            Text("\(item2.itemIpsu ?? "" )")
+                                        //    Text("\(item2.itemIpsu ?? "" )")
+                                            Text("\(item2.itemPictureUrl ?? "" )")
                                             Spacer()
                                             Text("\(item2.itemDetails ?? "" )")
                                         }.frame(maxWidth: .infinity, alignment: .leading)

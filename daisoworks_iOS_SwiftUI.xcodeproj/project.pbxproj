@@ -10,6 +10,7 @@
 		126A2F2DF65174ED75DC9F02 /* Pods_daisoworks_iOS_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098E62D349209629115FECC /* Pods_daisoworks_iOS_SwiftUITests.framework */; };
 		4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BA2CC1A96A001392E9 /* second.swift */; };
 		4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BC2CC30585001392E9 /* CardModifier.swift */; };
+		4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */; };
 		4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */; };
 		4B90F0DE2CC0AFA3007F3D8A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */; };
 		4BB6CBC42CB9839A008569A4 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6CBC32CB98396008569A4 /* ThumbnailView.swift */; };
@@ -57,6 +58,7 @@
 		3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI/Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		4B4EA3BA2CC1A96A001392E9 /* second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = second.swift; sourceTree = "<group>"; };
 		4B4EA3BC2CC30585001392E9 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmsDetailView.swift; sourceTree = "<group>"; };
 		4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		4BB6CBC32CB98396008569A4 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				4BD6C08A2CB48F2F000E8152 /* CompanyView.swift */,
 				4BD6C0882CB48F23000E8152 /* ProductView.swift */,
 				4BD6C0862CB48F19000E8152 /* DmsView.swift */,
+				4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */,
 				4BD6C0842CB48F0D000E8152 /* HomeView.swift */,
 				4BD6C0822CB48E27000E8152 /* SideMenuView.swift */,
 				4BD6C0802CB48E01000E8152 /* SideMenu.swift */,
@@ -435,6 +438,7 @@
 				4BD6C0812CB48E07000E8152 /* SideMenu.swift in Sources */,
 				4BB6CBC62CB983C0008569A4 /* ExpandedView.swift in Sources */,
 				4BD6C0512CB47C4C000E8152 /* ContentView.swift in Sources */,
+				4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */,
 				4BD6C0892CB48F29000E8152 /* ProductView.swift in Sources */,
 				4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */,
 				4BD6C0522CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift in Sources */,
@@ -480,6 +484,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -546,6 +551,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -709,10 +709,10 @@ struct SujuView: View {
     
     func loadData2(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        print("str1-in:\(str1)")
-        print("selection-in:\(selection)")
-        print("sujumgno-in:\(sujumgno)")
-        print("sujubcode-in:\(sujubcode)")
+//        print("str1-in:\(str1)")
+//        print("selection-in:\(selection)")
+//        print("sujumgno-in:\(sujumgno)")
+//        print("sujubcode-in:\(sujubcode)")
         guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview1?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return

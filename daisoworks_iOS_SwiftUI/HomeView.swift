@@ -23,9 +23,7 @@ struct HomeView: View {
     
     @State private var selectedTab = 0
     
-    private let tabs = [TabData(id:0 , name:"HERP")
-                        ,TabData(id:1 , name:"DMS")
-    ]
+    private let tabs = [TabData(id:0 , name:"HERP"),TabData(id:1 , name:"DMS")]
     var body: some View {
         
         VStack{
@@ -40,12 +38,16 @@ struct HomeView: View {
                 .padding(.top, 25)
             Spacer()
             
+          
             TabView(selection: $selectedTab){
-                ForEach(tabs, id:\.id){ tab in
-                    if(tab.id == 0 ) {
-                        first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
-                    } else if(tab.id == 1) {
+                ForEach(tabs, id:\.id){ tab  in
+                    
+                     if(tab.id == 0  ) {
+                         first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
+                       //  a()
+                    } else{
                         second()
+                        //b()
                     }
                     
                 }

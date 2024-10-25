@@ -233,7 +233,7 @@ struct LoginView: View {
         
     }
     private func autoLogin(){
-        print("test")
+       // print("test")
     }
     
     private func checkLogin(isId: String, isPassword: String) {

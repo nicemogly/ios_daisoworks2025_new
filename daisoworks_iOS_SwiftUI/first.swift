@@ -339,13 +339,15 @@ struct first: View {
             
             
         }.padding(15)
+            
+            VStack{
+                Spacer()
+                Spacer()
+                Spacer()
+            }.frame(minHeight: 40)
              
     }
-        VStack{
-            Spacer()
-            Spacer()
-            Spacer()
-        }.frame(minHeight: 100)
+
         
       
 }
