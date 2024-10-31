@@ -131,6 +131,13 @@ struct MainTabbedView: View {
                                 UserDefaults.standard.set("F", forKey: "autologin_Flag")
                                 UserDefaults.standard.set("", forKey: "Userid")
                                 UserDefaults.standard.set("", forKey: "Passwd")
+                                UserDefaults.standard.set("", forKey: "LoginCompanyCode")
+                                UserDefaults.standard.set("", forKey: "memdeptgbn")
+                                UserDefaults.standard.set("", forKey: "memdeptnme")
+                                UserDefaults.standard.set("", forKey: "memdeptcde")
+                              
+                              
+                             
                               self.tag1 = 1
                      })
                       } label: {

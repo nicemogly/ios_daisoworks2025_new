@@ -103,11 +103,18 @@ struct SideMenuView: View {
                 Spacer()
             }
             
-            Text("Yoon Jang Hoon")
+           // UserDefaults.standard.set($0.deptgbn, forKey: "memdeptgbn")
+           // UserDefaults.standard.set($0.deptnme, forKey: "memdeptnme")
+            let UserDept  = UserDefaults.standard.string(forKey: "memdeptgbn")
+            let UserName = UserDefaults.standard.string(forKey: "memdeptnme")
+            let Userid = UserDefaults.standard.string(forKey: "Userid")
+            
+            
+            Text("\(UserName!) ( \(UserDept!) )")
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(.black)
             
-            Text("AD2201016")
+            Text("\(Userid!)")
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(.black.opacity(0.5))
         }

@@ -27,6 +27,8 @@ struct DmsView2: Decodable {
    
 }
 
+
+
 struct DmsView3: Decodable {
     let fromEmpNm: String?
     let toEmpNm: String?
@@ -40,20 +42,31 @@ struct DmsView4: Decodable {
     let srvrPath  : String?
 }
 
-struct DmsView5: Decodable {
+struct DmsView5: Decodable  , Identifiable{
+    let id = UUID()
     let apprTypNm: String?
     let apprEmpNm: String?
     let apprDate: String?
     let apprCfmFgNm: String?
-    let myTurnFgNm: String?
+    let myTurn: String?
     let apprCmmt: String?
+    let apprUserId: String?
 }
 
 struct DmsDetailView: View  {
     @Environment(\.presentationMode) private var presentaionMode: Binding<PresentationMode>
 
+    
+
+    @State private var appr_1: String = "없슴"
+    @State private var appr_2: String = ""
+    @State private var appr_3: String = ""
+    @State private var appr_4: String = ""
+    @State private var appr_5: String = ""
+    
     @Binding var attr1: String
     @Binding var attr2: String
+    @Binding var attr3: String
     
     @State var dmsview2 = [DmsView2]()
     @State var dmsview3 = [DmsView3]()
@@ -73,7 +86,8 @@ struct DmsDetailView: View  {
     @GestureState private var zoomFactor: CGFloat = 1.0
     
     @State private var isShowingSheet = false
-   
+    @State var isShowing = false
+    @State var isShowing1 = false
     
     var magnification: some Gesture {
         return SwiftUI.MagnificationGesture()
@@ -86,9 +100,15 @@ struct DmsDetailView: View  {
     
     var body: some View {
         
+        
+        //let Userid = UserDefaults.standard.string(forKey: "Userid")
+        let Userid:String = "AH1506150" //정은빈
+        
+       // let Userid:String = "AH0403070" //이유용
+        
         NavigationView {
             VStack{
-                
+       
             
                 HStack {
                     Text("디자인진행 승인정보 상세")
@@ -272,20 +292,21 @@ struct DmsDetailView: View  {
                         
                 
                 VStack {
-                    Text("결재 정보")
-                        .padding(.bottom , 20)
-                        .padding(.top , 0)
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .underline()
+                    HStack {
+                        Text("결재 정보")
+                            .padding(.bottom , 20)
+                            .padding(.top , 0)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .underline()
+                        Text("\(appr_1)").foregroundStyle(.white).hidden()
+                    }
+                    
                 }.frame(maxWidth: .infinity ,  alignment: .leading)
               
-         
-               
-                     
                      VStack(alignment: .leading ){
                       
-                         ForEach(dmsview5, id: \.apprTypNm) { item3 in
+                         ForEach(dmsview5, id: \.id) { item3 in
                              
                       
                                  HStack {
@@ -294,11 +315,21 @@ struct DmsDetailView: View  {
                                      Text("\(item3.apprEmpNm == nil ? " " : item3.apprEmpNm!)").frame(width:60 , alignment: .leading)
                                 
                                      Text("\(item3.apprDate == nil ? " " : item3.apprDate!)").frame(width:160 , alignment: .leading)
+                                     
                                     
                                      Button(action: {
                                          if (item3.apprEmpNm == "대상아님") {
                                             
                                          }else {
+                                             
+                                             appr_1 = item3.apprTypNm!
+                                             appr_2 = item3.apprEmpNm!
+                                             appr_3 = item3.apprCmmt == nil ? " " : item3.apprCmmt!
+                                             appr_4 = item3.myTurn!
+                                             appr_5 = item3.apprUserId!
+                                             
+                                        
+                                         
                                              isShowingSheet.toggle()
                                          }
                                              
@@ -364,12 +395,69 @@ struct DmsDetailView: View  {
                         Text("결재 승인 관리").fontWeight(.bold)
                             .frame(  maxWidth: .infinity  , minHeight:50 , alignment: .leading)
                             .background(Color(uiColor: .secondarySystemBackground))
+                            .padding(.bottom , 15)
+                        HStack {
+                            Text("직책 : \(appr_1)")
+                            Spacer()
+                        } .padding(.bottom , 15)
                         
-                        Button("선택" , action: {
+                        HStack {
+                            Text("성명 : \(appr_2)")
+                            Spacer()
+                        } .padding(.bottom , 15)
+                        
+                        HStack {
+                            TextEditor(text: $appr_3)
+                                .border(Color.gray)
+                                .cornerRadius(3)
+                                .frame(height:100 )
+                                .foregroundStyle(.secondary)
+                            
+                           
+                        } .padding(.bottom , 15)
+                        
+                   
+                        HStack{
+                          
+                        if(appr_4 == "true" &&  appr_5 == Userid){
+                            Button("승인" , action: {
+                               // isShowingSheet.toggle()
+                                isShowing = true
+                            })
+                            .alert("승인 하시겠습니까?" , isPresented: $isShowing) {
+                                Button("OK", role: .destructive) {  print("OK")}
+                                Button("Cancel", role: .cancel) { print("Cancel")}
+                            }
+                            
+                            .padding(10)
+                            .background(Color.gray)
+                            .foregroundColor(.white)
+                            
+                            Button("반려" , action: {
+                               // isShowingSheet.toggle()
+                                isShowing1 = true
+                            })
+                            
+                            .alert("반려 하시겠습니까?" , isPresented: $isShowing1) {
+                                Button("OK", role: .destructive) {  print("OK")}
+                                Button("Cancel", role: .cancel) { print("Cancel")}
+                            }
+                            .padding(10)
+                            .background(Color.gray)
+                            .foregroundColor(.white)
+                        }
+                        
+                        Button("확인" , action: {
                             isShowingSheet.toggle()
                         })
-                        Spacer()
+                        .padding(10)
+                        .background(Color.gray)
+                        .foregroundColor(.white)
+                            
+                        }
+                    
                             .presentationDetents([.fraction(0.5) , .medium, .large])
+                        Spacer()
                     }.padding(20)
                 }
             
@@ -482,15 +570,15 @@ struct DmsDetailView: View  {
     
     
     func requestGet( v_attr3:String , v_attr4:String) {
-        var attr4 = v_attr4 + ".png"
-        // var attr3 = v_attr3
-        var prefixattr3:String  = "https://devdms.asungcorp.com"
-        var attr3 = prefixattr3+"/file/dso/202106/202106_000232/thumb/202106_000232_011.jpg"
+        let attr4 = v_attr4 + ".png"
+        
+        let prefixattr3:String  = "https://devdms.asungcorp.com"
+        let attr33 = prefixattr3+"/file/dso/202106/202106_000232/thumb/202106_000232_011.jpg"
       //        var attr5 = "https://devdms.asungcorp.com/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
         //        var attr44 = "/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
      
        
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr4)&imgUrl=\(attr3)") else {
+        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr4)&imgUrl=\(attr33)") else {
             print("Invalid URL")
             
             return
@@ -514,7 +602,7 @@ struct DmsDetailView: View  {
                 return
             }
             
-            guard let data = data else {
+            guard data != nil else {
                 print("error: did no receive data")
                 return
             }
@@ -532,11 +620,11 @@ struct DmsDetailView: View  {
         
         
         print("==============requestGET1==============")
-        var attr8 = v_attr5 + "." + v_attr6
+        let attr8 = v_attr5 + "." + v_attr6
     
         // var attr3 = v_attr3
-        var prefixattr3:String  = "https://devdms.asungcorp.com"
-        var attr9 = prefixattr3 + v_attr7 + attr8
+        let prefixattr3:String  = "https://devdms.asungcorp.com"
+        let attr9 = prefixattr3 + v_attr7 + attr8
       ////        var attr5 = "https://devdms.asungcorp.com/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
         //        var attr44 = "/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
        
@@ -561,11 +649,11 @@ struct DmsDetailView: View  {
             
             guard error == nil else {
                 print("Error: error")
-                print(error)
+                print(error ?? "")
                 return
             }
             
-            guard let data = data else {
+            guard data != nil else {
                 print("error: did no receive data")
                 return
             }
@@ -696,9 +784,12 @@ struct DmsDetailView: View  {
   
     func loadData4(){
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
-        let Userid = "AH1602130"
-        let apprSeq = "1"
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&mUserId=\(Userid)&apprSeq=\(apprSeq)") else {
+        let Userid = "AH1506150"//정은빈
+        
+       // let Userid:String = "AH0403070" //이유용
+        print("OKAY Detail5===,여기51")
+        
+        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&mUserId=\(Userid)&apprSeq=\(attr3)") else {
             print("Invalid URL")
             
             return

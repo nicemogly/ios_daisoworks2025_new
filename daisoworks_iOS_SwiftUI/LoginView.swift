@@ -26,8 +26,21 @@ struct Chkview1: Decodable {
     var versionMsg: String
 }
 
+struct MuserData: Decodable {
+    var usrid: String
+    var empmgnum: Int
+    var hnme: String
+    var deptcde: String
+    var deptnme: String
+    var empst: String
+    var corpcd: String
+    var deptgbn: String
+}
+
+
 struct LoginView: View {
     @State private var results = [Result]()
+    @State var muserdata = [MuserData]()
     
     enum Field {
         case id
@@ -107,6 +120,15 @@ struct LoginView: View {
                     //isActive = true
                     
                     Task {
+                        
+                        // "AS1410020"
+                         //HERP 직책정보등 가져오기
+                         // loadData2(str1: str1)
+                        // var tmp1 : String = "AS1410020"
+                        let tmp1 : String = "AH2101001"
+                         loadData2(str1: tmp1)
+                     //   await loadData2(str1: id)
+                        await loadData1(str1: id)
                         await loadData(str1: id , str2: password)
                     }
                     
@@ -203,6 +225,18 @@ struct LoginView: View {
                                 notCorrectLogin = false
                                 
                                 Task {
+                                    
+                                    // "AS1410020"
+                                     //HERP 직책정보등 가져오기
+                                     // loadData2(str1: str1)
+                                   //  var tmp1 : String = "AS1410020"
+                                  
+                                    let tmp1 : String = "AH2101001"
+                                       loadData2(str1: tmp1)
+                                    
+                                  //  await loadData2(str1: Userid!)
+                                    
+                                    await loadData1(str1: Userid!)  // HR grade
                                     await loadData(str1: Userid! , str2: password!)
                                     // isActive = true
                                 }
@@ -233,7 +267,7 @@ struct LoginView: View {
         
     }
     private func autoLogin(){
-       // print("test")
+      //  print("test")
     }
     
     private func checkLogin(isId: String, isPassword: String) {
@@ -282,8 +316,7 @@ struct LoginView: View {
                     print(id)
                     if(id=="T") {
                         
-                        notCorrectLogin = false
-                        isActive = true
+                      
                         if(self.toggling){
                             UserDefaults.standard.set("T", forKey: "autologin_Flag")
                             UserDefaults.standard.set(str1, forKey: "Userid")
@@ -301,6 +334,13 @@ struct LoginView: View {
                             }
                         }
                         
+                        
+                     
+                        notCorrectLogin = false
+                        isActive = true
+                        
+                        
+                        
                     }else{
                         notCorrectLogin = true
                         isActive = false
@@ -313,6 +353,101 @@ struct LoginView: View {
         } catch {
             print("Invalid data")
         }
+    }
+    
+    
+    func loadData1(str1: String) async {
+      
+      
+        guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveEmpTypeReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1) else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        do {
+            let (data, meta) = try await URLSession.shared.data(from: url)
+            print(meta)
+            
+            
+            let json = try JSONSerialization.jsonObject(with: data,options: []) as? [String: [Any]]
+            print(json ?? "")
+            if(json==nil) {
+                
+                notCorrectLogin = true
+                
+                isActive = false
+            }else{
+                let items = json?["OUT_RESULT"]!
+                
+                items?.forEach{ item in
+                    guard let object = item as? [String : Any] else { return }
+                    let gradeid = object["VALUE"] as! String
+                    
+                    if(gradeid=="T") {
+                        UserDefaults.standard.set("T", forKey: "excutive_Flag")
+                    }else{
+                        UserDefaults.standard.set("F", forKey: "excutive_Flag")
+                    }
+                 
+                }
+            }
+            
+        } catch {
+            print("Invalid excutive return data")
+        }
+    }
+    
+    func loadData2(str1: String){
+      
+        
+       // print("str1: \(str1)")
+        guard let url1 = URL(string: "http://59.10.47.222:3000/memuser?mUserId=\(str1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            print("Invalid URL")
+            return
+        }
+        
+  
+
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                
+                decoder1.dateDecodingStrategy = .iso8601
+    
+                
+                
+                if let decodedResponse1 = try? decoder1.decode([MuserData].self, from: data1){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.muserdata = decodedResponse1
+                        
+                        
+                        print("str11")
+                        print("value:\(self.muserdata)")
+                        print("str1건수\(self.muserdata.count)")
+                        
+                        
+                        
+                        if(self.muserdata.count == 0 ){
+                    
+                        }else{
+                            self.muserdata.forEach {
+                               
+                                UserDefaults.standard.set($0.deptgbn == nil ? "" : $0.deptgbn, forKey: "memdeptgbn")
+                                UserDefaults.standard.set($0.deptnme == nil ? "" : $0.deptnme, forKey: "memdeptnme")
+                                UserDefaults.standard.set($0.deptcde == nil ? "" : $0.deptcde, forKey: "memdeptcde")
+                                
+                                
+                            }
+                        }
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
     }
     
 }

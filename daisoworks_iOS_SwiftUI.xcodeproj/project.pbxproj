@@ -192,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				4BD6C08E2CB607B5000E8152 /* daisoworks-iOS-SwiftUI-Info.plist */,
-				4B4EA3BC2CC30585001392E9 /* CardModifier.swift */,
 				4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */,
+				4B4EA3BC2CC30585001392E9 /* CardModifier.swift */,
 				4B4EA3BA2CC1A96A001392E9 /* second.swift */,
 				4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */,
 				4BB6CBD62CC02A11008569A4 /* SujuView.swift */,

@@ -15,22 +15,25 @@ struct DmsDsnPreview: Decodable {
 
     var reqId: String
     var revNo : String
-    var apprSeq: String?
+    var apprSeq: String
     var productCd : String?
     var korProductDesc: String?
+    var apprStts: String?
     var msinDsnEmpNm: String?
     var cmplExptDate: String?
 }
 
-
+var dmsdsnpreview: [DmsDsnPreview] = []
 
 
 struct DmsView: View {
     @State var dmsdsnpreview = [DmsDsnPreview]()
+    @State var dmsdsnpreview1 = [DmsDsnPreview]()
 
     @State private var resultText: String = ""
     @State var resultflag = false
     @State private var isLoading = false
+
     
 
  
@@ -39,56 +42,131 @@ struct DmsView: View {
     @State var tag: Int? = nil
     @State var vattr1: String = ""
     @State var vattr2: String = ""
+    @State var vattr3: String = ""
  
     
     var body: some View {
+              
         
-      
-            ScrollView {
-                
                 VStack{
                     
-                    
-                    NavigationLink(destination: DmsDetailView(attr1: $vattr1 , attr2: $vattr2),tag:1 , selection:self.$tag){
+              
+                    NavigationLink(destination: DmsDetailView(attr1: $vattr1 , attr2: $vattr2, attr3: $vattr3),tag:1 , selection:self.$tag){
                         EmptyView()
                     }
-                    
-                    VStack{
-                        Button(action: {
-                            apiTest()
-                        }, label:{
-                            Text("API Test")
-                        }).padding(20)
-                            .background(Color.blue)
-                            .foregroundStyle(.white)
-                    }
-                    
-                    
                                    
                     HStack {
                         Text("디자인진행 승인정보관리")
-                            .font(.system(size:18 , weight: .bold))
+                          .font(.system(size:18 , weight: .bold))
                         Spacer()
                         Spacer()
                         
                     }.padding(5)
-                    Divider()
-                        .padding(.bottom , 35)
+                  
+                   
+                    VStack(alignment: .trailing) {
+                        HStack{
+                            
+                            Button(action: {
+                                updateFilteredArray(str1:"All")
+                            } , label: {
+                                Text("전 체").padding(10)
+                                .font(.system(size:15 , weight: .bold))
+                                .background(Color.black)
+                                .foregroundStyle(.white)
+                            })
+                            
+                                Button(action: {
+                                    updateFilteredArray(str1:"RQ")
+                                } , label: {
+                                    Text("진 행").padding(10)
+                                    .font(.system(size:15 , weight: .bold))
+                                    .background(Color.blue)
+                                    .foregroundStyle(.white)
+                                })
+                                Button(action: {
+                                    updateFilteredArray(str1:"CM")
+                                } , label: {
+                                    Text("완 료").padding(10)
+                                    .font(.system(size:15 , weight: .bold))
+                                    .background(Color.gray)
+                                    .foregroundStyle(.white)
+                                })
+//                                Button(action: {
+//                                    updateFilteredArray(str1:"NO")
+//                                } , label: {
+//                                    Text("미대상").padding(10)
+//                                    .font(.system(size:15 , weight: .bold))
+//                                    .background(Color.yellow)
+//                                    .foregroundStyle(.white)
+//                                })
+                               
+                            }
+                    }.frame(maxWidth: .infinity , minHeight:20  , alignment: .trailing)
                     
-                    ForEach(dmsdsnpreview, id: \.reqId) { item4 in
+                    
+                    
+                    ZStack(alignment: .center){
                         
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .scaleEffect(4)
                         
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .opacity(isLoading ? 1 : 0)
+                        Text("Loading...")
                         
+                            .foregroundColor(Color.gray)
+                        
+                            .opacity(isLoading ? 1 : 0)
+                      
+                    }
+                 
+                    
+                    ScrollView {
+                        
+                        ForEach(dmsdsnpreview1, id: \.reqId) { item4 in
+                            
                         VStack{
                             
-                            VStack{
-                                Text("\(item4.korProductDesc!)")
+                            if item4.apprStts == "CM"{
+                                VStack{
+                                    Text("\(item4.korProductDesc!)")
+                                        .padding(10)
+                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
+                                    .background(Color.gray )
                                     .padding(10)
-                            }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
-                                .background(Color.blue )
-                                .padding(10)
-                                .cornerRadius(30)
-                                .foregroundColor(.white)
+                                    .cornerRadius(30)
+                                    .foregroundColor(.white)
+                            }else if item4.apprStts == "RQ"{
+                                VStack{
+                                    Text("\(item4.korProductDesc!)")
+                                        .padding(10)
+                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
+                                    .background(Color.blue )
+                                    .padding(10)
+                                    .cornerRadius(30)
+                                    .foregroundColor(.white)
+//                            }else if item4.apprStts == "NO"{
+//                                VStack{
+//                                    Text("\(item4.korProductDesc!)")
+//                                        .padding(10)
+//                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
+//                                    .background(Color.yellow )
+//                                    .padding(10)
+//                                    .cornerRadius(30)
+//                                    .foregroundColor(.white)
+                            }else {
+                                VStack{
+                                    Text("\(item4.korProductDesc!)")
+                                        .padding(10)
+                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
+                                    .background(Color.blue )
+                                    .padding(10)
+                                    .cornerRadius(30)
+                                    .foregroundColor(.white)
+                            }
+                            
                             
                             VStack {
                                 
@@ -110,6 +188,7 @@ struct DmsView: View {
                                     Button{
                                         self.vattr1=item4.reqId
                                         self.vattr2=item4.revNo
+                                        self.vattr3=item4.apprSeq
                                         self.tag = 1
                                         
                                     } label: {
@@ -132,6 +211,7 @@ struct DmsView: View {
                         .modifier(CardModifier())
                         .frame(height:120)
                         .padding(.bottom , 80)
+                        .padding(.top , 40)
                         //
                         
                     }//end foreach
@@ -154,7 +234,7 @@ struct DmsView: View {
     func startLoading() {
         isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1)
         {
                 isLoading = false
                 resultflag = true
@@ -167,17 +247,19 @@ struct DmsView: View {
        
         loadData1()
       
-        print("Loading:secondView")
+        
+     
     }
     
    
     
     func loadData1(){
        
-        let Userid = UserDefaults.standard.string(forKey: "Userid")
-        
-      //  print("loadData2")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
+        //let Userid = UserDefaults.standard.string(forKey: "Userid")
+        let Userid:String = "AH1506150" //정은빈
+       // let Userid:String = "AH0403070" //이유용
+        print("\(Userid)")
+        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid)") else {
             print("Invalid URL")
             
             return
@@ -205,6 +287,7 @@ struct DmsView: View {
                             resultText = "검색된 결과가 없습니다."
                         }else{
                         
+                            updateFilteredArray(str1:"All")
                             print("OKAY")
                             resultText = ""
                           
@@ -220,49 +303,32 @@ struct DmsView: View {
         }.resume()
     }
     
-    
-    func apiTest(){
+    func updateFilteredArray(str1:String) {
+        startLoading()
+        var vFilter = str1
         
-
-        guard let url3 = URL(string: "http://herp.asunghmp.biz/FTP/Images/SUJU/10000/10005/2405055527_8819910005522_0.JPG") else {
-            print("Invalid URL")
-            
-            return
+        print("\(vFilter)")
+        switch vFilter {
+        case "All":
+            dmsdsnpreview1 = dmsdsnpreview.filter { $0.apprStts != "NULL" }
+        case "CM":
+            dmsdsnpreview1 = dmsdsnpreview.filter { $0.apprStts == "CM" }
+        case "RQ":
+            dmsdsnpreview1 = dmsdsnpreview.filter { $0.apprStts == "RQ" }
+//        case "NO":
+//            dmsdsnpreview1 = dmsdsnpreview.filter { $0.apprStts == "NO" }
+        default:
+            dmsdsnpreview1 = dmsdsnpreview.filter {$0.apprStts != "NULL" }
         }
-        
-        var request = URLRequest(url: url3)
-        request.httpMethod = "GET"
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
-                 print("Error: HTTP request failed")
-                
-                return
-            }
-            
-            guard error == nil else {
-                print("Error: error calling GET")
-                print(error!)
-                return
-            }
-            guard let data = data else {
-                print("Error: Did not receive data")
-                return
-            }
-         
-//            guard let output = try? JSONDecoder().decode(Response.self, from: data) else {
-//                print("Error: JSON Data Parsing failed")
-//                return
-//            }
-            
-            print(response.statusCode)
-        }.resume()
+    
+      
         
     }
-      //  print("\(Userid)")
-
+    
+   
        
      //   URLSession.shared.dataTask(with: request3)     }
 }
+
 
 

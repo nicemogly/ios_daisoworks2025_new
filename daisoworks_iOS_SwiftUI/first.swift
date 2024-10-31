@@ -9,36 +9,22 @@ import Foundation
 import Charts
 
 
-let londonWeatherData = [ WeatherData(year: 2024, month: 1, day: 1, temperature: 19.0),
-                          WeatherData(year: 2024, month: 2, day: 1, temperature: 17.0),
-                          WeatherData(year: 2024, month: 3, day: 1, temperature: 17.0),
-                          WeatherData(year: 2024, month: 4, day: 1, temperature: 13.0),
-                          WeatherData(year: 2024, month: 5, day: 1, temperature: 8.0),
-                          WeatherData(year: 2024, month: 6, day: 1, temperature: 8.0),
-                          WeatherData(year: 2024, month: 7, day: 1, temperature: 5.0),
-                          WeatherData(year: 2024, month: 8, day: 1, temperature: 8.0),
-                          WeatherData(year: 2024, month: 9, day: 1, temperature: 9.0),
-                          WeatherData(year: 2024, month: 10, day: 1, temperature: 11.0),
-                          WeatherData(year: 2024, month: 11, day: 1, temperature: 15.0),
-                          WeatherData(year: 2024, month: 12, day: 1, temperature: 18.0)
-]
-
-let chartData = [  (city: "London", data: londonWeatherData)]
 
 
-
-
-
-struct WeatherData: Identifiable {
-    let id = UUID()
-    let date: Date
-    let temperature: Double
-
-    init(year: Int, month: Int, day: Int, temperature: Double) {
-        self.date = Calendar.current.date(from: .init(year: year, month: month, day: day)) ?? Date()
-        self.temperature = temperature
-    }
+struct chartA: Decodable{
+   
+    let mmonth: String
+    let buyer: String?
+    var amt: Double?
 }
+
+struct chartA1: Decodable{
+   
+    let mmonth: String
+    var amt: Double?
+}
+
+
 
 struct HerpNotice: Identifiable {
     let id = UUID()
@@ -76,8 +62,10 @@ struct first: View {
     
     @Binding var passKey: String
     @State var isNExpanded: Bool = false
+    @State var charta = [chartA]()
+    @State var charta1 = [chartA1]()
     
-    
+    @State var Syear: String = ""
     
     
  // @State var herpnotice = [HerpNotice]()
@@ -97,104 +85,84 @@ struct first: View {
     ]
     var body: some View {
         
+        let UserDept  = UserDefaults.standard.string(forKey: "memdeptgbn") //부서구분
+        /*
+         chart Display Rule
+         1.로그인 유저가 임원일 경우 00
+         2.로그인 유저가 부서구분코드가 11, 13 일 경우
+         3.로그인 유저가 부서구분코드가 위 3가지기 다 아닐경우 안 보여줌.
+         4.로구인 유저가 부서구분코드가 12인경우 안보여줌.
+        */
       
         ScrollView {
             
       
         VStack {
-            
-  
-               HStack {
-                    Text("전사 월별 매출")
-                       .font(.system(size:18 , weight: .bold))
-                   
-                   Spacer()
-                    Text("(단위: 억 원)")
-                       .font(.system(size:18 , weight: .bold))
-               }.padding(5)
-          
-            
-                   Chart {
-                      
-                       ForEach(londonWeatherData) { item in
-                           
-                           let strval1 = String(format: "%.0f", item.temperature)
-                           LineMark(
-                               x: .value("Month", item.date),
-                               y: .value("Temp", item.temperature)
-                             
-                               )
-                         
-                           .symbol(){
-                               Circle()
-                                   .fill(Color.blue)
-                                   .frame(width:10)
-                           }
-                           PointMark(
-                               x: .value("Month", item.date),
-                               y: .value("Temp", item.temperature)
-                               
-                               )
-                           .foregroundStyle(.green)
-                           
-                           .annotation(position:.top , alignment: .center) { Text("\(strval1)") }
-                       }
-                       
-                   }
-                   .chartXAxis {
-                       AxisMarks(values: .stride(by: .month, count:1)) { _ in
-                           AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
-                           
-                       }
-                   }
-                   .chartYScale(domain: 0...23)
-            //.chartYScale(domain: [minStockPrice ?? 0- , maxStockPrice ?? 0])
-                   .frame(height: 300 , alignment: .topLeading)
-                   .padding(.bottom , 30)
-        
-            HStack {
-                 Text("전사 월별 납기율")
-                    .font(.system(size:18 , weight: .bold))
+
+            if(UserDept == "00" || UserDept == "11" || UserDept == "13") {
                 
-                Spacer()
-                 Text("(단위: %)")
-                    .font(.system(size:18 , weight: .bold))
-            }.padding(5)
-       
-         
+                HStack {
+                    Text("전사 월별 매출")
+                        .font(.system(size:18 , weight: .bold))
+                    
+                    Spacer()
+                    Text("(단위: 억 원)")
+                        .font(.system(size:18 , weight: .bold))
+                }.padding(5)
+                
+                
                 Chart {
-                   
-                    ForEach(londonWeatherData) { item in
+                    
+                    ForEach(charta, id: \.mmonth) { item in
                         
-                        let strval1 = String(format: "%.0f", item.temperature)
+                        
+                      //  let strval1 = String(format: "%.0f", item.amt ?? 0)
                         BarMark(
-                            x: .value("Month", item.date),
-                            y: .value("Temp", item.temperature),
-                            width: 20
-                            )
-                        
-                       
-                        PointMark(
-                            x: .value("Month", item.date),
-                            y: .value("Temp", item.temperature)
+                            x: .value("Month", item.mmonth),
+                            y: .value("Temp", (item.amt == nil ? 0 : item.amt)! )
                             
-                            )
-                        .foregroundStyle(.green)
-                        .annotation(position:.top , alignment: .center) { Text("\(strval1)") }
+                        )
+                        .foregroundStyle(by: .value("Buyer1", item.buyer ?? " "))
+                        
+                        
                     }
                     
-                }
-                .chartXAxis {
-                    AxisMarks(values: .stride(by: .month, count:1)) { _ in
-                        AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
+                    
+                    ForEach(charta1, id: \.mmonth) { item1 in
+                        
+                       
+                        let strval1 = String(format: "%.0f", item1.amt ?? 0)
+                        PointMark(
+                            x: .value("Month", item1.mmonth),
+                            y: .value("Temp", (item1.amt == nil ? 0 : item1.amt)! )
+                            
+                        )
+                        .foregroundStyle(.red)
+                        
+                        .annotation(position:.top , alignment: .center) { Text("\(strval1)").font(.system(size: 10)) }
+                        
                         
                     }
+                    
+                    
                 }
-                .chartYScale(domain: 0...23)
-         //.chartYScale(domain: [minStockPrice ?? 0- , maxStockPrice ?? 0])
+                //                   .chartXAxis {
+                //                       AxisMarks(values: .stride(by: .month, count:1)) { _ in
+                //                           AxisValueLabel(format: .dateTime.month(.abbreviated), centered: true)
+                //
+                //                       }
+                //                   }
+                //   .chartYScale(domain: 0...2000)
+                //   .chartYScale(domain: [minStockPrice ?? 0- , maxStockPrice ?? 0])
+                .chartYScale(domain: .automatic(includesZero: false))
                 .frame(height: 300 , alignment: .topLeading)
                 .padding(.bottom , 30)
-            
+                
+       
+       
+         
+            }
+                  
             
             HStack {
                 Text("공지사항")
@@ -208,25 +176,6 @@ struct first: View {
                  
                  ForEach(herpnotice) { nt1 in
                     
-//                     HStack{
-//                         Text("[\(nt1.herp_date)] \(nt1.herp_title)")
-//                             .font(.system(size:16 , weight: .bold))
-//                             .frame(maxWidth: .infinity , alignment: .leading)
-//                     }
-//                    
-//                     .onTapGesture {
-//                         withAnimation{
-//                             isNExpanded.toggle()
-//                         }
-//                     }
-//                     
-//                     if isNExpanded {
-//                         Text("\(nt1.herp_conts)")
-//                             .font(.system(size:16 , weight: .bold))
-//                             .frame(maxWidth: .infinity , alignment: .leading)
-//                     }
-                     
-                     
                      DisclosureGroup{
                          HStack {
                              VStack(alignment: .leading){
@@ -338,8 +287,26 @@ struct first: View {
             
             
             
-        }.padding(15)
+        }.onAppear{
+           
+           // let UserDept  = UserDefaults.standard.string(forKey: "memdeptgbn") //부서구분
+           // let UserName = UserDefaults.standard.string(forKey: "memdeptnme") // 부서명
             
+            //임원일경우
+            if(UserDept == "00") {
+                    
+                ChartLoad1()
+                ChartLoad2()
+          
+            //부서코드가 11 , 13일경우
+            }else if(UserDept == "11" || UserDept == "13") {
+                
+                ChartLoad3()
+                ChartLoad4()
+            }
+           
+        }
+        .padding(15)
             VStack{
                 Spacer()
                 Spacer()
@@ -352,6 +319,180 @@ struct first: View {
       
 }
     
+    
+    func ChartLoad1(){
+        
+        let attrYear = getCurrentDateYear() //현재날짜 구하기
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(String(describing: attrComcode))&yymm=\(attrYear)") else {
+            print("Invalid URL")
+            return
+        }
+        
+      
+
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                
+                decoder1.dateDecodingStrategy = .iso8601
+                print("ChartLoad1 3")
+                if let decodedResponse1 = try? decoder1.decode([chartA].self, from: data1){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.charta = decodedResponse1
+                        
+                        print("value:\(self.charta)")
+                        print("chart건수\(self.charta.count)")
+                        print("ChartLoad1 4")
+                        
+                        if(self.charta.count == 0 ){
+                           
+                        }else{
+                            print("ChartLoad1 5")
+                            self.charta.forEach {
+
+                                print("해당년월:\($0.mmonth)")
+                                print("매출액:\($0.amt ?? 0)")
+                                //v_attr4 = $0.reqId
+                                
+                                
+                                
+                            }
+                            
+                            print("ok")
+               
+                        }
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+    }
+    
+    
+    
+    func ChartLoad2(){
+        let attrYear = getCurrentDateYear() //현재날짜 구하기
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+      
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(String(describing: attrComcode))&yymm=\(attrYear)") else {
+            print("Invalid URL")
+            return
+        }
+
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                
+                decoder1.dateDecodingStrategy = .iso8601
+      
+                if let decodedResponse1 = try? decoder1.decode([chartA1].self, from: data1){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.charta1 = decodedResponse1
+
+                        if(self.charta1.count == 0 ){
+                           
+                        }else{
+//                            self.charta1.forEach {
+//
+//                                
+//                            }
+               
+                        }
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+    }
+    
+    
+    func ChartLoad3(){
+        
+        let attrYear = getCurrentDateYear() //현재날짜 구하기
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        let attrDeptcode = UserDefaults.standard.string(forKey: "memdeptcde") // 로그인부서코드
+        
+     
+        
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt_1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
+            print("Invalid URL")
+            return
+        }
+
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                
+                decoder1.dateDecodingStrategy = .iso8601
+                print("ChartLoad1 3")
+                if let decodedResponse1 = try? decoder1.decode([chartA].self, from: data1){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.charta = decodedResponse1
+                        
+                        if(self.charta.count == 0 ){
+                           
+                        }else{
+
+                        }
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+    }
   
+    func ChartLoad4(){
+        
+        let attrYear = getCurrentDateYear() //현재날짜 구하기
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        let attrDeptcode = UserDefaults.standard.string(forKey: "memdeptcde") // 로그인부서코드
+        
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1_1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
+            print("Invalid URL")
+            return
+        }
+        
+        print("ChartLoad1 4")
+
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                
+                decoder1.dateDecodingStrategy = .iso8601
+                if let decodedResponse1 = try? decoder1.decode([chartA1].self, from: data1){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.charta1 = decodedResponse1
+                         
+                        if(self.charta1.count == 0 ){
+                           
+                        }else{
+               
+                        }
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+    }
+    
+    func getCurrentDateYear() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return formatter.string(from: Date())
+    }
 }
 
