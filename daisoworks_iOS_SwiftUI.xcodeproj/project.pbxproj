@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		126A2F2DF65174ED75DC9F02 /* Pods_daisoworks_iOS_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098E62D349209629115FECC /* Pods_daisoworks_iOS_SwiftUITests.framework */; };
+		4B076D402CFA358600B7DA58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4B076D3F2CFA358600B7DA58 /* .gitignore */; };
 		4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BA2CC1A96A001392E9 /* second.swift */; };
 		4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BC2CC30585001392E9 /* CardModifier.swift */; };
 		4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B833CA12CE59D17000267FB /* SettingView.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI/Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		4B076D3F2CFA358600B7DA58 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		4B4EA3BA2CC1A96A001392E9 /* second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = second.swift; sourceTree = "<group>"; };
 		4B4EA3BC2CC30585001392E9 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
 		4B833CA12CE59D17000267FB /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		4BD6C0152CB47C27000E8152 = {
 			isa = PBXGroup;
 			children = (
+				4B076D3F2CFA358600B7DA58 /* .gitignore */,
 				4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */,
 				4BD6C0312CB47C29000E8152 /* daisoworks_iOS_SwiftUITests */,
 				4BD6C03B2CB47C29000E8152 /* daisoworks_iOS_SwiftUIUITests */,
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD6C0532CB47C4C000E8152 /* Preview Assets.xcassets in Resources */,
+				4B076D402CFA358600B7DA58 /* .gitignore in Resources */,
 				4BD6C0542CB47C4C000E8152 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,7 +614,7 @@
 		};
 		4BD6C0432CB47C29000E8152 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B5C80AA27F305DC6C501D2F /* Pods-daisoworks_iOS_SwiftUI.debug.xcconfig */;
+			baseConfigurationReference = EC61298AC23EE19005031148 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -649,7 +653,7 @@
 		};
 		4BD6C0442CB47C29000E8152 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */;
+			baseConfigurationReference = 1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -688,7 +692,7 @@
 		};
 		4BD6C0462CB47C29000E8152 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76CDEB7960DD59EEF0699F0E /* Pods-daisoworks_iOS_SwiftUITests.debug.xcconfig */;
+			baseConfigurationReference = EC61298AC23EE19005031148 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -709,7 +713,7 @@
 		};
 		4BD6C0472CB47C29000E8152 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B184CD4A3DA93D59083421B5 /* Pods-daisoworks_iOS_SwiftUITests.release.xcconfig */;
+			baseConfigurationReference = 1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

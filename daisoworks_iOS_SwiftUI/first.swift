@@ -281,10 +281,12 @@ struct first: View {
     }
     
     func ChartLoad1(){
-        
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+            return
+        }
         let attrYear = getCurrentDateYear() //현재날짜 구하기
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
-        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)") else {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt?apikey=\(apiKey)&corpCd=\(attrComcode!)&yymm=\(attrYear)") else {
             print("Invalid URL")
             return
         }
@@ -324,8 +326,11 @@ struct first: View {
     func ChartLoad2(){
         let attrYear = getCurrentDateYear() //현재날짜 구하기
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+            return  // \(apiKey)
+        }
       
-        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)") else {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1?apikey=\(apiKey)&corpCd=\(attrComcode!)&yymm=\(attrYear)") else {
             print("Invalid URL")
             return
         }
@@ -359,8 +364,11 @@ struct first: View {
         let attrYear = getCurrentDateYear() //현재날짜 구하기
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
         let attrDeptcode = UserDefaults.standard.string(forKey: "memdeptcde") // 로그인부서코드
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+            return  // \(apiKey)
+        }
         
-        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt_1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt_1?apikey=\(apiKey)&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
             print("Invalid URL")
             return
         }
@@ -394,8 +402,10 @@ struct first: View {
         let attrYear = getCurrentDateYear() //현재날짜 구하기
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
         let attrDeptcode = UserDefaults.standard.string(forKey: "memdeptcde") // 로그인부서코드
-        
-        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1_1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+            return  // \(apiKey)
+        }
+        guard let url1 = URL(string: "http://59.10.47.222:3000/chartsamt1_1?apikey=\(apiKey)&corpCd=\(attrComcode!)&yymm=\(attrYear)&corpCd1=\(attrComcode!)&saleCd=\(attrDeptcode!)") else {
             print("Invalid URL")
             return
         }
@@ -432,10 +442,12 @@ struct first: View {
     
     
     func loadData1(){
-       
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+            return  // \(apiKey)
+        }
         let comCode: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
         let Userid = UserDefaults.standard.string(forKey: "Userid")
-        guard let url2 = URL(string: "http://59.10.47.222:3000/sujuview0?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&comCode=\(comCode!)&mUserId=\(Userid!)") else {
+        guard let url2 = URL(string: "http://59.10.47.222:3000/sujuview0?apikey=\(apiKey)&comCode=\(comCode!)&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
