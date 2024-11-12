@@ -429,7 +429,6 @@
 				4BD6C0582CB487AF000E8152 /* LoginView1.swift in Sources */,
 				4BD6C08B2CB48F34000E8152 /* CompanyView.swift in Sources */,
 				4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */,
-				4BD6C05A2CB487E6000E8152 /* testView.swift in Sources */,
 				4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */,
 				4BD6C0832CB48E2E000E8152 /* SideMenuView.swift in Sources */,
 				4BB6CBC42CB9839A008569A4 /* ThumbnailView.swift in Sources */,

@@ -22,6 +22,19 @@ extension View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
+
+struct SafariView: UIViewControllerRepresentable {
+    let url:URL
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+        
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
+        
+    }
+}
 // ===========================Extension End===========================
 
 // =======================Result Data Group Start=====================
@@ -229,10 +242,6 @@ struct LoginView: View {
                                 self.password = password!
                                 self.toggling = true
                                 notCorrectLogin = false
-                                
-                                
-                                
-                                
                 
                                 Task {
                                     await loadData2(str1: Userid!) //HERP 부서정보
@@ -380,7 +389,6 @@ struct LoginView: View {
                                 UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
                                 UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
                                 
-                              //print("aaa\($0.deptgbn)")
                             }
                         }
                     }

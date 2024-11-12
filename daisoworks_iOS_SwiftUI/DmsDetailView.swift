@@ -90,11 +90,7 @@ struct DmsDetailView: View  {
     @State private var apprCfmg: String = ""
     @State private var apprCmmt: String = ""
     
-    
-<<<<<<< refs/remotes/origin/main
-=======
-    
->>>>>>> 2024112209
+
     @State private var appr_reqId: String = ""
     
     
@@ -617,15 +613,8 @@ struct DmsDetailView: View  {
         }
     }
     
-    func startLoading1() {
-        isLoading = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5)
-        {
-                isLoading = false
-                resultflag = true
-        }
-    }
+ 
+    
     
     func didDismiss() {
     }
@@ -1010,10 +999,7 @@ struct DmsDetailView: View  {
                             
                             
                            
-<<<<<<< refs/remotes/origin/main
-                            print("OKAY Detail5===,여기5")
-=======
-                            print("OKAY Detail5555===,여기55555")
+
                             
                             resultText = ""
                             
@@ -1078,8 +1064,6 @@ struct DmsDetailView: View  {
     }
    
     
-<<<<<<< refs/remotes/origin/main
-=======
     func getUrlString (str1: String , str2: String) -> String {
         var components = URLComponents()
         components.scheme = "http"
@@ -1090,7 +1074,7 @@ struct DmsDetailView: View  {
         //  let  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
         return components.string ?? ""
     }
->>>>>>> 2024112209
+
     
     
 }
@@ -1108,16 +1092,3 @@ extension String {
 
 
 
-struct SafariView: UIViewControllerRepresentable {
-
-    var url: URL
-   
-    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        return SFSafariViewController(url: url)
-    }
-
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
-
-    }
-
-}
