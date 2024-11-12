@@ -24,6 +24,9 @@ struct DmsView2: Decodable {
     let phEmpNm: String?
     let productImageType: String?
     let productImage: String?
+    let apprSeq: String?
+    let revNo: String?
+    
    
 }
 
@@ -49,20 +52,40 @@ struct DmsView5: Decodable  , Identifiable{
     let apprDate: String?
     let apprCfmFgNm: String?
     let myTurn: String?
-    let apprCmmt: String?
+    var apprCmmt: String?
     let apprUserId: String?
+    let reqId: String?
+    let revNo: String?
+    let apprSeq: String?
+    let apprTyp: String?
+}
+
+struct DmsView6: Decodable {
+    var methodNm: String?
+    var resultCode: String?
+    var resultMessage: String?
 }
 
 struct DmsDetailView: View  {
     @Environment(\.presentationMode) private var presentaionMode: Binding<PresentationMode>
-
+ 
+    @State private var apprSeq = ""
+    @State private var revNo = ""
     
+    @State private var apprTyp = ""
 
     @State private var appr_1: String = "없슴"
     @State private var appr_2: String = ""
     @State private var appr_3: String = ""
+    @State private var appr_33: String = ""
     @State private var appr_4: String = ""
     @State private var appr_5: String = ""
+    @State private var apprCfmg: String = ""
+    @State private var apprCmmt: String = ""
+    
+    
+    @State private var appr_reqId: String = ""
+
     
     @Binding var attr1: String
     @Binding var attr2: String
@@ -72,11 +95,14 @@ struct DmsDetailView: View  {
     @State var dmsview3 = [DmsView3]()
     @State var dmsview4 = [DmsView4]()
     @State var dmsview5 = [DmsView5]()
+    @State var dmsview6 = [DmsView6]()
     
+    @State var imgt1: String = ""
     
     @State private var resultText: String = ""
     @State var resultflag = false
     @State private var isLoading = false
+    @State private var v_attr0 = ""
     @State private var v_attr3 = ""
     @State private var v_attr4 = ""
     @State private var v_attr5 = ""
@@ -84,6 +110,10 @@ struct DmsDetailView: View  {
     @State private var v_attr7 = ""
     @State private var currentScale: CGFloat = 1.0
     @GestureState private var zoomFactor: CGFloat = 1.0
+    
+    @State private var selection  = "선택"
+    
+      var data9 = ["1031154","1031154","1031155"]
     
     @State private var isShowingSheet = false
     @State var isShowing = false
@@ -102,7 +132,7 @@ struct DmsDetailView: View  {
         
         
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
-        let Userid:String = "AH1506150" //정은빈
+        let Userid:String = "AH2201001" //정은빈
         
        // let Userid:String = "AH0403070" //이유용
         
@@ -126,7 +156,7 @@ struct DmsDetailView: View  {
                         VStack{
                            
                            // Image(systemName: "magnifyingglass.circle.fill" )
-                            AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.reqId).png")) { image in
+                            AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.productCd!).jpg")) { image in
                                 image.resizable()
                                  
                             }placeholder: {
@@ -141,7 +171,7 @@ struct DmsDetailView: View  {
                          
                                 .scaledToFit()
                                 .frame(width: 80, height:  80)
-                                .padding(.bottom , 30   )
+                                .padding(.bottom , 60   )
                             Text("\(item2.productCd == nil ? " " : item2.productCd!)")
                             Text("\(item2.korProductDesc == nil ? " " : item2.korProductDesc!)")
                         }.frame(maxWidth: .infinity , minHeight: 200)
@@ -232,44 +262,61 @@ struct DmsDetailView: View  {
                         
                     
                     VStack {
+                        HStack {
+                        
                         Text("디자인 정보")
                             .padding(.bottom , 20)
                             .padding(.top , 0)
                             .font(.headline)
                             .fontWeight(.bold)
                             .underline()
+                         
+                        Spacer()
+                            
+                            
+                           
+                            
+                            
+                        }
                     }.frame(maxWidth: .infinity ,  alignment: .leading)
               
+               
                 
+               
                   // 디자인정보
-                ForEach(dmsview4, id: \.origFileNm) { item4 in
-                            
+                ForEach(data9, id: \.self) { item4 in
+                  
+                 
+                   
+                   
                     VStack(alignment: .leading ){
                         
                         ScrollView(.horizontal){
                            
-                      
+                            let url = URL(string: "http://59.10.47.222:3000/static/\(item4).jpg")
                                 
-                                AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")) { image in
-                                    image.resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .scaleEffect(currentScale * zoomFactor)
-                                        .gesture(magnification)
-                                }placeholder: {
+                            AsyncImage(url: url) { image in
+                                
+                                
+                                image.resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .scaleEffect(currentScale * zoomFactor)
+                                    .gesture(magnification)
+                            } placeholder: {
                                     
                                     Image("noimage200")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .scaleEffect(currentScale * zoomFactor)
                                         .gesture(magnification)
-                                     //   .frame(width: .infinity , height: 300 , alignment: .center)
-                                    
-                                }.frame(width: UIScreen.main.bounds.width , height:500 , alignment: .center)
+                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
+                                
+                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
                                 .scaledToFit()
                                 .padding(.bottom , 30   )
                                 
-                                
-                            }
+                            
+                        }
                            
                             Spacer()
                             Divider()
@@ -314,7 +361,7 @@ struct DmsDetailView: View  {
                                      
                                      Text("\(item3.apprEmpNm == nil ? " " : item3.apprEmpNm!)").frame(width:60 , alignment: .leading)
                                 
-                                     Text("\(item3.apprDate == nil ? " " : item3.apprDate!)").frame(width:160 , alignment: .leading)
+                                     Text("\(item3.apprDate == nil ? " " : item3.apprDate!)").frame(width:165 , alignment: .leading)
                                      
                                     
                                      Button(action: {
@@ -327,9 +374,9 @@ struct DmsDetailView: View  {
                                              appr_3 = item3.apprCmmt == nil ? " " : item3.apprCmmt!
                                              appr_4 = item3.myTurn!
                                              appr_5 = item3.apprUserId!
-                                             
-                                        
-                                         
+                                           
+                                             apprTyp = item3.apprTyp!
+                                             apprCmmt = appr_3
                                              isShowingSheet.toggle()
                                          }
                                              
@@ -337,14 +384,14 @@ struct DmsDetailView: View  {
                                      
                                          if (item3.apprEmpNm == "대상아님") {
                                              Text("무결")
-                                                 .padding(10)
+                                                 .padding(5)
                                                  .background(Color.gray)
                                                  .foregroundColor(.white)
                                              
                                              
                                          }else{
                                               Text("\(item3.apprCfmFgNm!)")
-                                                     .padding(10)
+                                                     .padding(5)
                                                      .background(item3.apprCfmFgNm! == "대기" ? Color.gray : Color.blue)
                                                      .foregroundColor(item3.apprCfmFgNm! == "대기" ? Color.black : Color.white)
                                            
@@ -407,7 +454,7 @@ struct DmsDetailView: View  {
                         } .padding(.bottom , 15)
                         
                         HStack {
-                            TextEditor(text: $appr_3)
+                            TextEditor(text: $apprCmmt)
                                 .border(Color.gray)
                                 .cornerRadius(3)
                                 .frame(height:100 )
@@ -422,11 +469,28 @@ struct DmsDetailView: View  {
                         if(appr_4 == "true" &&  appr_5 == Userid){
                             Button("승인" , action: {
                                // isShowingSheet.toggle()
+                                
                                 isShowing = true
                             })
                             .alert("승인 하시겠습니까?" , isPresented: $isShowing) {
-                                Button("OK", role: .destructive) {  print("OK")}
-                                Button("Cancel", role: .cancel) { print("Cancel")}
+                                Button("OK", role: .destructive) {
+                                    apprCfmg = "Y"
+                                   // apprCmmt = appr_3
+                                    
+                                    loadData6()
+                                   //
+                                    isShowingSheet.toggle()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        presentaionMode.wrappedValue.dismiss()
+                                    }
+                                    
+                                }
+                                Button("Cancel", role: .cancel) {
+                                
+                                   
+                                    print("Cancel")
+                                    
+                                }
                             }
                             
                             .padding(10)
@@ -439,7 +503,19 @@ struct DmsDetailView: View  {
                             })
                             
                             .alert("반려 하시겠습니까?" , isPresented: $isShowing1) {
-                                Button("OK", role: .destructive) {  print("OK")}
+                                Button("OK", role: .destructive) {
+                                    apprCfmg = "N"
+                                   // apprCmmt = appr_3
+                                    
+                                    loadData6()
+                                   //
+                                    isShowingSheet.toggle()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        presentaionMode.wrappedValue.dismiss()
+                                    }
+                                    print("OK")
+                                    
+                                }
                                 Button("Cancel", role: .cancel) { print("Cancel")}
                             }
                             .padding(10)
@@ -509,7 +585,7 @@ struct DmsDetailView: View  {
  
            
    
-        print("Loading:DmsDetailView")
+        print("Loading:DmsDetailView_init")
     }
     
     func loadData1(){
@@ -545,10 +621,13 @@ struct DmsDetailView: View  {
                             self.dmsview2.forEach {
 
                                 v_attr3 = $0.productImage ?? ""
-                                v_attr4 = $0.reqId
-                                
-                                //이미지 가져오기(상단 품번이미지
-                                requestGet(v_attr3: v_attr3, v_attr4: v_attr4)
+                                v_attr0 = $0.productImageType ?? ""
+                                v_attr4 = $0.productCd ?? ""
+                                apprSeq = $0.apprSeq ?? ""
+                                revNo = $0.revNo ?? ""
+                                appr_reqId = $0.reqId
+                            //이미지 가져오기(상단 품번이미지
+                                requestGet(v_attr3: v_attr3, v_attr4: v_attr4, v_attr0: v_attr0)
                         
                                 
                             }
@@ -569,16 +648,30 @@ struct DmsDetailView: View  {
     }
     
     
-    func requestGet( v_attr3:String , v_attr4:String) {
-        let attr4 = v_attr4 + ".png"
+    func requestGet( v_attr3:String , v_attr4:String , v_attr0:String) {
         
-        let prefixattr3:String  = "https://devdms.asungcorp.com"
-        let attr33 = prefixattr3+"/file/dso/202106/202106_000232/thumb/202106_000232_011.jpg"
+      //  let prefixattr3:String  = "https://devdms.asungcorp.com"
+      //  let attr33 = prefixattr3+"/file/dso/202106/202106_000232/thumb/202106_000232_011.jpg"
       //        var attr5 = "https://devdms.asungcorp.com/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
         //        var attr44 = "/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
      
+        var prefixattr3 = ""
+        var attr5 = ""
+        var imgUrl1 = ""
        
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr4)&imgUrl=\(attr33)") else {
+         attr5 = v_attr4 + ".jpg"
+        
+        
+        
+        if (v_attr0 == "PATH") {
+            prefixattr3 = "https://devdms.asungcorp.com"
+        }else if(v_attr0 == "BLOB"){
+            prefixattr3 = "http://herp.asunghmp.biz/FTP"
+        }
+        
+        imgUrl1 = prefixattr3+v_attr3
+     
+        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(imgUrl1)") else {
             print("Invalid URL")
             
             return
@@ -719,6 +812,27 @@ struct DmsDetailView: View  {
         }.resume()
     }
     
+    func onImageChange(targimg: String){
+        
+        print("\(targimg)")
+        AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(targimg)")) { image1 in
+            image1.resizable()
+                .aspectRatio(contentMode: .fit)
+                .scaleEffect(currentScale * zoomFactor)
+                .gesture(magnification)
+        }placeholder: {
+           // ProgressView()
+            Image("noimage200")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width:100 , height:100)
+            
+        }.frame(width:200 , height:200)
+        
+    }
+    
+    
+    
     func loadData3(){
 
         
@@ -784,12 +898,12 @@ struct DmsDetailView: View  {
   
     func loadData4(){
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
-        let Userid = "AH1506150"//정은빈
+        let Userid = "AH2201001"//정은빈
         
        // let Userid:String = "AH0403070" //이유용
         print("OKAY Detail5===,여기51")
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&mUserId=\(Userid)&apprSeq=\(attr3)") else {
+        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&mUserId=\(Userid)") else {
             print("Invalid URL")
             
             return
@@ -817,8 +931,18 @@ struct DmsDetailView: View  {
                             resultText = "검색된 결과가 없습니다."
                         }else{
                             
-                         
-                        
+
+                            
+                            self.dmsview5.forEach {
+
+                              //  apprTyp = $0.apprTyp ?? ""
+                                apprCmmt = $0.apprCmmt ?? ""
+                                
+                            }
+                            
+                            
+                            
+                           
                             print("OKAY Detail5===,여기5")
                             resultText = ""
                           
@@ -834,7 +958,52 @@ struct DmsDetailView: View  {
         }.resume()
     }
    
-    
+    func loadData6(){
+        //let Userid = UserDefaults.standard.string(forKey: "Userid")
+        let Userid = "AH2201001"//정은빈
+        
+       // let Userid:String = "AH0403070" //이유용
+
+        guard let url6 = URL(string: "http://59.10.47.222:3000/dmspost1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&apprTyp=\(apprTyp)&apprCfmFg=\(apprCfmg)&apprCmmt=\(apprCmmt)&mUserId=\(Userid)") else {
+            print("Invalid URL")
+            
+            return
+        }
+        print("\(url6)")
+
+        let request6 = URLRequest(url: url6)
+        URLSession.shared.dataTask(with: request6) { data33, response, error in
+            if let data33 = data33 {
+                let decoder33 = JSONDecoder()
+                
+                decoder33.dateDecodingStrategy = .iso8601
+                
+                if let decodedResponse33 = try? decoder33.decode([DmsView6].self, from: data33){
+                    DispatchQueue.main.async {
+                       // self.users = decodedResponse
+                        self.dmsview6 = decodedResponse33
+                        print("\(decodedResponse33)")
+                        print("valueT:\(self.dmsview6)")
+                        print("detail건수\(self.dmsview6.count)")
+                        
+                    
+                       
+                            
+                           
+                            print("OKAY Detail6===,여기5")
+                            resultText = ""
+                          
+                            startLoading()
+                            
+                       
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+    }
+   
     
     
     

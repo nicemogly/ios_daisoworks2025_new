@@ -256,7 +256,7 @@ struct DmsView: View {
     func loadData1(){
        
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
-        let Userid:String = "AH1506150" //정은빈
+        let Userid:String = "AH2201001" //정은빈
        // let Userid:String = "AH0403070" //이유용
         print("\(Userid)")
         guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid)") else {

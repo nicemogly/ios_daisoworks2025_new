@@ -48,10 +48,6 @@ struct LoginView: View {
     }
     
     @State var chkview1 = [Chkview1]()
-    
-    
-    
-    
     @State private var toggling = false
     
     @State private var id: String = ""

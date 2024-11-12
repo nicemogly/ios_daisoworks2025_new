@@ -111,6 +111,13 @@ struct ProductView: View {
     @State private var scannedString: String = "Scan a QR code or barcode"
     @State private var scnflag: Bool = false
     
+    
+    @State private var v_attr5 = ""
+    @State private var v_attr6 = ""
+    @State private var v_attr7 = ""
+    
+    
+    
 
     var body: some View {
       
@@ -224,7 +231,7 @@ struct ProductView: View {
                         Button("선택" , action: {
                            // selection1 = selection1
                             isShowingSheet.toggle()
-                         
+                         print("display:0")
                                  //   startLoading()
                                     loadData2()
                                     loadData3()
@@ -273,13 +280,23 @@ struct ProductView: View {
                                 
                                 
                             }, expanded: ExpandedView{
-                                VStack(alignment: .leading, spacing: 0) {
+                                VStack(alignment: .center, spacing: 0) {
                                     ForEach(itemview1, id: \.barcodeNo) { item2 in
-                                        Spacer()
-                                     //   AsyncImage(url: URL(string: "https://cdn.daisomall.co.kr/file/PD/20240708/fDLihH42tRGSTqojDpSQ1029927_00_00fDLihH42tRGSTqojDpSQ.jpg/dims/optimize/dims/resize/100x150"))
                                         
-                                        AsyncImage(url: URL(string: "http://herp.asunghmp.biz/FTP/Images/SUJU/10000/10005/2405055527_8819910005522_0.JPG"))
-                                          //  .frame( alignment: .center , width:100 , height:150)
+                                      
+                                        Spacer()
+                                  
+                                        AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.itemNo!).jpg")){ image in
+                                            image.resizable()
+                                             
+                                        } placeholder: {
+                                            ProgressView()
+                                        }.frame(width:200 , height:200 , alignment: .center)
+                                        
+                                       
+                                     
+                                        
+                                        
                                         
                                             .frame(width:300 , height:300 , alignment: .center)
                                         HStack(spacing:0) {
@@ -314,7 +331,7 @@ struct ProductView: View {
                                //itemPictureUrl
                                         HStack() {
                                         //    Text("\(item2.itemIpsu ?? "" )")
-                                            Text("\(item2.itemPictureUrl ?? "" )")
+                                         //   Text("\(item2.itemPictureUrl ?? "" )")
                                             Spacer()
                                             Text("\(item2.itemDetails ?? "" )")
                                         }.frame(maxWidth: .infinity, alignment: .leading)
@@ -567,6 +584,7 @@ struct ProductView: View {
     }
     
     func startLoading() {
+        
         isLoading = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2)
@@ -575,6 +593,7 @@ struct ProductView: View {
                 resultflag = true
         }
     }
+    
     func didDismiss() {
             }
     
@@ -645,7 +664,7 @@ struct ProductView: View {
                             resultflag = false
                             resultText = "검색된 결과가 없습니다."
                         }else{
-                            startLoading()
+                           
                             selection1 = self.itemcount[0].buygdsbcd
                           
                             resultText = ""
@@ -653,6 +672,7 @@ struct ProductView: View {
                             loadData3()
                             loadData4()
                             loadData5()
+                            startLoading()
                             
                             
                        
@@ -683,6 +703,18 @@ struct ProductView: View {
                 if let decodedResponse2 = try? decoder2.decode([ItemView1].self, from: data2){
                      DispatchQueue.main.async {
                         self.itemview1 = decodedResponse2
+                         
+                         self.itemview1.forEach {
+
+                             v_attr5 = $0.itemNo ?? ""
+                             v_attr6 = $0.itemPictureUrl ?? ""
+                            
+                           
+                             requestGet1(v_attr5: v_attr5, v_attr6: v_attr6 )
+                     
+                         }
+                         
+                         
                     }
                     return
                 }
@@ -758,6 +790,62 @@ struct ProductView: View {
             }
         }.resume()
     }
+    
+    
+    func requestGet1( v_attr5:String , v_attr6:String) {
+        
+        
+        print("==============requestGET1==============")
+      
+        // var attr3 = v_attr3
+        let prefixattr3:String  = "http://herp.asunghmp.biz/FTP"
+        let attr5 = v_attr5+".jpg"
+        let attr9 = prefixattr3 + v_attr6
+   
+        print ("attr5: \(attr5)")
+        print ("attr9: \(attr9)")
+        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        var request = URLRequest(url: url3)
+        request.httpMethod = "GET"
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let response = response as? HTTPURLResponse, (200 ..< 305) ~= response.statusCode else {
+                 print("Error: HTTP request failed")
+                
+                return
+            }
+            
+            guard error == nil else {
+                print("Error: error")
+                print(error ?? "")
+                return
+            }
+            
+            guard data != nil else {
+                print("error: did no receive data")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+                print("error: HTTP request failed")
+                return
+                
+            }
+            
+        
+            
+          
+        }.resume()
+        
+        
+    }
+    
     
    
     
