@@ -209,12 +209,15 @@ struct LoginView: View {
     //앱 버전 체크
     private func chkVersion(){
        
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
-            return
-        }
+//        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
+//            return
+//        }
+        
+        let appid = Bundle.main.apiKey
+        
       
         
-        guard let url1 = URL(string: "http://59.10.47.222:3000/checkversion?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/checkversion?apikey=\(appid)") else {
             print("Invalid URL")
             return
         }

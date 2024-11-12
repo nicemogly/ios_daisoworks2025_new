@@ -11,6 +11,8 @@
 		4B076D402CFA358600B7DA58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4B076D3F2CFA358600B7DA58 /* .gitignore */; };
 		4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BA2CC1A96A001392E9 /* second.swift */; };
 		4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BC2CC30585001392E9 /* CardModifier.swift */; };
+		4B51CA392CFA8A09009737C6 /* DaisoworksInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */; };
+		4B51CA3B2CFA8AD2009737C6 /* Daisoworks++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */; };
 		4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B833CA12CE59D17000267FB /* SettingView.swift */; };
 		4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */; };
 		4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */; };
@@ -60,6 +62,8 @@
 		4B076D3F2CFA358600B7DA58 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		4B4EA3BA2CC1A96A001392E9 /* second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = second.swift; sourceTree = "<group>"; };
 		4B4EA3BC2CC30585001392E9 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DaisoworksInfo.plist; sourceTree = "<group>"; };
+		4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Daisoworks++Bundle.swift"; sourceTree = "<group>"; };
 		4B833CA12CE59D17000267FB /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmsDetailView.swift; sourceTree = "<group>"; };
 		4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		4BD6C0152CB47C27000E8152 = {
 			isa = PBXGroup;
 			children = (
+				4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */,
 				4B076D3F2CFA358600B7DA58 /* .gitignore */,
 				4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */,
 				4BD6C0312CB47C29000E8152 /* daisoworks_iOS_SwiftUITests */,
@@ -194,6 +199,7 @@
 		4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */,
 				4BD6C08E2CB607B5000E8152 /* daisoworks-iOS-SwiftUI-Info.plist */,
 				4B833CA12CE59D17000267FB /* SettingView.swift */,
 				4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */,
@@ -332,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B51CA392CFA8A09009737C6 /* DaisoworksInfo.plist in Resources */,
 				4BD6C0532CB47C4C000E8152 /* Preview Assets.xcassets in Resources */,
 				4B076D402CFA358600B7DA58 /* .gitignore in Resources */,
 				4BD6C0542CB47C4C000E8152 /* Assets.xcassets in Resources */,
@@ -446,6 +453,7 @@
 				4BD6C0892CB48F29000E8152 /* ProductView.swift in Sources */,
 				4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */,
 				4BD6C0522CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift in Sources */,
+				4B51CA3B2CFA8AD2009737C6 /* Daisoworks++Bundle.swift in Sources */,
 				4BD6C08D2CB49025000E8152 /* first.swift in Sources */,
 				4BD6C07F2CB48C0F000E8152 /* MainTabbedView.swift in Sources */,
 				4BB6CBC82CB98A28008569A4 /* ExpandableView.swift in Sources */,
