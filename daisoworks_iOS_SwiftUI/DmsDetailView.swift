@@ -303,26 +303,26 @@ struct DmsDetailView: View  {
                             ScrollView(.horizontal){
                                 
                                 
-                                //var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)"
+                                var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
                                 //  let  url = "http://59.10.47.222:3000/static/202402_001472_025_01.png"
-                                //                            AsyncImage(url: URL(string: url)) { image in
-                                //                                image.resizable()
-                                //                                    .aspectRatio(contentMode: .fit)
-                                //                                    .scaleEffect(currentScale * zoomFactor)
-                                //                                    .gesture(magnification)
-                                //                            } placeholder: {
+                                                            AsyncImage(url: URL(string: url)) { image in
+                                                                image.resizable()
+                                                                    .aspectRatio(contentMode: .fit)
+                                                                    .scaleEffect(currentScale * zoomFactor)
+                                                                    .gesture(magnification)
+                                                            } placeholder: {
+                                
+                                                                ProgressView()
+                                                                 //   Image("noimage200")
+                                //                                        .resizable()
+                                //                                        .aspectRatio(contentMode: .fit)
+                                //                                        .scaleEffect(currentScale * zoomFactor)
+                                //                                        .gesture(magnification)
+                                //                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
                                 //
-                                //                                ProgressView()
-                                //                                 //   Image("noimage200")
-                                ////                                        .resizable()
-                                ////                                        .aspectRatio(contentMode: .fit)
-                                ////                                        .scaleEffect(currentScale * zoomFactor)
-                                ////                                        .gesture(magnification)
-                                ////                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
-                                ////
-                                //                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
-                                //                                .scaledToFit()
-                                //                                .padding(.bottom , 30   )
+                                                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
+                                                                .scaledToFit()
+                                                                .padding(.bottom , 30   )
                                 
                                 //                            Link(destination: URL(string: "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")!){
                                 //                                Text("확대보기")
@@ -336,8 +336,14 @@ struct DmsDetailView: View  {
                                     self.showSafari = true
                                 }) {
                                     Text("이미지보기")
+                                        .foregroundStyle(.white)
+                                        .frame(maxWidth: .infinity)
                                     //  Text("\(urlString)")
                                 }
+                                .frame(maxWidth: .infinity , maxHeight:50, alignment: .center)
+                                .buttonStyle(.borderedProminent)
+                                .tint(.blue)
+                                
                                 .sheet(isPresented: $showSafari) {
                                     SafariView(url:URL(string: urlString)!)
                                 }

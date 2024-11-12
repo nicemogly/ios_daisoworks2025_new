@@ -1,30 +1,37 @@
-//
-//  HomeView.swift
-//  daisoworks_iOS_SwiftUI
-//
-//  Created by AD2201016P02 on 10/7/24.
-//
-
+//=============================================================================================================================================================
+//  ProjectName        :    DaisoWorks 아성다이소 관계사 업무관리 시스템
+//  Dev.Environment    :    Swift6(iOS) , Kotlin(AOS) , HERP(Oracle 11g,.NET) , DMS(Mysql,JAVA SpringBoot) , REST API(Node.js Express)
+//  Created by         :    Yoon Jang Hoon
+//  Created Date       :    2024.10.03
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Module Name        :    HomeView
+//  Program Name       :    HomeView.swift
+//  Description        :    1.TabBar 구성
+//                          2.관계사별 접근권한
+//                          3.TabBar별 View화면 Define
+//=============================================================================================================================================================
 
 import SwiftUI
 
 struct HomeView: View {
     
-
+    //================= View : @Binding Group Define Start===============================
     @Binding var presentSideMenu: Bool
     @Binding var selectedSideMenuTab: Int
-    
     @Binding var itemNo: String
-    @Binding  var comCode1: String
-    
+    @Binding var comCode1: String
     @Binding var sujubCode: String
     @Binding var sujuMgno: String
-    @Binding  var passKey: String
-
+    @Binding var passKey: String
+    //================= View : @Binding Group Define End===============================
     
+    //================= View : @State Group Define Start===============================
     @State private var selectedTab = 0
+    //================= View : @State Group Define End===============================
     
+    //================= View : Variable Define Start===============================
     private let tabs = [TabData(id:0 , name:"HERP"),TabData(id:1 , name:"DMS")]
+    //================= View : Variable Define End===============================
     
     var body: some View {
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
@@ -39,21 +46,19 @@ struct HomeView: View {
                 .padding(.horizontal)
                 .padding(.top, 25)
             Spacer()
-            
            
             TabView(selection: $selectedTab){
-                
                 ForEach(tabs, id:\.id){ tab  in
-                    
                      if(tab.id == 0  ) {
                          if(attrComcode == "00000"){
                             
                          }else{
-                             first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
+                           //첫번째 탭(HERP)이동
+                          first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
                          }
                     } else{
+                        //DMS탭이동
                         second()
-              
                     }
                     
                 }
@@ -86,7 +91,6 @@ struct HomeView: View {
             .hidden()
             .alert("아성그룹 관계사만 이용 가능합니다.", isPresented: $Tabshowing){
                 Button("OK"){
-                    
                 }
             }
                     Text(data.name)
@@ -98,15 +102,11 @@ struct HomeView: View {
                         .clipShape(Capsule())
                         .onTapGesture {
                             withAnimation {
-                                
-                                if(attrComcode == "00000"){
+                                if(attrComcode == "00000"){ //아성다이소여부
                                     Tabshowing = true
                                 }else{
                                     self.selectedTab = data.id
                                 }
-                                
-                                
-                                
                             }
                         }
       
