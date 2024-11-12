@@ -60,6 +60,7 @@ struct CompanyView: View {
     @Binding var buyCd: String
     @Binding var comCode1: String
     @Binding var passKey: String
+    @State private var Tabshowing = false
     
     @State private var externalItemno = ""
     @State private var selection  = "선택"
@@ -78,7 +79,7 @@ struct CompanyView: View {
     @State private var isLoading = false
     @State private var showingAlert = false
     @State private var isShowingSheet = false
-    @State private var resultText: String = ""
+    @State private var resultText: String = "검색된 결과가 없습니다."
 
     
     var body: some View {
@@ -86,6 +87,18 @@ struct CompanyView: View {
         
 
             VStack{
+                
+                Button(""){
+                    Tabshowing = true
+                }
+                .alert("아성그룹 관계사만 이용 가능합니다.", isPresented: $Tabshowing){
+                    Button("OK"){
+                        selectedSideMenuTab = 0
+                      
+                    }
+                }
+                
+                
                 HStack{
                     
                     Picker( selection: $selection , label: Text("선택")) {
@@ -457,15 +470,22 @@ struct CompanyView: View {
                             }
                         }
                     }
+                }else {
+                    VStack(alignment: .center){
+                        Image(systemName: "questionmark.text.page.fill")
+                            .frame(width:100 , height:100)
+                            .font(.system(size:80))
+                            .foregroundStyle(.green)
+                        Text("\(resultText)")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .font(.largeTitle)
+                    }
+                    
                 }
                 
-                Text("\(resultText)")
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .font(.largeTitle)
-                    
-                Spacer()
+               
                 Spacer()
             }.padding(5)
             .onAppear(perform: INIT_1)
@@ -635,17 +655,28 @@ struct CompanyView: View {
     }
     
     func INIT_1(){
-        //거래처조회에서 넘어왔다면
-        if passKey == "OK" {
-            selection = "comCd"
-           // selection1 = barcodeNo
-            comId = comCode1
-            selection2 = comId
-            resultflag = false
-            loadData1()
-            print("Loading:CompanyView-IN")
+        
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        if(attrComcode == "00000"){
+            Tabshowing = true
+        }else{
+            //거래처조회에서 넘어왔다면
+            if passKey == "OK" {
+                selection = "comCd"
+               // selection1 = barcodeNo
+                comId = comCode1
+                selection2 = comId
+                resultflag = false
+                loadData1()
+                print("Loading:CompanyView-IN")
+            }
+            print("Loading:CompanyView")
+            
         }
-        print("Loading:CompanyView")
+        
+        
+        
+       
     }
     
     

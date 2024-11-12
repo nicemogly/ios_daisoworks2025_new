@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import UIKit
+import SafariServices
 
 
 
@@ -40,8 +41,8 @@ struct DmsView3: Decodable {
 }
 
 struct DmsView4: Decodable {
-    let origFileNm  : String?
-    let origFileExt  : String?
+    var origFileNm  : String?
+    var origFileExt  : String?
     let srvrPath  : String?
 }
 
@@ -68,6 +69,14 @@ struct DmsView6: Decodable {
 
 struct DmsDetailView: View  {
     @Environment(\.presentationMode) private var presentaionMode: Binding<PresentationMode>
+<<<<<<< refs/remotes/origin/main
+=======
+    
+    @State var urlString = "https://www.naver.com"
+    @State var showSafari = false
+   
+
+>>>>>>> 2024112209
  
     @State private var apprSeq = ""
     @State private var revNo = ""
@@ -84,6 +93,10 @@ struct DmsDetailView: View  {
     @State private var apprCmmt: String = ""
     
     
+<<<<<<< refs/remotes/origin/main
+=======
+    
+>>>>>>> 2024112209
     @State private var appr_reqId: String = ""
 
     
@@ -113,7 +126,11 @@ struct DmsDetailView: View  {
     
     @State private var selection  = "선택"
     
+<<<<<<< refs/remotes/origin/main
       var data9 = ["1031154","1031154","1031155"]
+=======
+     // var data9 = ["1031154","1031154","1031155"]
+>>>>>>> 2024112209
     
     @State private var isShowingSheet = false
     @State var isShowing = false
@@ -131,8 +148,13 @@ struct DmsDetailView: View  {
     var body: some View {
         
         
+<<<<<<< refs/remotes/origin/main
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
         let Userid:String = "AH2201001" //정은빈
+=======
+        let Userid = UserDefaults.standard.string(forKey: "Userid")
+        //let Userid:String = "AH2201001" //정은빈
+>>>>>>> 2024112209
         
        // let Userid:String = "AH0403070" //이유용
         
@@ -166,12 +188,17 @@ struct DmsDetailView: View  {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width:100 , height:100)
                                 
-                            }.frame(width:200 , height:200)
+                            }.frame(width:150 , height:150)
                                 
                          
                                 .scaledToFit()
+<<<<<<< refs/remotes/origin/main
                                 .frame(width: 80, height:  80)
                                 .padding(.bottom , 60   )
+=======
+                       
+                                .padding(.bottom , 10   )
+>>>>>>> 2024112209
                             Text("\(item2.productCd == nil ? " " : item2.productCd!)")
                             Text("\(item2.korProductDesc == nil ? " " : item2.korProductDesc!)")
                         }.frame(maxWidth: .infinity , minHeight: 200)
@@ -195,7 +222,7 @@ struct DmsDetailView: View  {
                             Text("컨펌목표일 : \(item2.cmplExptDate == nil ? " " : item2.cmplExptDate! )").padding(.bottom , 20)
                             Text("촬영자 : \(item2.phEmpNm == nil ? " " : item2.phEmpNm! )").padding(.bottom , 20)
 //                            Text("이미지 : \(item2.productImage == nil ? " " : item2.productImage! )").padding(.bottom , 20)
-//                           
+//
                         }
                         
                         .frame(
@@ -281,6 +308,7 @@ struct DmsDetailView: View  {
                     }.frame(maxWidth: .infinity ,  alignment: .leading)
               
                
+<<<<<<< refs/remotes/origin/main
                 
                
                   // 디자인정보
@@ -289,10 +317,21 @@ struct DmsDetailView: View  {
                  
                    
                    
+=======
+            
+               
+                  // 디자인정보
+                ForEach(dmsview4, id: \.origFileNm) { item4 in
+                  
+                  
+>>>>>>> 2024112209
                     VStack(alignment: .leading ){
                         
                         ScrollView(.horizontal){
+                            
+                            
                            
+<<<<<<< refs/remotes/origin/main
                             let url = URL(string: "http://59.10.47.222:3000/static/\(item4).jpg")
                                 
                             AsyncImage(url: url) { image in
@@ -314,6 +353,46 @@ struct DmsDetailView: View  {
                               }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
                                 .scaledToFit()
                                 .padding(.bottom , 30   )
+=======
+                           //var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)"
+                          //  let  url = "http://59.10.47.222:3000/static/202402_001472_025_01.png"
+//                            AsyncImage(url: URL(string: url)) { image in
+//                                image.resizable()
+//                                    .aspectRatio(contentMode: .fit)
+//                                    .scaleEffect(currentScale * zoomFactor)
+//                                    .gesture(magnification)
+//                            } placeholder: {
+//
+//                                ProgressView()
+//                                 //   Image("noimage200")
+////                                        .resizable()
+////                                        .aspectRatio(contentMode: .fit)
+////                                        .scaleEffect(currentScale * zoomFactor)
+////                                        .gesture(magnification)
+////                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
+////
+//                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
+//                                .scaledToFit()
+//                                .padding(.bottom , 30   )
+                          
+//                            Link(destination: URL(string: "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")!){
+//                                Text("확대보기")
+//                            }
+                            
+                         
+                            
+                            Button(action: {
+                               //   url =
+                                self.urlString = "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)"
+                                       self.showSafari = true
+                                   }) {
+                                       Text("이미지보기")
+                                     //  Text("\(urlString)")
+                                   }
+                                   .sheet(isPresented: $showSafari) {
+                                       SafariView(url:URL(string: urlString)!)
+                                   }
+>>>>>>> 2024112209
                                 
                             
                         }
@@ -357,11 +436,15 @@ struct DmsDetailView: View  {
                              
                       
                                  HStack {
-                                     Text("\(item3.apprTypNm == nil ? " " : item3.apprTypNm!)").frame(width:60 , alignment: .leading)
+                                     Text("\(item3.apprTypNm == nil ? " " : item3.apprTypNm!)").frame(width:60 , alignment: .leading).font(.system(size: 16))
                                      
-                                     Text("\(item3.apprEmpNm == nil ? " " : item3.apprEmpNm!)").frame(width:60 , alignment: .leading)
+                                     Text("\(item3.apprEmpNm == nil ? " " : item3.apprEmpNm!)").frame(width:90 , alignment: .leading).font(.system(size: 16))
                                 
+<<<<<<< refs/remotes/origin/main
                                      Text("\(item3.apprDate == nil ? " " : item3.apprDate!)").frame(width:165 , alignment: .leading)
+=======
+                                     Text("\(item3.apprDate == nil ? " " : item3.apprDate!)").frame(width:160 , alignment: .leading).font(.system(size: 14))
+>>>>>>> 2024112209
                                      
                                     
                                      Button(action: {
@@ -398,7 +481,7 @@ struct DmsDetailView: View  {
                                          }
                                          
                                      }).padding(.bottom , 8)
-                                     
+                                         .font(.system(size: 14))
                                         
                                 
                                      
@@ -573,6 +656,16 @@ struct DmsDetailView: View  {
         }
     }
     
+    func startLoading1() {
+        isLoading = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5)
+        {
+                isLoading = false
+                resultflag = true
+        }
+    }
+    
     func didDismiss() {
     }
     
@@ -580,8 +673,9 @@ struct DmsDetailView: View  {
        
        loadData1()  //req info
        loadData2() //comment
+    
        loadData3() //Design Image
-       loadData4() //Design Image
+       loadData4() //Design approve
  
            
    
@@ -590,6 +684,7 @@ struct DmsDetailView: View  {
     
     func loadData1(){
 
+        
         guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview2?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
             print("Invalid URL")
             
@@ -635,7 +730,7 @@ struct DmsDetailView: View  {
                             print("OKAY 여기?")
                             resultText = ""
                           
-                            startLoading()
+                           
                             
                        
                         }
@@ -664,7 +759,11 @@ struct DmsDetailView: View  {
         
         
         if (v_attr0 == "PATH") {
+<<<<<<< refs/remotes/origin/main
             prefixattr3 = "https://devdms.asungcorp.com"
+=======
+            prefixattr3 = "https://dms.asungcorp.com"
+>>>>>>> 2024112209
         }else if(v_attr0 == "BLOB"){
             prefixattr3 = "http://herp.asunghmp.biz/FTP"
         }
@@ -710,13 +809,13 @@ struct DmsDetailView: View  {
     }
     
     func requestGet1( v_attr5:String , v_attr6:String , v_attr7:String) {
-        
+      
         
         print("==============requestGET1==============")
         let attr8 = v_attr5 + "." + v_attr6
     
         // var attr3 = v_attr3
-        let prefixattr3:String  = "https://devdms.asungcorp.com"
+        let prefixattr3:String  = "https://dms.asungcorp.com"
         let attr9 = prefixattr3 + v_attr7 + attr8
       ////        var attr5 = "https://devdms.asungcorp.com/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
         //        var attr44 = "/file/dso/202106/202106_000232/thumb/202106_000232_01.jpg"
@@ -844,6 +943,7 @@ struct DmsDetailView: View  {
         }
         //print("\(Userid)")
 
+        
         let request3 = URLRequest(url: url3)
         URLSession.shared.dataTask(with: request3) { data3, response, error in
             if let data3 = data3 {
@@ -865,16 +965,22 @@ struct DmsDetailView: View  {
                             resultText = "검색된 결과가 없습니다."
                         }else{
                             
+                            var ktint: Int = 0
                             print("==============requestGET1==============2")
                             self.dmsview4.forEach {
 
                                 v_attr5 = $0.origFileNm ?? ""
                                 v_attr6 = $0.origFileExt ?? ""
                                 v_attr7 = $0.srvrPath ?? ""
+                                print("detail3conts\(v_attr5)")
+                                print("detail3conts\(v_attr6)")
+                                print("detail3conts\(v_attr7)")
                                 
                                 requestGet1(v_attr5: v_attr5, v_attr6: v_attr6 , v_attr7: v_attr7)
-                        
-                                
+                                if(ktint == 0) {
+                                    self.urlString = "http://59.10.47.222:3000/static/\($0.origFileNm!).\($0.origFileExt!)"
+                                }
+                                ktint = ktint + 1
                             }
                             
                             
@@ -883,8 +989,7 @@ struct DmsDetailView: View  {
                             print("OKAY Detail  image===========")
                             resultText = ""
                           
-                            startLoading()
-                            
+                          
                        
                         }
                     }
@@ -897,18 +1002,27 @@ struct DmsDetailView: View  {
     
   
     func loadData4(){
+<<<<<<< refs/remotes/origin/main
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
         let Userid = "AH2201001"//정은빈
+=======
+        let Userid = UserDefaults.standard.string(forKey: "Userid")
+     //   let Userid = "AH2201001"//정은빈
+>>>>>>> 2024112209
         
        // let Userid:String = "AH0403070" //이유용
-        print("OKAY Detail5===,여기51")
+       // print("OKAY Detail5===,여기51")
         
+<<<<<<< refs/remotes/origin/main
         guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&mUserId=\(Userid)") else {
+=======
+        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&mUserId=\(Userid!)") else {
+>>>>>>> 2024112209
             print("Invalid URL")
             
             return
         }
-        //print("\(Userid)")
+        print("loadData4\(Userid)")
 
         let request3 = URLRequest(url: url3)
         URLSession.shared.dataTask(with: request3) { data3, response, error in
@@ -922,8 +1036,8 @@ struct DmsDetailView: View  {
                        // self.users = decodedResponse
                         self.dmsview5 = decodedResponse3
                         print("\(decodedResponse3)")
-                        print("valueT:\(self.dmsview5)")
-                        print("detail건수\(self.dmsview5.count)")
+                        print("valueT555:\(self.dmsview5)")
+                        print("detail건수555\(self.dmsview5.count)")
                         
                     
                         if(self.dmsview5.count == 0 ){
@@ -938,12 +1052,21 @@ struct DmsDetailView: View  {
                               //  apprTyp = $0.apprTyp ?? ""
                                 apprCmmt = $0.apprCmmt ?? ""
                                 
+<<<<<<< refs/remotes/origin/main
+=======
+                                
+                                
+>>>>>>> 2024112209
                             }
                             
                             
                             
                            
+<<<<<<< refs/remotes/origin/main
                             print("OKAY Detail5===,여기5")
+=======
+                            print("OKAY Detail5555===,여기55555")
+>>>>>>> 2024112209
                             resultText = ""
                           
                             startLoading()
@@ -959,8 +1082,13 @@ struct DmsDetailView: View  {
     }
    
     func loadData6(){
+<<<<<<< refs/remotes/origin/main
         //let Userid = UserDefaults.standard.string(forKey: "Userid")
         let Userid = "AH2201001"//정은빈
+=======
+        let Userid = UserDefaults.standard.string(forKey: "Userid")
+        //let Userid = "AH2201001"//정은빈
+>>>>>>> 2024112209
         
        // let Userid:String = "AH0403070" //이유용
 
@@ -1005,6 +1133,19 @@ struct DmsDetailView: View  {
     }
    
     
+<<<<<<< refs/remotes/origin/main
+=======
+    func getUrlString (str1: String , str2: String) -> String {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = "59.10.47.222:3000"
+        components.path = "/static/\(str1).\(str2)"
+        
+        
+        //  let  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
+        return components.string ?? ""
+    }
+>>>>>>> 2024112209
     
     
 }
@@ -1016,6 +1157,23 @@ extension String {
         return self.replacingOccurrences(of: "<[^>]+>", with: "", options: String.CompareOptions.regularExpression, range: nil)
 
      }
+    
+    
 
  }
 
+
+
+struct SafariView: UIViewControllerRepresentable {
+
+    var url: URL
+   
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
+        return SFSafariViewController(url: url)
+    }
+
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {
+
+    }
+
+}

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
+
     @Binding var presentSideMenu: Bool
     @Binding var selectedSideMenuTab: Int
     
@@ -24,8 +25,9 @@ struct HomeView: View {
     @State private var selectedTab = 0
     
     private let tabs = [TabData(id:0 , name:"HERP"),TabData(id:1 , name:"DMS")]
+    
     var body: some View {
-        
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
         VStack{
             HStack(spacing:0){
                 ForEach(tabs, id: \.id) { tab in
@@ -38,25 +40,32 @@ struct HomeView: View {
                 .padding(.top, 25)
             Spacer()
             
-          
+           
             TabView(selection: $selectedTab){
+                
                 ForEach(tabs, id:\.id){ tab  in
                     
                      if(tab.id == 0  ) {
-                         first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
-                       //  a()
+                         if(attrComcode == "00000"){
+                            
+                         }else{
+                             first(selectedSideMenuTab: $selectedSideMenuTab , comCode1: $comCode1  , itemNo: $itemNo  , sujubCode: $sujubCode , sujuMgno: $sujuMgno, passKey: $passKey )
+                         }
                     } else{
                         second()
-                        //b()
+              
                     }
                     
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }
-        
-        
+        .padding(10)
+        .onAppear{
+                if(attrComcode == "00000"){
+                    selectedTab = 1
+                }
+        }
     }
-
     
     struct TabData {
         let id: Int
@@ -65,25 +74,43 @@ struct HomeView: View {
     
     struct TabBarItem: View {
         @Binding var selectedTab: Int
+        @State private var Tabshowing = false
         let data : TabData
-        
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+      
         var body: some View {
             
-            Text(data.name)
-                .frame(width: 100 , height:40)
-                .foregroundColor(selectedTab == data.id ? .white : Color.blue.opacity(0.5))
-                .fontWeight(.bold)
-                .padding(.horizontal, 35)
-                .background(Color.blue.opacity(selectedTab == data.id ? 1 : 0))
-                .clipShape(Capsule())
-                .onTapGesture {
-                    withAnimation {
-                        self.selectedTab = data.id
-                    }
+            Button("안내"){
+                Tabshowing = true
+            }
+            .hidden()
+            .alert("아성그룹 관계사만 이용 가능합니다.", isPresented: $Tabshowing){
+                Button("OK"){
+                    
                 }
-            
+            }
+                    Text(data.name)
+                        .frame(width: 100 , height:40)
+                        .foregroundColor(selectedTab == data.id ? .white : Color.blue.opacity(0.5))
+                        .fontWeight(.bold)
+                        .padding(.horizontal, 35)
+                        .background(Color.blue.opacity(selectedTab == data.id ? 1 : 0))
+                        .clipShape(Capsule())
+                        .onTapGesture {
+                            withAnimation {
+                                
+                                if(attrComcode == "00000"){
+                                    Tabshowing = true
+                                }else{
+                                    self.selectedTab = data.id
+                                }
+                                
+                                
+                                
+                            }
+                        }
+      
         }
-        
     }
     
   

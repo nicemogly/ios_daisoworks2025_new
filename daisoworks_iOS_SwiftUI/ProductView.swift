@@ -73,8 +73,7 @@ struct ItemView4: Decodable {
 }
 
 struct ProductView: View {
-   
-
+    
     
     //var buyers = ["주식회사 아성솔루션","(주)아성다이소","DAISO INDUSTRIES CO,LTD"]
     @Binding var selectedSideMenuTab: Int
@@ -84,6 +83,8 @@ struct ProductView: View {
     @Binding var buyCd: String
     @Binding var passKey: String
     @Binding var comCode1: String
+    
+    @State private var Tabshowing = false
     
     @State private var selection  = "바이어 선택"
     
@@ -104,7 +105,7 @@ struct ProductView: View {
     @State private var showingAlert = false
     @State private var showItemCntAlert = false
     @State private var isShowingSheet = false
-    @State private var resultText: String = ""
+    @State private var resultText: String = "검색된 결과가 없습니다."
     @State var showingFirstSection = true
     @State var resultflag = false
     @State private var isLoading = false
@@ -115,32 +116,46 @@ struct ProductView: View {
     @State private var v_attr5 = ""
     @State private var v_attr6 = ""
     @State private var v_attr7 = ""
-    
-    
-    
-
+   
+//    @State var sujubCode:String = ""
+//    @State var sujuMgno:String = ""
+//    
+//    @Environment(\.dismiss) private var dismiss
     var body: some View {
-      
         
-        if(scnflag) {
-            ZStack{
-                ScannerView(scannedString: $scannedString , scnflag: $scnflag , itemId: $itemId)
-                    .edgesIgnoringSafeArea(.all)
-            }
-
-        }
+       
+        
+        
+        
         
         VStack(alignment:.leading , spacing:0){
             
+            VStack {
+                if(scnflag) {
+                    ZStack{
+                        ScannerView(scannedString: $scannedString , scnflag: $scnflag , itemId: $itemId)
+                        //.edgesIgnoringSafeArea(.all)
+                    }
+                    
+                }
+            }
+          
+            Button(""){
+                Tabshowing = true
+            }
+            .alert("아성그룹 관계사만 이용 가능합니다.", isPresented: $Tabshowing){
+                Button("OK"){
+                    selectedSideMenuTab = 0
+                  
+                }
+            }
            
           
                 Picker( selection: $selection , label: Text("바이어 선택")) {
                     
-                   if selection == "바이어 선택" {
+                   if (selection == "바이어 선택" ) {
                        Text("바이어 선택").tag("바이어 선택")
                    }
-                
-                    
                     ForEach(users, id: \.comCd) { item in
                         Text(item.comName).tag(item.comCd)
                    }
@@ -161,6 +176,7 @@ struct ProductView: View {
                     if selection == "10005" {
                         Button(action: {
                                 scnflag.toggle()
+                                selection = "10005"
                             }) {
                                 Image(systemName: "barcode.viewfinder" )
                                     .resizable()
@@ -175,8 +191,8 @@ struct ProductView: View {
                 Button{
                     print("검색")
                 
-                 //   print("Value: \(selection)")
-                    resultflag = false
+                    print("Value: \(selection)")
+            
                     if selection == "바이어 선택" {
                         self.showingAlert = true
                     }
@@ -562,20 +578,23 @@ struct ProductView: View {
                 //.onAppear(perform: loadData2)
               
         
-            }
-            
-            
-          
-         
-           
-        
-            Text("\(resultText)")
-                .frame(maxWidth: .infinity, alignment: .center)
-                .font(.headline)
-                .fontWeight(.bold)
-                .font(.largeTitle)
+            }else{
                 
-            Spacer()
+                VStack(alignment: .center){
+                    Image(systemName: "questionmark.text.page.fill")
+                        .frame(width:100 , height:100)
+                        .font(.system(size:80))
+                        .foregroundStyle(.green)
+                    Text("\(resultText)")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                }
+                
+            
+                Spacer()
+            }
             
    
         }.padding(5)
@@ -633,7 +652,8 @@ struct ProductView: View {
         
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
       
-        //print("testest\(str1!)")
+//        print("testest\(selection)")
+//        print("testest\(itemId)")
         guard let url1 = URL(string: "http://59.10.47.222:3000/itemcount?comCode=\(str1!)&buyCode=\(selection)&querytxt=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
@@ -674,10 +694,11 @@ struct ProductView: View {
                             loadData5()
                             startLoading()
                             
-                            
+                         
                        
                         }
                     }
+                 
                     return
                 
                 }
@@ -856,19 +877,37 @@ struct ProductView: View {
     }
     
     func INIT_1(){
-        //거래처조회에서 넘어왔다면
-        if passKey == "OK" {
-            selection = buyCd
-            selection1 = barcodeNo
-            itemId = itemNo
-            resultflag = false
-            loadData1()
-            print("Loading:ProductView-IN")
+        
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        if(attrComcode == "00000"){
+            Tabshowing = true
+        }else{
+            //거래처조회에서 넘어왔다면
+            if passKey == "OK" {
+                if(buyCd == "" ) {
+                    selection = "바이어 선택"
+                }else {
+                    selection = buyCd
+                }
+                
+                selection1 = barcodeNo
+                itemId = itemNo
+                resultflag = false
+                loadData1()
+               
+                
+                print("Loading:ProductView-IN")
+            }
+            
+
+            
         }
         
+       
         print("Loading:ProductView")
     }
-   
+    
+
 }
 
 

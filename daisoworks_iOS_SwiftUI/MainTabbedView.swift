@@ -67,12 +67,19 @@ struct MainTabbedView: View {
                 NavigationLink(destination: LoginView(), tag: 1 , selection: $tag1){
                     EmptyView()
                 }
+                NavigationLink(destination: SettingView(), tag: 2 , selection: $tag1){
+                    EmptyView()
+                }
+                
+  
+                
                 
          
                 
                 TabView(selection: $selectedSideMenuTab) {
                   
-                    HomeView(presentSideMenu: $presentSideMenu , selectedSideMenuTab : $selectedSideMenuTab, itemNo: $itemNo,   comCode1: $comCode1 , sujubCode: $sujubCode , sujuMgno: $sujuMgno , passKey: $passKey )
+                    
+                    HomeView(presentSideMenu: $presentSideMenu , selectedSideMenuTab : $selectedSideMenuTab, itemNo: $itemNo,   comCode1: $comCode1 , sujubCode: $sujubCode , sujuMgno: $sujuMgno , passKey: $passKey)
                         .tabItem{
                             (Image(systemName: "house"))
                             (Text("홈"))
@@ -111,6 +118,9 @@ struct MainTabbedView: View {
                            
                         }
                         .tag(4)
+                    
+            
+                        
                 }
                 
               
@@ -126,7 +136,9 @@ struct MainTabbedView: View {
             }
             , trailing:
                     Menu{
-                          Button("Setup", action:{})
+                          Button("Setup", action:{
+                              self.tag1 = 2
+                          })
                           Button("Logout" , action:{
                                 UserDefaults.standard.set("F", forKey: "autologin_Flag")
                                 UserDefaults.standard.set("", forKey: "Userid")

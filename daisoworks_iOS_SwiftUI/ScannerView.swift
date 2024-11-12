@@ -35,8 +35,9 @@ struct ScannerView: UIViewControllerRepresentable {
         }
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = viewController.view.bounds
-        previewLayer.videoGravity = .resizeAspectFill
+       // previewLayer.frame = viewController.view.bounds
+        previewLayer.frame = CGRect(x: 50, y: 0, width: 300, height: 300)
+       // previewLayer.videoGravity = .resizeAspectFill
         viewController.view.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()

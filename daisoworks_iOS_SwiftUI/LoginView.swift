@@ -121,8 +121,8 @@ struct LoginView: View {
                          //HERP 직책정보등 가져오기
                          // loadData2(str1: str1)
                         // var tmp1 : String = "AS1410020"
-                        let tmp1 : String = "AH2101001"
-                         loadData2(str1: tmp1)
+                       // let tmp1 : String = "AH2101001"
+                       //  loadData2(str1: tmp1)
                      //   await loadData2(str1: id)
                         await loadData1(str1: id)
                         await loadData(str1: id , str2: password)
@@ -220,17 +220,24 @@ struct LoginView: View {
                                 self.toggling = true
                                 notCorrectLogin = false
                                 
+                                
+                                
+                                
+                
                                 Task {
+                                    
+                            
+                            
                                     
                                     // "AS1410020"
                                      //HERP 직책정보등 가져오기
                                      // loadData2(str1: str1)
                                    //  var tmp1 : String = "AS1410020"
                                   
-                                    let tmp1 : String = "AH2101001"
-                                       loadData2(str1: tmp1)
+                                 //   let tmp1 : String = "AH2101001"
+                                 //      loadData2(str1: tmp1)
                                     
-                                  //  await loadData2(str1: Userid!)
+                                    await loadData2(str1: Userid!)
                                     
                                     await loadData1(str1: Userid!)  // HR grade
                                     await loadData(str1: Userid! , str2: password!)
@@ -396,8 +403,7 @@ struct LoginView: View {
     
     func loadData2(str1: String){
       
-        
-       // print("str1: \(str1)")
+     //   print("str1_now: \(str1)")
         guard let url1 = URL(string: "http://59.10.47.222:3000/memuser?mUserId=\(str1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
@@ -419,15 +425,10 @@ struct LoginView: View {
                        // self.users = decodedResponse
                         self.muserdata = decodedResponse1
                         
-                        
-                        print("str11")
-                        print("value:\(self.muserdata)")
-                        print("str1건수\(self.muserdata.count)")
-                        
-                        
-                        
                         if(self.muserdata.count == 0 ){
-                    
+                            UserDefaults.standard.set("" , forKey: "memdeptgbn")
+                            UserDefaults.standard.set("" , forKey: "memdeptnme")
+                            UserDefaults.standard.set("" , forKey: "memdeptcde")
                         }else{
                             self.muserdata.forEach {
                                
@@ -435,7 +436,7 @@ struct LoginView: View {
                                 UserDefaults.standard.set($0.deptnme == nil ? "" : $0.deptnme, forKey: "memdeptnme")
                                 UserDefaults.standard.set($0.deptcde == nil ? "" : $0.deptcde, forKey: "memdeptcde")
                                 
-                                
+                              //print("aaa\($0.deptgbn)")
                             }
                         }
                     }

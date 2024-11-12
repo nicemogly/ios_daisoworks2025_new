@@ -43,6 +43,7 @@ struct SujuView1: Decodable {
     var sujumadein  : String?
     var sujumgno : String?
     var sujubarcode : String?
+    var vtlpath : String?
 }
 
 struct SujuView2: Decodable {
@@ -93,6 +94,7 @@ struct SujuView: View {
     @Binding var comCode1: String
     @Binding var sujubCode: String
     @Binding var sujuMgno: String
+    @State private var Tabshowing = false
     
 
     
@@ -116,7 +118,7 @@ struct SujuView: View {
     @State private var showingAlert = false
     @State private var showItemCntAlert = false
     @State private var isShowingSheet = false
-    @State private var resultText: String = ""
+    @State private var resultText: String = "검색된 결과가 없습니다."
     @State var showingFirstSection = true
     @State var resultflag = false
     @State private var isLoading = false
@@ -127,16 +129,32 @@ struct SujuView: View {
     
     
     var body: some View {
-        if(scnflag) {
-            ZStack{
-                ScannerView(scannedString: $scannedString , scnflag: $scnflag , itemId: $itemId)
-                    .edgesIgnoringSafeArea(.all)
-            }
-
-        }
+        
         
         
         VStack(alignment:.leading , spacing:0){
+            
+            VStack {
+                if(scnflag) {
+                    ZStack{
+                       ScannerView(scannedString: $scannedString , scnflag: $scnflag , itemId: $itemId)
+                        //.edgesIgnoringSafeArea(.all)
+                    }
+                    
+                }
+            }
+            
+            
+            Button(""){
+                Tabshowing = true
+            }
+            .alert("아성그룹 관계사만 이용 가능합니다.", isPresented: $Tabshowing){
+                Button("OK"){
+                    selectedSideMenuTab = 0
+                  
+                }
+            }
+            
             
             Picker( selection: $selection , label: Text("바이어 선택")) {
                 
@@ -165,6 +183,7 @@ struct SujuView: View {
                     if selection == "10005" {
                         Button(action: {
                                 scnflag.toggle()
+                            
                             }) {
                                 Image(systemName: "barcode.viewfinder" )
                                     .resizable()
@@ -177,7 +196,8 @@ struct SujuView: View {
                 Button{
                     print("검색")
                     
-                    //   print("Value: \(selection)")
+                       print("Value: \(selection)")
+                    print("Value: \(itemId)")
                     resultflag = false
                     if selection == "바이어 선택" {
                         self.showingAlert = true
@@ -188,7 +208,7 @@ struct SujuView: View {
                         self.showingAlert = true
                     }
                     self.endTextEditing()
-                    
+                    print("Value: \(showingAlert)")
                     if self.showingAlert == false {
                         
                          loadData1()
@@ -237,8 +257,8 @@ struct SujuView: View {
                             sujubcode = String(strsuju[0])
                             sujumgno = String(strsuju[1])
                      
-                            print("sujubcode: \(sujubcode)")
-                            print("sujumgno: \(sujumgno)")
+                         //   print("sujubcode: \(sujubcode)")
+                           // print("sujumgno: \(sujumgno)")
                             
                             isShowingSheet.toggle()
                             
@@ -290,10 +310,19 @@ struct SujuView: View {
                                 VStack(alignment: .leading, spacing: 0) {
                                     ForEach(sujuview1, id: \.sujumginitno) { item2 in
                                         Spacer()
-                                        AsyncImage(url: URL(string: "https://cdn.daisomall.co.kr/file/PD/20240708/fDLihH42tRGSTqojDpSQ1029927_00_00fDLihH42tRGSTqojDpSQ.jpg/dims/optimize/dims/resize/100x150"))
-                                        
-                                            .frame(maxWidth:.infinity , alignment: .center)
-                                        
+//
+                                       HStack {
+                                           Spacer()
+                                           AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.sujubarcode!).jpg")){ image in
+                                                     image.resizable()
+                                                      
+                                                 } placeholder: {
+                                                     ProgressView()
+                                                 }.frame(width:150  , height: 150 , alignment: .center)
+                                           
+                                           Spacer()
+                                        }
+                                       
                                         HStack(spacing:0) {
                                             Text("\(item2.sujumginitno ?? "" )")
                                             Spacer()
@@ -617,12 +646,21 @@ struct SujuView: View {
                         }
                     }
                 }
+            }else {
+                
+                VStack(alignment: .center){
+                    Image(systemName: "questionmark.text.page.fill")
+                        .frame(width:100 , height:100)
+                        .font(.system(size:80))
+                        .foregroundStyle(.green)
+                    Text("\(resultText)")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .font(.largeTitle)
+                }
+                
             }
-            Text("\(resultText)")
-                .frame(maxWidth: .infinity, alignment: .center)
-                .font(.headline)
-                .fontWeight(.bold)
-                .font(.largeTitle)
                 
             Spacer()
         }.padding(5)
@@ -709,16 +747,13 @@ struct SujuView: View {
     
     func loadData2(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-//        print("str1-in:\(str1)")
-//        print("selection-in:\(selection)")
-//        print("sujumgno-in:\(sujumgno)")
-//        print("sujubcode-in:\(sujubcode)")
+
         guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview1?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
         
-  
+        print("url1:\(url1)")
 
         let request1 = URLRequest(url: url1)
         URLSession.shared.dataTask(with: request1) { data1, response, error in
@@ -733,25 +768,33 @@ struct SujuView: View {
                         self.sujuview1 = decodedResponse1
                         
                         print("value:\(self.sujuview1)")
-                        print("건수\(self.sujuview1.count)")
+                        print("건수111\(self.sujuview1.count)")
                         
                         if(self.sujuview1.count > 1){
                             isShowingSheet = true
                         }
                         
-                        if(self.sujuview1.count == 0 ){
+                        print("susucn:\(self.sujuview1.count)")
+                        if(self.sujuview1.count == 0  ){
                             resultflag = false
                             resultText = "검색된 결과가 없습니다."
                         }else{
                             startLoading()
+                            var v_attr5:String = ""
+                            var v_attr6:String = ""
+                            
+                            v_attr5 = self.sujuview1[0].sujubarcode!
+                            v_attr6 = self.sujuview1[0].vtlpath!
+                            requestGet1(v_attr5: v_attr5, v_attr6: v_attr6 )
+                            
+                            
                             loadData3()
                             loadData4()
                             loadData5()
                             loadData6()
                             loadData7()
                             //selection4 = self.sujuview1[0].sujubarcode
-                         
-                            resultText = ""
+                     
                         }
                     }
                     return
@@ -759,6 +802,62 @@ struct SujuView: View {
                 }
             }
         }.resume()
+        
+
+    }
+    
+    func requestGet1( v_attr5:String , v_attr6:String) {
+        
+        
+        print("==============requestGET1==============")
+      
+        // var attr3 = v_attr3
+        let prefixattr3:String  = "http://herp.asunghmp.biz/FTP"
+        let attr5 = v_attr5+".jpg"
+        let attr9 = prefixattr3 + v_attr6 + "/" + attr5
+   
+        print ("attr5: \(attr5)")
+        print ("attr9: \(attr9)")
+        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        var request = URLRequest(url: url3)
+        request.httpMethod = "GET"
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let response = response as? HTTPURLResponse, (200 ..< 305) ~= response.statusCode else {
+                 print("Error: HTTP request failed")
+                
+                return
+            }
+            
+            guard error == nil else {
+                print("Error: error")
+                print(error ?? "")
+                return
+            }
+            
+            guard data != nil else {
+                print("error: did no receive data")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200 ..< 300) ~= response.statusCode else {
+                print("error: HTTP request failed")
+                return
+                
+            }
+            
+        
+            
+          
+        }.resume()
+        
+        
     }
     
     func loadData3(){
@@ -995,6 +1094,8 @@ struct SujuView: View {
                 }
             }
         }.resume()
+        
+        
     }
     
     func startLoading() {
@@ -1012,18 +1113,42 @@ struct SujuView: View {
     }
     
     
+    func onDisappear() {
+        
+           resultText = ""
+           selection = ""
+           itemId = ""
+           sujubcode = ""
+           sujumgno = ""
+           passKey = ""
+    }
+    
     func INIT_1(){
-        //메인에서 넘어왔다면
-        if passKey == "OK" {
-            selection = comCode1
-            itemId = itemNo
-            sujubcode = sujubCode
-            sujumgno = sujuMgno
-            resultflag = false
-            loadData2()
-            print("Loading:firstView-IN")
+        
+        
+        let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
+        if(attrComcode == "00000"){
+            Tabshowing = true
+        }else{
+            //메인에서 넘어왔다면
+            if passKey == "first_suju" {
+                selection = comCode1
+                itemId = itemNo
+                sujubcode = sujubCode
+                sujumgno = sujuMgno
+                resultflag = false
+                loadData2()
+                print("Loading:firstView-IN")
+            }
+            print("Loading:firstView")
+            
+            
+            
         }
-        print("Loading:firstView")
+        
+        
+        
+       
     }
     
 }
