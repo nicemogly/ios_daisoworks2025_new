@@ -87,26 +87,9 @@ struct first: View {
     @State private var resultText: String = "검색된 결과가 없거나 수주등록 대상자가 아닙니다."
     @State var resultflag = false
     
-    
- // @State var herpnotice = [HerpNotice]()
-//  
-//    @State var herpnotice: [HerpNotice] = [
-//            HerpNotice(herp_title:"해외영업부 6월 전시회 일정" , herp_date:"2024-10-18" , herp_conts:"내용1"),
-//            HerpNotice(herp_title:"종합미출하 일정" , herp_date:"2024-10-18" , herp_conts:"내용2"),
-//            HerpNotice(herp_title:"아성다이소 상품스터디 일정" , herp_date:"2024-10-18" , herp_conts:"내용3")
-//    ]
-//
-//    @State var herpsuju: [HerpSuju] = [
-//        HerpSuju(herp_com:"아성다이소" , herp_sujunum:"NC2406069230" , herp_itemno:"1058794" , herp_itemnm:"실리콘 스푼(약 15.5cm)" , herp_sujudate:"2024-06-27" , herp_per:"200pcs"),
-//        HerpSuju(herp_com:"DIASO INDUSTRIES CO.,LTD" , herp_sujunum:"NC2406069231" , herp_itemno:"1058794" , herp_itemnm:"실리콘 스푼(약 15.5cm)" , herp_sujudate:"2024-06-27" , herp_per:"200pcs"),
-//        HerpSuju(herp_com:"아성다이소" , herp_sujunum:"NC2406069232" , herp_itemno:"1058795" , herp_itemnm:"실리콘 스푼(약 15.5cm)" , herp_sujudate:"2024-06-27" , herp_per:"200pcs"),
-//        HerpSuju(herp_com:"아성다이소" , herp_sujunum:"NC2406069233" , herp_itemno:"1058796" , herp_itemnm:"실리콘 스푼(약 15.5cm)" , herp_sujudate:"2024-06-27" , herp_per:"200pcs"),
-//        HerpSuju(herp_com:"아성다이소" , herp_sujunum:"NC2406069234" , herp_itemno:"1000382" , herp_itemnm:"실리콘 스푼(약 15.5cm)" , herp_sujudate:"2024-06-27" , herp_per:"200pcs")
-//    ]
+   
     var body: some View {
         
-       
-      
         ScrollView {
             
       
@@ -321,7 +304,7 @@ struct first: View {
                 Spacer()
             }.frame(minHeight: 40)
              
-    }
+    }.scrollIndicators(.hidden)
 
         
       

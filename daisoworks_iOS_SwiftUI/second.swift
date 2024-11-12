@@ -145,6 +145,10 @@ struct second: View {
 //                                         .frame(maxWidth: .infinity , alignment: .leading)
                                      
                                      Text("\(nt1.boardContents.removeHTMLTag().replacingOccurrences(of: "&nbsp;", with: ""))").padding(.bottom , 10)
+                                         .font(.system(size:14))
+                                         .frame(maxWidth: .infinity , alignment: .leading)
+                                         .foregroundStyle(.gray)
+                                         .lineSpacing(10)
                                      Spacer()
                                  }
                                  .frame(maxWidth: .infinity , alignment: .leading)
@@ -153,13 +157,17 @@ struct second: View {
                          } label: {
                              HStack{
                                 
-                               //  Text("[\(nt1.boardTitle)] \(nt1.herp_title)")
-                                 Text("\(nt1.boardTitle)")
+                                   Text("\(nt1.boardTitle)")
                                  .font(.system(size:16 , weight: .bold))
                                      .foregroundStyle(.black)
+                                     .frame(maxWidth: .infinity , alignment: .leading)
+                                     .multilineTextAlignment(.leading)
+                                     .lineSpacing(5)
+                                     .lineLimit(1)
+                                     .truncationMode(.tail)
                                  Spacer()
                                  
-                             }
+                             }.frame(maxWidth: .infinity , alignment: .leading)
                          }
                          Spacer()
                          Spacer()
@@ -175,6 +183,7 @@ struct second: View {
                 Spacer()
             }
         }.padding(10)
+            .scrollIndicators(.hidden)
             .onAppear(perform: INIT_1)
        
     }

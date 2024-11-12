@@ -1,12 +1,18 @@
+//=============================================================================================================================================================
+//  ProjectName        :    DaisoWorks 아성다이소 관계사 업무관리 시스템
+//  Dev.Environment    :    Swift6(iOS) , Kotlin(AOS) , HERP(Oracle 11g,.NET) , DMS(Mysql,JAVA SpringBoot) , REST API(Node.js Express)
+//  Created by         :    Yoon Jang Hoon
+//  Created Date       :    2024.10.03
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Module Name        :    Main Layout - Menu
+//  Program Name       :    SideMenuView.swift
+//  Description        :    1.Side Menu View구성
 //
-//  SideMenuView.swift
-//  DripJobsTeams
-//
-//  Created by Zeeshan Suleman on 28/02/2023.
-//
+//=============================================================================================================================================================
 
 import SwiftUI
 
+//================= 자료구조: 열거형 Group Define Start=================================
 enum SideMenuRowType: Int, CaseIterable{
     case home = 0
     case product
@@ -44,12 +50,17 @@ enum SideMenuRowType: Int, CaseIterable{
         }
     }
 }
+//================= 자료구조: 열거형 Group Define End=================================
 
+// SideMenuView Start
 struct SideMenuView: View {
     
+    //================= View : @Binding Group Define Start===============================
     @Binding var selectedSideMenuTab: Int
     @Binding var presentSideMenu: Bool
+    //================= View : @Bindg Group Define End===============================
     
+    //Side View Layout
     var body: some View {
         HStack {
             
@@ -102,14 +113,12 @@ struct SideMenuView: View {
                     .cornerRadius(50)
                 Spacer()
             }
-            
-           // UserDefaults.standard.set($0.deptgbn, forKey: "memdeptgbn")
-           // UserDefaults.standard.set($0.deptnme, forKey: "memdeptnme")
+           
             let UserDept  = UserDefaults.standard.string(forKey: "memdeptgbn")
             let UserName = UserDefaults.standard.string(forKey: "memdeptnme")
             let Userid = UserDefaults.standard.string(forKey: "Userid")
             
-            
+            //부서확인
             Text("\(UserName!) ( \(UserDept!) )")
                 .font(.system(size: 18, weight: .bold))
                 .foregroundColor(.black)

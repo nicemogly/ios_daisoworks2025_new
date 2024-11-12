@@ -1,20 +1,24 @@
-//
-//  MainTabbedView.swift
-//  SideMenuSwiftUI
-//
-//  Created by Zeeshan Suleman on 04/03/2023.
-//
+//=============================================================================================================================================================
+//  ProjectName        :    DaisoWorks 아성다이소 관계사 업무관리 시스템
+//  Dev.Environment    :    Swift6(iOS) , Kotlin(AOS) , HERP(Oracle 11g,.NET) , DMS(Mysql,JAVA SpringBoot) , REST API(Node.js Express)
+//  Created by         :    Yoon Jang Hoon
+//  Created Date       :    2024.10.03
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Module Name        :    Main Layout
+//  Program Name       :    MainTabbedView.swift
+//  Description        :    1.Side Menu 구성
+//                     :    2.Tab Menu  구성
+//                     :    3.Option Menu 구성
+//=============================================================================================================================================================
 
 import SwiftUI
 import UIKit
 
-
-
+// ===========================Extension Start========================
 extension Color {
     static let purple_700 = Color("MyColor")
     static let lightGray_100 = Color("Bottomcolor")
 }
-
 
 private extension MainTabbedView {
     var navigationBarTitle: String{
@@ -35,9 +39,16 @@ private extension MainTabbedView {
     }
 }
 
-
+extension View {
+    func navigationBarModifier(backgroundColor: UIColor = .systemBackground, foregroundColor: UIColor = .label, tintColor: UIColor?, withSeparator: Bool) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, tintColor: tintColor, withSeparator: withSeparator))
+    }
+}
+// ===========================Extension End========================
+// MainTabbedView  Start
 struct MainTabbedView: View {
   
+    //================= View : @State Group Define Start===============================
     @State var presentSideMenu = false
     @State var selectedSideMenuTab = 0
     @State var tag1:Int? = nil
@@ -50,32 +61,29 @@ struct MainTabbedView: View {
     @State var sujubCode:String = ""
     @State var sujuMgno:String = ""
     @State var passKey:String = ""
+    //================= View : @State Group Define End==================================
     
-
-    
+    // 초기화
     init(){
-
         UITabBar.appearance().backgroundColor = .bottomcolor
-     
     }
 
+    //================= View : Body View Start==========================================
     var body: some View {
      
         
         NavigationView {
             ZStack{
+                //Option Menu Logout Click
                 NavigationLink(destination: LoginView(), tag: 1 , selection: $tag1){
                     EmptyView()
                 }
+                //Option Menu Setting Click
                 NavigationLink(destination: SettingView(), tag: 2 , selection: $tag1){
                     EmptyView()
                 }
                 
-  
-                
-                
-         
-                
+                //TabView
                 TabView(selection: $selectedSideMenuTab) {
                   
                     
@@ -85,8 +93,6 @@ struct MainTabbedView: View {
                             (Text("홈"))
                         }
                         .tag(0)
-                        
-             
                     
                     ProductView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu  , itemNo: $itemNo , barcodeNo:$barcodeNo , buyCd: $buyCd,  passKey: $passKey , comCode1: $comCode1  )
                   
@@ -111,7 +117,6 @@ struct MainTabbedView: View {
                         }
                         .tag(3)
                     DmsView(presentSideMenu: $presentSideMenu)
-                    
                         .tabItem{
                             (Image(systemName: "pencil.and.list.clipboard"))
                             (Text("디자인결재"))
@@ -122,7 +127,6 @@ struct MainTabbedView: View {
             
                         
                 }
-                
               
                 SideMenu(isShowing: $presentSideMenu, content: AnyView(SideMenuView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu)))
             }
@@ -148,8 +152,6 @@ struct MainTabbedView: View {
                                 UserDefaults.standard.set("", forKey: "memdeptnme")
                                 UserDefaults.standard.set("", forKey: "memdeptcde")
                               
-                              
-                             
                               self.tag1 = 1
                      })
                       } label: {
@@ -159,30 +161,13 @@ struct MainTabbedView: View {
                                     .frame(width: 20, height: 30)
                                     .accentColor(.white)
             )
-          
-//            .toolbarBackground(
-//                Color("Mycolor"),
-//                for: .navigationBar)
-//            .toolbarBackground(.visible, for: .navigationBar)
-//           
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
-            //.navigationBarTitleColor(.white)
             .navigationBarModifier(backgroundColor: .mycolor, foregroundColor: .white, tintColor: .white, withSeparator: false)
-             
-          
         }
         .navigationBarBackButtonHidden(true)
     
     }
 }
- 
-
-extension View {
-    func navigationBarModifier(backgroundColor: UIColor = .systemBackground, foregroundColor: UIColor = .label, tintColor: UIColor?, withSeparator: Bool) -> some View {
-        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, tintColor: tintColor, withSeparator: withSeparator))
-    }
-}
-
 
 struct NavigationBarModifier: ViewModifier {
     
@@ -201,6 +186,7 @@ struct NavigationBarModifier: ViewModifier {
             UINavigationBar.appearance().tintColor = tintColor
         }
     }
+    
     func body(content: Content) -> some View {
         content
     }

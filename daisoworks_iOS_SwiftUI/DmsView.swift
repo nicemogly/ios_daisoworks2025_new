@@ -219,7 +219,7 @@ struct DmsView: View {
                     
                     
                     Spacer()
-                }
+                }.scrollIndicators(.hidden)
                 
               
             }.padding(10)

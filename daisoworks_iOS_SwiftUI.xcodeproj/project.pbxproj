@@ -24,7 +24,6 @@
 		4BD6C0542CB47C4C000E8152 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6C04D2CB47C4C000E8152 /* Assets.xcassets */; };
 		4BD6C0562CB47ECE000E8152 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C0552CB47EC8000E8152 /* LoginView.swift */; };
 		4BD6C0582CB487AF000E8152 /* LoginView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C0572CB487A5000E8152 /* LoginView1.swift */; };
-		4BD6C05A2CB487E6000E8152 /* testView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C0592CB487E2000E8152 /* testView.swift */; };
 		4BD6C07F2CB48C0F000E8152 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C07E2CB48C0D000E8152 /* MainTabbedView.swift */; };
 		4BD6C0812CB48E07000E8152 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C0802CB48E01000E8152 /* SideMenu.swift */; };
 		4BD6C0832CB48E2E000E8152 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6C0822CB48E27000E8152 /* SideMenuView.swift */; };
@@ -76,7 +75,6 @@
 		4BD6C04F2CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = daisoworks_iOS_SwiftUIApp.swift; sourceTree = "<group>"; };
 		4BD6C0552CB47EC8000E8152 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4BD6C0572CB487A5000E8152 /* LoginView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView1.swift; sourceTree = "<group>"; };
-		4BD6C0592CB487E2000E8152 /* testView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testView.swift; sourceTree = "<group>"; };
 		4BD6C07E2CB48C0D000E8152 /* MainTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
 		4BD6C0802CB48E01000E8152 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		4BD6C0822CB48E27000E8152 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 				4BD6C0822CB48E27000E8152 /* SideMenuView.swift */,
 				4BD6C0802CB48E01000E8152 /* SideMenu.swift */,
 				4BD6C07E2CB48C0D000E8152 /* MainTabbedView.swift */,
-				4BD6C0592CB487E2000E8152 /* testView.swift */,
 				4BD6C0572CB487A5000E8152 /* LoginView1.swift */,
 				4BD6C0552CB47EC8000E8152 /* LoginView.swift */,
 				4BD6C04E2CB47C4C000E8152 /* ContentView.swift */,
@@ -519,7 +516,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -587,7 +584,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -620,7 +617,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -641,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -659,7 +656,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -680,7 +677,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
