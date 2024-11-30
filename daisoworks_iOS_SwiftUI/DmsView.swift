@@ -19,20 +19,26 @@ struct DmsDsnPreview: Decodable {
     var productCd : String?
     var korProductDesc: String?
     var apprStts: String?
-    var msinDsnEmpNm: String?
+    //var msinDsnEmpNm: String?
+    var mainDsnEmpNm : String?
     var cmplExptDate: String?
 }
 
-var dmsdsnpreview: [DmsDsnPreview] = []
+let dmsdsnpreview: [DmsDsnPreview] = []
 
 
 struct DmsView: View {
+    
+
+    
     @State var dmsdsnpreview = [DmsDsnPreview]()
     @State var dmsdsnpreview1 = [DmsDsnPreview]()
 
     @State private var resultText: String = ""
     @State var resultflag = false
     @State private var isLoading = false
+    
+    @State private var reloadView = 0
 
     
 
@@ -48,85 +54,86 @@ struct DmsView: View {
     var body: some View {
               
         
-                VStack{
+            VStack{
+                
+                
+                
+                NavigationLink(destination: DmsDetailView( attr1: $vattr1 , attr2: $vattr2, attr3: $vattr3),tag:1 , selection:self.$tag){
+                    EmptyView()
+                }
+                
+                HStack {
+                    Text("디자인진행 승인정보관리")
+                        .font(.system(size:18 , weight: .bold))
+                    Spacer()
+                    Spacer()
                     
-              
-                    NavigationLink(destination: DmsDetailView(attr1: $vattr1 , attr2: $vattr2, attr3: $vattr3),tag:1 , selection:self.$tag){
-                        EmptyView()
-                    }
-                                   
-                    HStack {
-                        Text("디자인진행 승인정보관리")
-                          .font(.system(size:18 , weight: .bold))
-                        Spacer()
-                        Spacer()
+                }.padding(5)
+                
+                
+                VStack(alignment: .trailing) {
+                    HStack{
                         
-                    }.padding(5)
-                  
-                   
-                    VStack(alignment: .trailing) {
-                        HStack{
-                            
-                            Button(action: {
-                                updateFilteredArray(str1:"All")
-                            } , label: {
-                                Text("전 체").padding(10)
+                        Button(action: {
+                            updateFilteredArray(str1:"All")
+                        } , label: {
+                            Text("전 체").padding(10)
                                 .font(.system(size:15 , weight: .bold))
                                 .background(Color.black)
                                 .foregroundStyle(.white)
-                            })
-                            
-                                Button(action: {
-                                    updateFilteredArray(str1:"RQ")
-                                } , label: {
-                                    Text("진 행").padding(10)
-                                    .font(.system(size:15 , weight: .bold))
-                                    .background(Color.blue)
-                                    .foregroundStyle(.white)
-                                })
-                                Button(action: {
-                                    updateFilteredArray(str1:"CM")
-                                } , label: {
-                                    Text("완 료").padding(10)
-                                    .font(.system(size:15 , weight: .bold))
-                                    .background(Color.gray)
-                                    .foregroundStyle(.white)
-                                })
-//                                Button(action: {
-//                                    updateFilteredArray(str1:"NO")
-//                                } , label: {
-//                                    Text("미대상").padding(10)
-//                                    .font(.system(size:15 , weight: .bold))
-//                                    .background(Color.yellow)
-//                                    .foregroundStyle(.white)
-//                                })
-                               
-                            }
-                    }.frame(maxWidth: .infinity , minHeight:20  , alignment: .trailing)
-                    
-                    
-                    
-                    ZStack(alignment: .center){
+                        })
                         
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                            .scaleEffect(4)
+                        Button(action: {
+                            updateFilteredArray(str1:"RQ")
+                        } , label: {
+                            Text("진 행").padding(10)
+                                .font(.system(size:15 , weight: .bold))
+                                .background(Color.blue)
+                                .foregroundStyle(.white)
+                        })
+                        Button(action: {
+                            updateFilteredArray(str1:"CM")
+                        } , label: {
+                            Text("완 료").padding(10)
+                                .font(.system(size:15 , weight: .bold))
+                                .background(Color.gray)
+                                .foregroundStyle(.white)
+                        })
+                        //                                Button(action: {
+                        //                                    updateFilteredArray(str1:"NO")
+                        //                                } , label: {
+                        //                                    Text("미대상").padding(10)
+                        //                                    .font(.system(size:15 , weight: .bold))
+                        //                                    .background(Color.yellow)
+                        //                                    .foregroundStyle(.white)
+                        //                                })
                         
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .opacity(isLoading ? 1 : 0)
-                        Text("Loading...")
-                        
-                            .foregroundColor(Color.gray)
-                        
-                            .opacity(isLoading ? 1 : 0)
-                      
                     }
-                 
+                }.frame(maxWidth: .infinity , minHeight:20  , alignment: .trailing)
+                
+                
+                
+                ZStack(alignment: .center){
                     
-                    ScrollView {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .scaleEffect(4)
+                    
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .opacity(isLoading ? 1 : 0)
+                    Text("Loading...")
+                    
+                        .foregroundColor(Color.gray)
+                    
+                        .opacity(isLoading ? 1 : 0)
+                    
+                }
+                
+                
+                ScrollView {
+                    
+                    ForEach(dmsdsnpreview1, id: \.reqId) { item4 in
                         
-                        ForEach(dmsdsnpreview1, id: \.reqId) { item4 in
-                            
                         VStack{
                             
                             if item4.apprStts == "CM"{
@@ -147,15 +154,15 @@ struct DmsView: View {
                                     .padding(10)
                                     .cornerRadius(30)
                                     .foregroundColor(.white)
-//                            }else if item4.apprStts == "NO"{
-//                                VStack{
-//                                    Text("\(item4.korProductDesc!)")
-//                                        .padding(10)
-//                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
-//                                    .background(Color.yellow )
-//                                    .padding(10)
-//                                    .cornerRadius(30)
-//                                    .foregroundColor(.white)
+                                //                            }else if item4.apprStts == "NO"{
+                                //                                VStack{
+                                //                                    Text("\(item4.korProductDesc!)")
+                                //                                        .padding(10)
+                                //                                }.frame(maxWidth: .infinity , minHeight:40  , alignment: .leading )
+                                //                                    .background(Color.yellow )
+                                //                                    .padding(10)
+                                //                                    .cornerRadius(30)
+                                //                                    .foregroundColor(.white)
                             }else {
                                 VStack{
                                     Text("\(item4.korProductDesc!)")
@@ -177,7 +184,7 @@ struct DmsView: View {
                                 }
                                 .padding(.bottom , 15)
                                 HStack{
-                                    Text("디자인 담당자 : \(item4.msinDsnEmpNm == nil ? "  " : item4.msinDsnEmpNm! )")
+                                    Text("디자인 담당자 : \(item4.mainDsnEmpNm == nil ? "  " : item4.mainDsnEmpNm! )")
                                     Spacer()
                                 }
                                 .padding(.bottom , 10)
@@ -198,7 +205,7 @@ struct DmsView: View {
                                         
                                     }
                                     
-                                   
+                                    
                                 }
                                 
                                 
@@ -221,9 +228,11 @@ struct DmsView: View {
                     Spacer()
                 }.scrollIndicators(.hidden)
                 
-              
+                
             }.padding(10)
                 .onAppear(perform: INIT_1)
+               
+ 
             
                
                  
@@ -233,6 +242,9 @@ struct DmsView: View {
         
     func startLoading() {
         isLoading = true
+       
+        
+        
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1)
         {
@@ -240,11 +252,13 @@ struct DmsView: View {
                 resultflag = true
         }
     }
+    
+    
     func didDismiss() {
             }
     
     func INIT_1(){
-       
+    //   print("okaaay//")
         loadData1()
       
         
@@ -256,10 +270,7 @@ struct DmsView: View {
     func loadData1(){
        
         let Userid = UserDefaults.standard.string(forKey: "Userid")
-     //   let Userid:String = "AH2201001" //정은빈
-       // let Userid:String = "AH0403070" //이유용
-        //print("\(Userid)")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
+      guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
@@ -276,6 +287,7 @@ struct DmsView: View {
                 if let decodedResponse3 = try? decoder3.decode([DmsDsnPreview].self, from: data3){
                     DispatchQueue.main.async {
                        // self.users = decodedResponse
+                        dmsdsnpreview.removeAll()
                         self.dmsdsnpreview = decodedResponse3
                         
                      //   print("value:\(self.dmsdsnpreview)")
@@ -286,7 +298,7 @@ struct DmsView: View {
                             resultflag = false
                             resultText = "검색된 결과가 없습니다."
                         }else{
-                        
+                            
                             updateFilteredArray(str1:"All")
                             print("OKAY")
                             resultText = ""
@@ -304,9 +316,10 @@ struct DmsView: View {
     }
     
     func updateFilteredArray(str1:String) {
-        startLoading()
+     //  startLoading()
         var vFilter = str1
-        
+      //  dmsdsnpreview.shuffle()
+        dmsdsnpreview1.removeAll()
         print("\(vFilter)")
         switch vFilter {
         case "All":

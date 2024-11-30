@@ -241,173 +241,182 @@ struct CompanyView: View {
                                     
                                 }, expanded: ExpandedView{
                                     VStack(alignment: .leading, spacing: 0) {
-                                        ForEach(comview1, id: \.clientNoP) { item2 in
+                                        if(comview1.count == 0 ){
                                             Spacer()
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientNoP )")
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(comview1, id: \.clientNoP) { item2 in
                                                 Spacer()
-                                                Text("\(item2.clientPreNoP ?? "" )")
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizNoP ?? "" )")
-                                                Spacer()
-                                                Text("\(item2.clientBizMNoP ?? "" )")
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientNoP )")
+                                                    Spacer()
+                                                    Text("\(item2.clientPreNoP ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizNoP ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.clientBizMNoP ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                
+                                                Divider().overlay(Color.white)
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizNameK )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizAddrK ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizCeoK ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Divider().overlay(Color.white)
+                                                
+                                                // English
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizNameE ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizAddrE ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizCeoE ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Divider().overlay(Color.white)
+                                                
+                                                //China
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizNameC ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizAddrC ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                HStack {
+                                                    
+                                                }
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizCeoC ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    
+                                                    
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Divider().overlay(Color.white)
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizCountry ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    Spacer()
+                                                    Text("\(item2.clientBizKind ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizTel ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .underline()
+                                                        .onTapGesture {
+                                                            let telephone = "tel://" + item2.clientBizTel
+                                                            guard let url = URL(string: telephone) else { return }
+                                                            UIApplication.shared.open(url)
+                                                        }
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizHomepage ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .underline()
+                                                    
+                                                        .onTapGesture {
+                                                            let urlt =  "http://" + item2.clientBizHomepage
+                                                            guard let url = URL(string: urlt) else { return }
+                                                            UIApplication.shared.open(url)
+                                                        }
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clientBizEmail ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                        .underline()
+                                                        .onTapGesture {
+                                                            let mailname = "mailto://" + item2.clientBizEmail
+                                                            guard let url = URL(string: mailname) else { return }
+                                                            UIApplication.shared.open(url)
+                                                        }
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                /*
+                                                 var clientBizTel: String!
+                                                 var clientBizHomepage: String!
+                                                 var clientBizEmail: String!
+                                                 */
+                                            }//end foreach
                                             
-                                            
-                                            Divider().overlay(Color.white)
-                                            
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizNameK )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizAddrK ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizCeoK ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            Divider().overlay(Color.white)
-                                            
-                                            // English
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizNameE ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizAddrE ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizCeoE ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            Divider().overlay(Color.white)
-                                            
-                                            //China
-                                            
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizNameC ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizAddrC ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            HStack {
-                                                
-                                            }
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizCeoC ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                
-                                                
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            Divider().overlay(Color.white)
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizCountry ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                Spacer()
-                                                Text("\(item2.clientBizKind ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizTel ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .underline()
-                                                    .onTapGesture {
-                                                        let telephone = "tel://" + item2.clientBizTel
-                                                        guard let url = URL(string: telephone) else { return }
-                                                        UIApplication.shared.open(url)
-                                                    }
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizHomepage ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .underline()
-                                                
-                                                    .onTapGesture {
-                                                        let urlt =  "http://" + item2.clientBizHomepage
-                                                        guard let url = URL(string: urlt) else { return }
-                                                        UIApplication.shared.open(url)
-                                                    }
-                                                
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                            
-                                            HStack(spacing:0) {
-                                                Text("\(item2.clientBizEmail ?? "" )")
-                                                    .fixedSize(horizontal: false, vertical: true)
-                                                    .underline()
-                                                    .onTapGesture {
-                                                        let mailname = "mailto://" + item2.clientBizEmail
-                                                        guard let url = URL(string: mailname) else { return }
-                                                        UIApplication.shared.open(url)
-                                                    }
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            /*
-                                             var clientBizTel: String!
-                                             var clientBizHomepage: String!
-                                             var clientBizEmail: String!
-                                             */
-                                        }//end foreach
-                                        
-                                        .padding(15)
+                                            .padding(15)
+                                        }
                                     }
                                     
                                     
@@ -427,39 +436,49 @@ struct CompanyView: View {
                                     
                                 }, expanded: ExpandedView{
                                     VStack(alignment: .leading, spacing: 0) {
-                                        ForEach(comview22, id: \.clientItemNo) { item22 in
-                                            Spacer()
-                                     
-                                            HStack(spacing:0) {
-                                               // $selectedSideMenuTab
-                                               
-//                                                NavigationLink(destination: MainTabbedView().navigationBarBackButtonHidden(true), isActive: $isActive) {
-//                                                 
-//                                                }
-//                                                
-//                                                ProductView(presentSideMenu: $presentSideMenu){
-//                                                    Text("\(item22.clientItemNo ?? "" )")
-//                                                }
-
-                                                Text("\(item22.clientItemNo )")
-                                                    .onTapGesture {
-                                                     
-                                                        selectedSideMenuTab = 1
-                                                        itemNo = item22.clientItemNo
-                                                        barcodeNo = item22.clientItemBuyerCd
-                                                        buyCd = item22.clientBuyCorpCd
-                                                        passKey = "OK"
-                                             
-                                                    }
-                                                
-                                                Text("\(item22.clientItemName )")
-                                                    .frame(alignment: .leading)
-                                                    .padding(.leading, 20)
-                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            
-                                        }//end foreach
                                         
-                                        .padding(15)
+                                            if(comview22.count == 0 ){
+                                                Spacer()
+                                                HStack() {
+                                                    Text("데이터가 없습니다")
+                                                    
+                                                }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                    .padding()
+                                            }else{
+                                                ForEach(comview22, id: \.clientItemNo) { item22 in
+                                                    Spacer()
+                                                    
+                                                    HStack(spacing:0) {
+                                                        // $selectedSideMenuTab
+                                                        
+                                                        //                                                NavigationLink(destination: MainTabbedView().navigationBarBackButtonHidden(true), isActive: $isActive) {
+                                                        //                                                 
+                                                        //                                                }
+                                                        //                                                
+                                                        //                                                ProductView(presentSideMenu: $presentSideMenu){
+                                                        //                                                    Text("\(item22.clientItemNo ?? "" )")
+                                                        //                                                }
+                                                        
+                                                        Text("\(item22.clientItemNo )")
+                                                            .onTapGesture {
+                                                                
+                                                                selectedSideMenuTab = 1
+                                                                itemNo = item22.clientItemNo
+                                                                barcodeNo = item22.clientItemBuyerCd
+                                                                buyCd = item22.clientBuyCorpCd
+                                                                passKey = "OK"
+                                                                
+                                                            }
+                                                        
+                                                        Text("\(item22.clientItemName )")
+                                                            .frame(alignment: .leading)
+                                                            .padding(.leading, 20)
+                                                    }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                    
+                                                }//end foreach
+                                                
+                                                .padding(15)
+                                            }
                                     }
                                     
                                     
@@ -657,7 +676,7 @@ struct CompanyView: View {
     func INIT_1(){
         
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
-        if(attrComcode == "00000"){
+        if(attrComcode == "10005"){
             Tabshowing = true
         }else{
             //거래처조회에서 넘어왔다면

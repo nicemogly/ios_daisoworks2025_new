@@ -9,10 +9,21 @@
 /* Begin PBXBuildFile section */
 		126A2F2DF65174ED75DC9F02 /* Pods_daisoworks_iOS_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098E62D349209629115FECC /* Pods_daisoworks_iOS_SwiftUITests.framework */; };
 		4B076D402CFA358600B7DA58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4B076D3F2CFA358600B7DA58 /* .gitignore */; };
+		4B1C956E2D5E9F9000C30EAB /* ExhibitionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C956D2D5E9F9000C30EAB /* ExhibitionListView.swift */; };
+		4B1C95702D5EFABE00C30EAB /* ExhibitionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C956F2D5EFABE00C30EAB /* ExhibitionItemView.swift */; };
+		4B1C95722D5FE0B100C30EAB /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C95712D5FE0B100C30EAB /* DatePickerView.swift */; };
+		4B1C95742D5FF3B800C30EAB /* RemoveFocusModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C95732D5FF3A700C30EAB /* RemoveFocusModifier.swift */; };
+		4B1C95762D5FFE5C00C30EAB /* AppearanceModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C95752D5FFE4800C30EAB /* AppearanceModifier.swift */; };
+		4B1C957A2D639C3F00C30EAB /* ExhibitionWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C95792D639C3F00C30EAB /* ExhibitionWriteView.swift */; };
+		4B1C957C2D65206300C30EAB /* SquareRadioButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C957B2D65204800C30EAB /* SquareRadioButtonLabel.swift */; };
+		4B1C957E2D65216200C30EAB /* SquareRadioButtonGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C957D2D65215700C30EAB /* SquareRadioButtonGroup.swift */; };
 		4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BA2CC1A96A001392E9 /* second.swift */; };
 		4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4EA3BC2CC30585001392E9 /* CardModifier.swift */; };
-		4B51CA392CFA8A09009737C6 /* DaisoworksInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */; };
-		4B51CA3B2CFA8AD2009737C6 /* Daisoworks++Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */; };
+		4B72FB892D6695900055DFC2 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72FB882D66958A0055DFC2 /* ImagePicker.swift */; };
+		4B72FB912D682B120055DFC2 /* Test2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72FB902D682B0A0055DFC2 /* Test2.swift */; };
+		4B72FB932D6CD0310055DFC2 /* ExhibitionUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72FB922D6CD0230055DFC2 /* ExhibitionUpdateView.swift */; };
+		4B72FB952D6E1E680055DFC2 /* KeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72FB942D6E1E5E0055DFC2 /* KeyboardToolbar.swift */; };
+		4B72FB972D6E229E0055DFC2 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72FB962D6E22960055DFC2 /* CustomTextField.swift */; };
 		4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B833CA12CE59D17000267FB /* SettingView.swift */; };
 		4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */; };
 		4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */; };
@@ -60,10 +71,22 @@
 		1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI/Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		4B076D3F2CFA358600B7DA58 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4B1C956D2D5E9F9000C30EAB /* ExhibitionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionListView.swift; sourceTree = "<group>"; };
+		4B1C956F2D5EFABE00C30EAB /* ExhibitionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionItemView.swift; sourceTree = "<group>"; };
+		4B1C95712D5FE0B100C30EAB /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		4B1C95732D5FF3A700C30EAB /* RemoveFocusModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveFocusModifier.swift; sourceTree = "<group>"; };
+		4B1C95752D5FFE4800C30EAB /* AppearanceModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceModifier.swift; sourceTree = "<group>"; };
+		4B1C95792D639C3F00C30EAB /* ExhibitionWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionWriteView.swift; sourceTree = "<group>"; };
+		4B1C957B2D65204800C30EAB /* SquareRadioButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareRadioButtonLabel.swift; sourceTree = "<group>"; };
+		4B1C957D2D65215700C30EAB /* SquareRadioButtonGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareRadioButtonGroup.swift; sourceTree = "<group>"; };
 		4B4EA3BA2CC1A96A001392E9 /* second.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = second.swift; sourceTree = "<group>"; };
 		4B4EA3BC2CC30585001392E9 /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
-		4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DaisoworksInfo.plist; sourceTree = "<group>"; };
-		4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Daisoworks++Bundle.swift"; sourceTree = "<group>"; };
+		4B72FB882D66958A0055DFC2 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4B72FB902D682B0A0055DFC2 /* Test2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test2.swift; sourceTree = "<group>"; };
+		4B72FB922D6CD0230055DFC2 /* ExhibitionUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionUpdateView.swift; sourceTree = "<group>"; };
+		4B72FB942D6E1E5E0055DFC2 /* KeyboardToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardToolbar.swift; sourceTree = "<group>"; };
+		4B72FB962D6E22960055DFC2 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		4B76E3C62D668C4500959B80 /* DKImagePickerController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DKImagePickerController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B833CA12CE59D17000267FB /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmsDetailView.swift; sourceTree = "<group>"; };
 		4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
@@ -130,6 +153,7 @@
 		15687CD47C6093240804074A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4B76E3C62D668C4500959B80 /* DKImagePickerController.framework */,
 				BB7FD297B293191D2F67960D /* Pods_daisoworks_iOS_SwiftUI.framework */,
 				757854E72E3CDEE54E30E41C /* Pods_daisoworks_iOS_SwiftUI_daisoworks_iOS_SwiftUIUITests.framework */,
 				C098E62D349209629115FECC /* Pods_daisoworks_iOS_SwiftUITests.framework */,
@@ -153,7 +177,6 @@
 		4BD6C0152CB47C27000E8152 = {
 			isa = PBXGroup;
 			children = (
-				4B51CA3A2CFA8AAE009737C6 /* Daisoworks++Bundle.swift */,
 				4B076D3F2CFA358600B7DA58 /* .gitignore */,
 				4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */,
 				4BD6C0312CB47C29000E8152 /* daisoworks_iOS_SwiftUITests */,
@@ -199,8 +222,19 @@
 		4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				4B51CA382CFA8A09009737C6 /* DaisoworksInfo.plist */,
 				4BD6C08E2CB607B5000E8152 /* daisoworks-iOS-SwiftUI-Info.plist */,
+				4B72FB962D6E22960055DFC2 /* CustomTextField.swift */,
+				4B72FB942D6E1E5E0055DFC2 /* KeyboardToolbar.swift */,
+				4B72FB922D6CD0230055DFC2 /* ExhibitionUpdateView.swift */,
+				4B72FB902D682B0A0055DFC2 /* Test2.swift */,
+				4B72FB882D66958A0055DFC2 /* ImagePicker.swift */,
+				4B1C957D2D65215700C30EAB /* SquareRadioButtonGroup.swift */,
+				4B1C957B2D65204800C30EAB /* SquareRadioButtonLabel.swift */,
+				4B1C95792D639C3F00C30EAB /* ExhibitionWriteView.swift */,
+				4B1C95752D5FFE4800C30EAB /* AppearanceModifier.swift */,
+				4B1C95732D5FF3A700C30EAB /* RemoveFocusModifier.swift */,
+				4B1C956F2D5EFABE00C30EAB /* ExhibitionItemView.swift */,
+				4B1C956D2D5E9F9000C30EAB /* ExhibitionListView.swift */,
 				4B833CA12CE59D17000267FB /* SettingView.swift */,
 				4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */,
 				4B4EA3BC2CC30585001392E9 /* CardModifier.swift */,
@@ -225,6 +259,7 @@
 				4BD6C04F2CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift */,
 				4BD6C04C2CB47C4C000E8152 /* Preview Content */,
 				4BD6C04D2CB47C4C000E8152 /* Assets.xcassets */,
+				4B1C95712D5FE0B100C30EAB /* DatePickerView.swift */,
 			);
 			path = daisoworks_iOS_SwiftUI;
 			sourceTree = "<group>";
@@ -338,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B51CA392CFA8A09009737C6 /* DaisoworksInfo.plist in Resources */,
 				4BD6C0532CB47C4C000E8152 /* Preview Assets.xcassets in Resources */,
 				4B076D402CFA358600B7DA58 /* .gitignore in Resources */,
 				4BD6C0542CB47C4C000E8152 /* Assets.xcassets in Resources */,
@@ -436,26 +470,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD6C0852CB48F14000E8152 /* HomeView.swift in Sources */,
+				4B1C95722D5FE0B100C30EAB /* DatePickerView.swift in Sources */,
 				4BB6CBD72CC02A15008569A4 /* SujuView.swift in Sources */,
 				4BD6C0582CB487AF000E8152 /* LoginView1.swift in Sources */,
 				4BD6C08B2CB48F34000E8152 /* CompanyView.swift in Sources */,
+				4B1C957A2D639C3F00C30EAB /* ExhibitionWriteView.swift in Sources */,
+				4B72FB952D6E1E680055DFC2 /* KeyboardToolbar.swift in Sources */,
 				4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */,
 				4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */,
+				4B1C957E2D65216200C30EAB /* SquareRadioButtonGroup.swift in Sources */,
 				4BD6C0832CB48E2E000E8152 /* SideMenuView.swift in Sources */,
 				4BB6CBC42CB9839A008569A4 /* ThumbnailView.swift in Sources */,
+				4B1C95742D5FF3B800C30EAB /* RemoveFocusModifier.swift in Sources */,
+				4B1C95702D5EFABE00C30EAB /* ExhibitionItemView.swift in Sources */,
+				4B72FB972D6E229E0055DFC2 /* CustomTextField.swift in Sources */,
 				4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */,
+				4B1C95762D5FFE5C00C30EAB /* AppearanceModifier.swift in Sources */,
 				4B90F0DE2CC0AFA3007F3D8A /* Coordinator.swift in Sources */,
 				4BD6C0562CB47ECE000E8152 /* LoginView.swift in Sources */,
 				4BD6C0812CB48E07000E8152 /* SideMenu.swift in Sources */,
 				4BB6CBC62CB983C0008569A4 /* ExpandedView.swift in Sources */,
 				4BD6C0512CB47C4C000E8152 /* ContentView.swift in Sources */,
 				4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */,
+				4B72FB932D6CD0310055DFC2 /* ExhibitionUpdateView.swift in Sources */,
 				4BD6C0892CB48F29000E8152 /* ProductView.swift in Sources */,
 				4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */,
+				4B72FB892D6695900055DFC2 /* ImagePicker.swift in Sources */,
+				4B72FB912D682B120055DFC2 /* Test2.swift in Sources */,
 				4BD6C0522CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift in Sources */,
-				4B51CA3B2CFA8AD2009737C6 /* Daisoworks++Bundle.swift in Sources */,
 				4BD6C08D2CB49025000E8152 /* first.swift in Sources */,
+				4B1C956E2D5E9F9000C30EAB /* ExhibitionListView.swift in Sources */,
 				4BD6C07F2CB48C0F000E8152 /* MainTabbedView.swift in Sources */,
+				4B1C957C2D65206300C30EAB /* SquareRadioButtonLabel.swift in Sources */,
 				4BB6CBC82CB98A28008569A4 /* ExpandableView.swift in Sources */,
 				4BD6C0872CB48F1F000E8152 /* DmsView.swift in Sources */,
 			);
@@ -527,7 +573,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -595,7 +640,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -622,13 +666,13 @@
 		};
 		4BD6C0432CB47C29000E8152 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC61298AC23EE19005031148 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.debug.xcconfig */;
+			baseConfigurationReference = 8B5C80AA27F305DC6C501D2F /* Pods-daisoworks_iOS_SwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -638,6 +682,8 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera in order to scan barcodes for daisoworks";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "시진권한";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -649,7 +695,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -661,13 +707,13 @@
 		};
 		4BD6C0442CB47C29000E8152 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */;
+			baseConfigurationReference = 3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.8;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -677,6 +723,8 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to the camera in order to scan barcodes for daisoworks";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "시진권한";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -688,7 +736,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -700,13 +748,14 @@
 		};
 		4BD6C0462CB47C29000E8152 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC61298AC23EE19005031148 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.debug.xcconfig */;
+			baseConfigurationReference = 76CDEB7960DD59EEF0699F0E /* Pods-daisoworks_iOS_SwiftUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = JX3LM42634;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = "";
@@ -721,13 +770,14 @@
 		};
 		4BD6C0472CB47C29000E8152 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */;
+			baseConfigurationReference = B184CD4A3DA93D59083421B5 /* Pods-daisoworks_iOS_SwiftUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = JX3LM42634;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = "";
@@ -745,7 +795,7 @@
 			baseConfigurationReference = EC61298AC23EE19005031148 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = JX3LM42634;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
@@ -764,7 +814,7 @@
 			baseConfigurationReference = 1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = JX3LM42634;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";

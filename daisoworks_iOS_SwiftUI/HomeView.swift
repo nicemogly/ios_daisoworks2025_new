@@ -23,6 +23,7 @@ struct HomeView: View {
     @Binding var sujubCode: String
     @Binding var sujuMgno: String
     @Binding var passKey: String
+   // @Binding var reloadView: Int
     //================= View : @Binding Group Define End===============================
     
     //================= View : @State Group Define Start===============================
@@ -34,6 +35,9 @@ struct HomeView: View {
     //================= View : Variable Define End===============================
     
     var body: some View {
+        
+        
+        
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
         VStack{
             HStack(spacing:0){
@@ -50,7 +54,7 @@ struct HomeView: View {
             TabView(selection: $selectedTab){
                 ForEach(tabs, id:\.id){ tab  in
                      if(tab.id == 0  ) {
-                         if(attrComcode == "00000"){
+                         if(attrComcode == "10005"){
                             
                          }else{
                            //첫번째 탭(HERP)이동
@@ -66,10 +70,15 @@ struct HomeView: View {
         }
         .padding(10)
         .onAppear{
-                if(attrComcode == "00000"){
+//            print("homeview\(reloadView)")
+//            if(reloadView==2){
+//                reloadView = 0
+//                selectedSideMenuTab = 4
+//            }
+                if(attrComcode == "10005"){
                     selectedTab = 1
                 }
-        }
+       }
     }
     
     struct TabData {
@@ -102,7 +111,7 @@ struct HomeView: View {
                         .clipShape(Capsule())
                         .onTapGesture {
                             withAnimation {
-                                if(attrComcode == "00000"){ //아성다이소여부
+                                if(attrComcode == "10005"){ //아성다이소여부
                                     Tabshowing = true
                                 }else{
                                     self.selectedTab = data.id

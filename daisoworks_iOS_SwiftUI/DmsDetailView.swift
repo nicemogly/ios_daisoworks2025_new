@@ -74,7 +74,8 @@ struct DmsDetailView: View  {
     @State var urlString = "https://www.naver.com"
     @State var showSafari = false
     
-    
+
+
     
     @State private var apprSeq = ""
     @State private var revNo = ""
@@ -97,6 +98,7 @@ struct DmsDetailView: View  {
     @Binding var attr1: String
     @Binding var attr2: String
     @Binding var attr3: String
+   // @Binding var reloadView: Int
     
     @State var dmsview2 = [DmsView2]()
     @State var dmsview3 = [DmsView3]()
@@ -161,7 +163,8 @@ struct DmsDetailView: View  {
                     
                     
                     ForEach(dmsview2, id: \.reqId) { item2 in
-                        
+                      
+                       
                         VStack{
                             
                             // Image(systemName: "magnifyingglass.circle.fill" )
@@ -303,27 +306,27 @@ struct DmsDetailView: View  {
                             ScrollView(.horizontal){
                                 
                                 
-                                var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
-                                //  let  url = "http://59.10.47.222:3000/static/202402_001472_025_01.png"
-                                                            AsyncImage(url: URL(string: url)) { image in
-                                                                image.resizable()
-                                                                    .aspectRatio(contentMode: .fit)
-                                                                    .scaleEffect(currentScale * zoomFactor)
-                                                                    .gesture(magnification)
-                                                            } placeholder: {
-                                
-                                                                ProgressView()
-                                                                 //   Image("noimage200")
-                                //                                        .resizable()
-                                //                                        .aspectRatio(contentMode: .fit)
-                                //                                        .scaleEffect(currentScale * zoomFactor)
-                                //                                        .gesture(magnification)
-                                //                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
-                                //
-                                                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
-                                                                .scaledToFit()
-                                                                .padding(.bottom , 30   )
-                                
+//                                var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
+//                                //  let  url = "http://59.10.47.222:3000/static/202402_001472_025_01.png"
+//                                                            AsyncImage(url: URL(string: url)) { image in
+//                                                                image.resizable()
+//                                                                    .aspectRatio(contentMode: .fit)
+//                                                                    .scaleEffect(currentScale * zoomFactor)
+//                                                                    .gesture(magnification)
+//                                                            } placeholder: {
+//                                
+//                                                                ProgressView()
+//                                                                 //   Image("noimage200")
+//                                //                                        .resizable()
+//                                //                                        .aspectRatio(contentMode: .fit)
+//                                //                                        .scaleEffect(currentScale * zoomFactor)
+//                                //                                        .gesture(magnification)
+//                                //                                    //   .frame(width: .infinity , height: 300 , alignment: .center)
+//                                //
+//                                                              }.frame(width: UIScreen.main.bounds.width , height:300 , alignment: .center)
+//                                                                .scaledToFit()
+//                                                                .padding(.bottom , 30   )
+//                                
                                 //                            Link(destination: URL(string: "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")!){
                                 //                                Text("확대보기")
                                 //                            }
@@ -370,6 +373,24 @@ struct DmsDetailView: View  {
                         
                     }.frame(maxWidth: .infinity , minHeight:3)
                         .background(Color.gray)
+                    
+                    
+                    
+                    ZStack(alignment: .center){
+                        
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .scaleEffect(4)
+                        
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .opacity(isLoading ? 1 : 0)
+                        Text("Loading...")
+                        
+                            .foregroundColor(Color.gray)
+                        
+                            .opacity(isLoading ? 1 : 0)
+                        
+                    }
                     
                     
                     VStack {
@@ -512,13 +533,19 @@ struct DmsDetailView: View  {
                                 Button("OK", role: .destructive) {
                                     apprCfmg = "Y"
                                     // apprCmmt = appr_3
+                                  
                                     
-                                    loadData6()
+                               loadData6()
                                     //
                                     isShowingSheet.toggle()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                   // reloadView  = 1
+                                   // reloadViewHelper.reloadView()
+                                    isLoading = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                        
                                         presentaionMode.wrappedValue.dismiss()
-                                    }
+                                       
+                                  }
                                     
                                 }
                                 Button("Cancel", role: .cancel) {
@@ -544,12 +571,15 @@ struct DmsDetailView: View  {
                                     // apprCmmt = appr_3
                                     
                                     loadData6()
+                                   // reloadView  = 1
                                     //
                                     isShowingSheet.toggle()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    isLoading = true
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                        
                                         presentaionMode.wrappedValue.dismiss()
-                                    }
-                                    print("OK")
+                                       
+                                  }
                                     
                                 }
                                 Button("Cancel", role: .cancel) { Swift.print("Cancel")}
@@ -559,8 +589,9 @@ struct DmsDetailView: View  {
                             .foregroundColor(.white)
                         }
                         
-                        Button("확인" , action: {
+                        Button("취소" , action: {
                             isShowingSheet.toggle()
+                          
                         })
                         .padding(10)
                         .background(Color.gray)
@@ -1029,7 +1060,7 @@ struct DmsDetailView: View  {
         
         // let Userid:String = "AH0403070" //이유용
         
-        guard let url6 = URL(string: "http://59.10.47.222:3000/dmspost1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&apprTyp=\(apprTyp)&apprCfmFg=\(apprCfmg)&apprCmmt=\(apprCmmt)&mUserId=\(Userid)") else {
+        guard let url6 = URL(string: "http://59.10.47.222:3000/dmspost1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&apprTyp=\(apprTyp)&apprCfmFg=\(apprCfmg)&apprCmmt=\(apprCmmt)&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
@@ -1037,28 +1068,30 @@ struct DmsDetailView: View  {
         print("\(url6)")
         
         let request6 = URLRequest(url: url6)
+        
         URLSession.shared.dataTask(with: request6) { data33, response, error in
             if let data33 = data33 {
                 let decoder33 = JSONDecoder()
                 
                 decoder33.dateDecodingStrategy = .iso8601
                 
+                
                 if let decodedResponse33 = try? decoder33.decode([DmsView6].self, from: data33){
                     DispatchQueue.main.async {
                         // self.users = decodedResponse
                         self.dmsview6 = decodedResponse33
-                        print("\(decodedResponse33)")
-                        print("valueT:\(self.dmsview6)")
-                        print("detail건수\(self.dmsview6.count)")
-                        
-                        
-                        
+//                        print("\(decodedResponse33)")
+//                        print("valueT:\(self.dmsview6)")
+//                        print("detail건수\(self.dmsview6.count)")
+//
+//
+                       
                         
                         
                         print("OKAY Detail6===,여기5")
                         resultText = ""
                         
-                        startLoading()
+                    
                         
                         
                     }

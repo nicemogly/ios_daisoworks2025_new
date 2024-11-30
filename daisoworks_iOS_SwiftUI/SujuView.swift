@@ -308,70 +308,80 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview1, id: \.sujumginitno) { item2 in
-                                        Spacer()
-//
-                                       HStack {
-                                           Spacer()
-                                           AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.sujubarcode!).jpg")){ image in
-                                                     image.resizable()
-                                                      
-                                                 } placeholder: {
-                                                     ProgressView()
-                                                 }.frame(width:150  , height: 150 , alignment: .center)
-                                           
-                                           Spacer()
-                                        }
-                                       
-                                        HStack(spacing:0) {
-                                            Text("\(item2.sujumginitno ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujudate ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        HStack (spacing:0){
-                                            Text("\(item2.sujuamt ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujuipsum ?? "" )")
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item2.sujuper ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item2.sujuitemno ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujubarcode ?? "" )")
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item2.sujutcategory ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item2.sujuitemcategory ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        HStack() {
-                                            Text("\(item2.sujuitemdesc ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        HStack() {
-                                            Text("\(item2.sujudelicondition ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujumadein ?? "" )")
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        Spacer()
-                                    }
                                     
-                                    .padding(10)
+                                        if(sujuview1.count == 0 ){
+                                            Spacer()
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(sujuview1, id: \.sujumginitno) { item2 in
+                                                Spacer()
+                                                //
+                                                HStack {
+                                                    Spacer()
+                                                    AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.sujubarcode!).jpg")){ image in
+                                                        image.resizable()
+                                                        
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                    }.frame(width:150  , height: 150 , alignment: .center)
+                                                    
+                                                    Spacer()
+                                                }
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.sujumginitno ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujudate ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                HStack (spacing:0){
+                                                    Text("\(item2.sujuamt ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujuipsum ?? "" )")
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                
+                                                HStack() {
+                                                    Text("\(item2.sujuper ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                
+                                                HStack() {
+                                                    Text("\(item2.sujuitemno ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujubarcode ?? "" )")
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                
+                                                HStack() {
+                                                    Text("\(item2.sujutcategory ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                
+                                                HStack() {
+                                                    Text("\(item2.sujuitemcategory ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                HStack() {
+                                                    Text("\(item2.sujuitemdesc ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                HStack() {
+                                                    Text("\(item2.sujudelicondition ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujumadein ?? "" )")
+                                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                                Spacer()
+                                            }
+                                            
+                                            .padding(10)
+                                        }
                                 } //end foreach
                                
                                
@@ -393,32 +403,42 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview2, id: \.sujustnation) { item2 in
-                                        Spacer()
-                                      
-                                        
-                                        HStack(spacing:0) {
-                                            Text("출발:\(item2.sujustnation ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujustcity ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujustcenter ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .padding(.top, 20)
-                                        Spacer()
-                                        
-                                        HStack(spacing:0) {
-                                            Text("도착:\(item2.sujuednation ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujuedcity ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.sujuedcenter ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        Spacer()
-                                    }
                                     
-                                    .padding(10)
+                                        if(sujuview2.count == 0 ){
+                                            Spacer()
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(sujuview2, id: \.sujustnation) { item2 in
+                                                Spacer()
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("출발:\(item2.sujustnation ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujustcity ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujustcenter ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                    .padding(.top, 20)
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("도착:\(item2.sujuednation ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujuedcity ?? "" )")
+                                                    Spacer()
+                                                    Text("\(item2.sujuedcenter ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Spacer()
+                                            }
+                                            
+                                            .padding(10)
+                                        }
                                 } //end foreach
                                
                                
@@ -441,29 +461,40 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview3, id: \.buyerinfo) { item2 in
-                                        Spacer()
-                                      
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.buyerinfo ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .padding(.top, 20)
-                                        Spacer()
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.buyercif ?? "" )")
-                                            Spacer()
-                                           
-                                            Text("\(item2.buyertax ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        Spacer()
-                                    }
                                     
-                                    .padding(10)
+                                        if(sujuview3.count == 0 ){
+                                            Spacer()
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            
+                                            ForEach(sujuview3, id: \.buyerinfo) { item2 in
+                                                Spacer()
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.buyerinfo ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                    .padding(.top, 20)
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.buyercif ?? "" )")
+                                                    Spacer()
+                                                    
+                                                    Text("\(item2.buyertax ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Spacer()
+                                            }
+                                            
+                                            .padding(10)
+                                        }
                                 } //end foreach
                                
                                
@@ -485,29 +516,39 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview4, id: \.clnt_nm_kor) { item2 in
-                                        Spacer()
-                                      
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.clnt_nm_kor ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .padding(.top, 20)
-                                        Spacer()
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.cde_nme ?? "" )")
-                                            Spacer()
-                                           
-                                            Text("\(item2.cde_nmea ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        Spacer()
-                                    }
                                     
-                                    .padding(10)
+                                        if(sujuview4.count == 0 ){
+                                            Spacer()
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(sujuview4, id: \.clnt_nm_kor) { item2 in
+                                                Spacer()
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.clnt_nm_kor ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                    .padding(.top, 20)
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.cde_nme ?? "" )")
+                                                    Spacer()
+                                                    
+                                                    Text("\(item2.cde_nmea ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Spacer()
+                                            }
+                                            
+                                            .padding(10)
+                                        }
                                 } //end foreach
                                
                                
@@ -529,37 +570,47 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview5, id: \.comname) { item2 in
-                                        Spacer()
-                                      
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.comname ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .padding(.top, 20)
-                                        Spacer()
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.comdept ?? "" )")
-                                            Spacer()
-                                           
-                                            Text("\(item2.ownername ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        Spacer()
-                                        
-                                        HStack(spacing:0) {
-                                            Text("\(item2.comdepths ?? "" )")
-                                            Spacer()
-                                           
-                                            Text("\(item2.ownernamehs ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        Spacer()
-                                    }
                                     
-                                    .padding(10)
+                                        if(sujuview5.count == 0 ){
+                                            Spacer()
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(sujuview5, id: \.comname) { item2 in
+                                                Spacer()
+                                                
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.comname ?? "" )")
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                    .padding(.top, 20)
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.comdept ?? "" )")
+                                                    Spacer()
+                                                    
+                                                    Text("\(item2.ownername ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.comdepths ?? "" )")
+                                                    Spacer()
+                                                    
+                                                    Text("\(item2.ownernamehs ?? "" )")
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                Spacer()
+                                            }
+                                            
+                                            .padding(10)
+                                        }
                                 } //end foreach
                                
                                
@@ -581,64 +632,74 @@ struct SujuView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading, spacing: 0) {
-                                    ForEach(sujuview6, id: \.etc1) { item2 in
-                                        Spacer()
-                                      
-                                        HStack(spacing:0) {
-                                            Text("[전용비고]")
-                                                .fixedSize(horizontal: false, vertical: true)
-                                        }
                                     
-                                        HStack(spacing:0) {
-                                            Text("\(item2.etc1 ?? "" )")
-                                                .fixedSize(horizontal: false, vertical: true)
+                                        if(sujuview6.count == 0 ){
                                             Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        Divider()
-                                           
-                                        Spacer()
-                                        HStack(spacing:0) {
-                                            Text("[품질관리]")
+                                            HStack() {
+                                                Text("데이터가 없습니다")
+                                                
+                                            }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                                .padding()
+                                        }else{
+                                            ForEach(sujuview6, id: \.etc1) { item2 in
+                                                Spacer()
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("[전용비고]")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                }
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.etc1 ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                
+                                                Divider()
+                                                
+                                                Spacer()
+                                                HStack(spacing:0) {
+                                                    Text("[품질관리]")
+                                                }
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.etc2 ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                Divider()
+                                                Spacer()
+                                                HStack(spacing:0) {
+                                                    Text("[불량유형]")
+                                                }
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.etc3 ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                Divider()
+                                                Spacer()
+                                                HStack(spacing:0) {
+                                                    Text("[기타]")
+                                                }
+                                                
+                                                HStack(spacing:0) {
+                                                    Text("\(item2.etc4 ?? "" )")
+                                                        .fixedSize(horizontal: false, vertical: true)
+                                                    Spacer()
+                                                    Spacer()
+                                                }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                Spacer()
+                                                
+                                                
+                                            }
+                                            
+                                            .padding(10)
                                         }
-                                       
-                                        HStack(spacing:0) {
-                                            Text("\(item2.etc2 ?? "" )")
-                                                .fixedSize(horizontal: false, vertical: true)
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        Divider()
-                                        Spacer()
-                                        HStack(spacing:0) {
-                                            Text("[불량유형]")
-                                        }
-                                       
-                                        HStack(spacing:0) {
-                                            Text("\(item2.etc3 ?? "" )")
-                                                .fixedSize(horizontal: false, vertical: true)
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        Divider()
-                                        Spacer()
-                                        HStack(spacing:0) {
-                                            Text("[기타]")
-                                        }
-                                       
-                                        HStack(spacing:0) {
-                                            Text("\(item2.etc4 ?? "" )")
-                                                .fixedSize(horizontal: false, vertical: true)
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        Spacer()
-                                        
-                                        
-                                    }
-                                    
-                                    .padding(10)
                                 } //end foreach
                                
                                
@@ -1127,7 +1188,7 @@ struct SujuView: View {
         
         
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
-        if(attrComcode == "00000"){
+        if(attrComcode == "10005"){
             Tabshowing = true
         }else{
             //메인에서 넘어왔다면

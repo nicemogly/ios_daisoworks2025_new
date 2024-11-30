@@ -32,7 +32,7 @@ struct SettingView: View {
     
     init(){
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
-        if(attrComcode == "00000"){
+        if(attrComcode == "10005"){
             _comSelected = .init(initialValue: coms[0])
         }else if(attrComcode == "10000"){
             _comSelected = .init(initialValue: coms[1])
@@ -85,78 +85,113 @@ struct SettingView: View {
                 .frame(height: 30)
             
             
-            HStack{
-                
-                Text("개발자 환경")
-                    .font( .system(size: 20))
-                    .bold()
-                    .padding()
-                Spacer()
-            }
-            .padding(.top,20)
-            VStack{
-                
            
-                HStack{
-                    Text("회사정보").padding(10)  .font( .system(size: 16))
-                    Spacer().frame(height:60)
-                    ForEach(coms) { com in
-                        SeasonButton(com: com , comSelected: $comSelected)
-                    }
-                   
-                }
             
+            let  ss22 = UserDefaults.standard.string(forKey: "Userid")!
             
+            if(ss22=="AD2201016" || ss22=="AD2201004" || ss22=="AD2201005"){
+               
                 HStack{
                     
-                    Toggle("임원여부", isOn: $excutiveT)
-                        .padding(10)
-                        .font( .system(size: 16))
-                        .onChange(of: excutiveT) {  value in
-                            tchange1()
-                        }
+                    Text("개발자 환경")
+                        .font( .system(size: 20))
+                        .bold()
+                        .padding()
+                    Spacer()
                 }
+                .padding(.top,20)
+                VStack{
+                    
+               
+                    HStack{
+                        Text("회사정보").padding(10)  .font( .system(size: 16))
+                        Spacer().frame(height:60)
+                        ForEach(coms) { com in
+                            SeasonButton(com: com , comSelected: $comSelected)
+                        }
+                       
+                    }
                 
-                HStack{
-                    Text("사원정보").padding(10)  .font( .system(size: 16))
-                    Spacer().frame(height:60)
-                    TextField("", text: $vuserid)
-                        .padding(5)
-                        .background(Color.white)
-                    Button(action: {
-                        UserDefaults.standard.set("\(vuserid)", forKey: "Userid")
-                        endTextEditing()
-                        showsetAlert = true 
-                    }, label: {
-                        Text("저장")
-                    })
-                    .alert("알림" , isPresented: $showsetAlert){
-                        Button("확인") {
+                
+                    HStack{
+                        
+                        Toggle("임원여부", isOn: $excutiveT)
+                            .padding(10)
+                            .font( .system(size: 16))
+                            .onChange(of: excutiveT) {  value in
+                                tchange1()
+                            }
+                    }
+                    
+                    HStack{
+                        Text("사원정보").padding(10)  .font( .system(size: 16))
+                        Spacer().frame(height:60)
+                        TextField("", text: $vuserid)
+                            .padding(5)
+                            .background(Color.white)
+                        Button(action: {
+                            UserDefaults.standard.set("\(vuserid)", forKey: "Userid")
                             
+                            if(vuserid=="HS1106470"){
+                                UserDefaults.standard.set("10000", forKey: "LoginCompanyCode")
+                                UserDefaults.standard.set("430", forKey: "hsid")
+                                UserDefaults.standard.set("김교령", forKey: "hnme")
+                            }else if(vuserid=="HS1106240"){
+                                UserDefaults.standard.set("00001", forKey: "LoginCompanyCode")
+                                UserDefaults.standard.set("452", forKey: "hsid")
+                                UserDefaults.standard.set("최군", forKey: "hnme")
+                            }
+                            
+                            endTextEditing()
+                            showsetAlert = true
+                        }, label: {
+                            Text("저장")
+                        })
+                        .alert("알림" , isPresented: $showsetAlert){
+                            Button("확인") {
+                                
+                            }
+                        } message: {
+                            Text("저장되었습니다")
                         }
-                    } message: {
-                        Text("저장되었습니다")
+                      
+                        
                     }
-                  
+                    HStack{
+                        Text("HS사용자").padding(5)  .font( .system(size: 14))
+                        Spacer()
+                       
+                       
+                    }
+                    
+                    HStack{
+                        Text("김교령 HS1106470 HMP").padding(5)  .font( .system(size: 14))
+                        
+                        Text("최군 HS1106240 HS" ).padding(5)  .font( .system(size: 14))
+                       
+                    }
+                    HStack{
+                        
+                        
+                    }
+                        
+                    
+                }.background(Color.lightGray_100)
+                    .padding(5)
+                    .frame(height: 30)
+                   
                     
                 }
-                
-                HStack{
-                    
-                    
-                }
-                    
-                
-            }.background(Color.lightGray_100)
-                .padding(5)
-                .frame(height: 30)
-                Spacer()
-                
+            
             }
+            
+        Spacer()
             .onAppear{
                 let  ss = UserDefaults.standard.string(forKey: "autologin_Flag")!
                 let  ss1 = UserDefaults.standard.string(forKey: "excutive_Flag")!
                 let  ss2 = UserDefaults.standard.string(forKey: "Userid")!
+                
+           
                 
                 if(ss=="T"){
                     autoLoginT = true
@@ -220,12 +255,14 @@ struct SeasonButton: View {
         Button {
             comSelected = com
             if(com.string == "AD") {
-                UserDefaults.standard.set("00000", forKey: "LoginCompanyCode")
+                UserDefaults.standard.set("10005", forKey: "LoginCompanyCode")
             }else if(com.string == "AH") {
                 UserDefaults.standard.set("10000", forKey: "LoginCompanyCode")
             }else if (com.string == "AS") {
                 UserDefaults.standard.set("00001", forKey: "LoginCompanyCode")
             }
+            
+            
             
            // action() // <-- will be triggered upon button press
             print("\(com.string)")

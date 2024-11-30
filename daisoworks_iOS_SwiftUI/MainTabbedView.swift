@@ -61,6 +61,7 @@ struct MainTabbedView: View {
     @State var sujubCode:String = ""
     @State var sujuMgno:String = ""
     @State var passKey:String = ""
+    @State var reloadView:Int = 0
     //================= View : @State Group Define End==================================
     
     // 초기화
@@ -83,6 +84,7 @@ struct MainTabbedView: View {
                     EmptyView()
                 }
                 
+           
                 //TabView
                 TabView(selection: $selectedSideMenuTab) {
                   
@@ -116,15 +118,13 @@ struct MainTabbedView: View {
                             (Text("수주조회"))
                         }
                         .tag(3)
-                    DmsView(presentSideMenu: $presentSideMenu)
+                    DmsView( presentSideMenu: $presentSideMenu)
                         .tabItem{
                             (Image(systemName: "pencil.and.list.clipboard"))
                             (Text("디자인결재"))
                            
                         }
                         .tag(4)
-                    
-            
                         
                 }
               
@@ -158,7 +158,7 @@ struct MainTabbedView: View {
                                         Image( systemName: "ellipsis").rotationEffect(.degrees(90))
                                 }
                                     .font(.system(size: 15))
-                                    .frame(width: 20, height: 30)
+                                    .frame(width: 50, height: 30)
                                     .accentColor(.white)
             )
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
@@ -189,5 +189,6 @@ struct NavigationBarModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+   
     }
 }

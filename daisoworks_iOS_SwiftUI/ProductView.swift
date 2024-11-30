@@ -297,64 +297,74 @@ struct ProductView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .center, spacing: 0) {
-                                    ForEach(itemview1, id: \.barcodeNo) { item2 in
-                                        
-                                      
+                                    if(itemview1.count == 0 ){
                                         Spacer()
-                                  
-                                        AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.itemNo!).jpg")){ image in
-                                            image.resizable()
-                                             
-                                        } placeholder: {
-                                            ProgressView()
-                                        }.frame(width:200 , height:200 , alignment: .center)
-                                        
-                                       
-                                     
-                                        
-                                        
-                                        
-                                            .frame(width:300 , height:300 , alignment: .center)
-                                        HStack(spacing:0) {
-                                            Text("\(item2.itemNo ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.barcodeNo ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                        
-                                        HStack (spacing:0){
-                                            Text("\(item2.itemStorePrice ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
                                         HStack() {
-                                            Text("\(item2.itemCategory ?? "" )")
+                                            Text("데이터가 없습니다")
+                                            
+                                        }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                            .padding()
+                                    }else{
+                                        ForEach(itemview1, id: \.barcodeNo) { item2 in
+                                            
+                                            
                                             Spacer()
+                                            
+                                            AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.itemNo!).jpg")){ image in
+                                                image.resizable()
+                                                
+                                            } placeholder: {
+                                                ProgressView()
+                                            }.frame(width:200 , height:200 , alignment: .center)
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                                .frame(width:300 , height:300 , alignment: .center)
+                                            HStack(spacing:0) {
+                                                Text("\(item2.itemNo ?? "" )")
+                                                Spacer()
+                                                Text("\(item2.barcodeNo ?? "" )")
+                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                            
+                                            HStack (spacing:0){
+                                                Text("\(item2.itemStorePrice ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            HStack() {
+                                                Text("\(item2.itemCategory ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            HStack() {
+                                                Text("\(item2.itemDesc ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            HStack() {
+                                                Text("\(item2.itemSalesLead ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            //itemPictureUrl
+                                            HStack() {
+                                                //    Text("\(item2.itemIpsu ?? "" )")
+                                                //   Text("\(item2.itemPictureUrl ?? "" )")
+                                                Spacer()
+                                                Text("\(item2.itemDetails ?? "" )")
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
                                             Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
+                                        }
                                         
-                                        HStack() {
-                                            Text("\(item2.itemDesc ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item2.itemSalesLead ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                               //itemPictureUrl
-                                        HStack() {
-                                        //    Text("\(item2.itemIpsu ?? "" )")
-                                         //   Text("\(item2.itemPictureUrl ?? "" )")
-                                            Spacer()
-                                            Text("\(item2.itemDetails ?? "" )")
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        Spacer()
+                                        .padding(10)
                                     }
-                                    
-                                    .padding(10)
+                                        
                                 } //end foreach
                                
                                
@@ -377,72 +387,82 @@ struct ProductView: View {
                                 
                             }, expanded: ExpandedView{
                                 VStack(alignment: .leading) {
-                                    ForEach(itemview2, id: \.clientNoP) { item3 in
-                                       
+                                    if(itemview2.count == 0 ){
                                         Spacer()
                                         HStack() {
-                                            Text("\(item3.clientNoP ?? "" )")
+                                            Text("데이터가 없습니다")
+                                            
+                                        }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                            .padding()
+                                    }else{
+                                        ForEach(itemview2, id: \.clientNoP) { item3 in
+                                           
                                             Spacer()
-                                            Text("\(item3.clientPreNoP ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .onTapGesture {
-                                                selectedSideMenuTab = 2
-                                                comCode1 = item3.clientNoP
-                                                passKey = "OK"
-                                            }
-                                        
-                                        
-                                        HStack (){
-                                            Text("\(item3.clientNameP ?? "" )")
+                                            HStack() {
+                                                Text("\(item3.clientNoP ?? "" )")
+                                                Spacer()
+                                                Text("\(item3.clientPreNoP ?? "" )")
+                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                .onTapGesture {
+                                                    selectedSideMenuTab = 2
+                                                    comCode1 = item3.clientNoP
+                                                    passKey = "OK"
+                                                }
+                                            
+                                            
+                                            HStack (){
+                                                Text("\(item3.clientNameP ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            HStack() {
+                                                Text("\(item3.clientNoB ?? "" )")
+                                                Spacer()
+                                                Text("\(item3.clientPreNoB ?? "" )")
+                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                .onTapGesture {
+                                                    selectedSideMenuTab = 2
+                                                    comCode1 = item3.clientNoP
+                                                    passKey = "OK"
+                                                }
+                                            
+                                            
+                                            HStack (){
+                                                Text("\(item3.clientNameB ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            HStack() {
+                                                Text("\(item3.clientNoS ?? "" )")
+                                                Spacer()
+                                                Text("\(item3.clientPreNoS ?? "" )")
+                                            }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                                .onTapGesture {
+                                                    selectedSideMenuTab = 2
+                                                    comCode1 = item3.clientNoP
+                                                    passKey = "OK"
+                                                }
+                                            
+                                            
+                                            HStack (){
+                                                Text("\(item3.clientNameS ?? "" )")
+                                                Spacer()
+                                                Spacer()
+                                            }.frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            
+                                         
                                             Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item3.clientNoB ?? "" )")
-                                            Spacer()
-                                            Text("\(item3.clientPreNoB ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .onTapGesture {
-                                                selectedSideMenuTab = 2
-                                                comCode1 = item3.clientNoP
-                                                passKey = "OK"
-                                            }
+                                        }
                                         
                                         
-                                        HStack (){
-                                            Text("\(item3.clientNameB ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        HStack() {
-                                            Text("\(item3.clientNoS ?? "" )")
-                                            Spacer()
-                                            Text("\(item3.clientPreNoS ?? "" )")
-                                        }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                            .onTapGesture {
-                                                selectedSideMenuTab = 2
-                                                comCode1 = item3.clientNoP
-                                                passKey = "OK"
-                                            }
-                                        
-                                        
-                                        HStack (){
-                                            Text("\(item3.clientNameS ?? "" )")
-                                            Spacer()
-                                            Spacer()
-                                        }.frame(maxWidth: .infinity, alignment: .leading)
-                                        
-                                        
-                                     
-                                        Spacer()
+                                        .padding(15)
+                                  
+                                    } //end foreach
                                     }
                                     
-                                    
-                                    .padding(15)
-                              
-                                } //end foreach
                                
                                
                             }, thumbnailViewBackgroundColor: Color("Gray").opacity(0.5), expandedViewBackgroundColor: Color("Purplelightcolor"))
@@ -464,42 +484,51 @@ struct ProductView: View {
                                  
                              }, expanded: ExpandedView{
                                  VStack(alignment: .leading) {
-                                     ForEach(itemview3, id: \.ownerDeptName) { item4 in
-                                        
+                                     if(itemview3.count == 0 ){
                                          Spacer()
                                          HStack() {
-                                             Text("\(item4.ownerDeptName ?? "" )")
+                                             Text("데이터가 없습니다")
+                                             
+                                         }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                             .padding()
+                                     }else{
+                                         ForEach(itemview3, id: \.ownerDeptName) { item4 in
+                                             
                                              Spacer()
-                                             Text("\(item4.ownerName ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                         
-                                         HStack (){
-                                             Text("\(item4.ownerCompany ?? "" )")
+                                             HStack() {
+                                                 Text("\(item4.ownerDeptName ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item4.ownerName ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             HStack (){
+                                                 Text("\(item4.ownerCompany ?? "" )")
+                                                 Spacer()
+                                                 Spacer()
+                                             }.frame(maxWidth: .infinity, alignment: .leading)
+                                             
+                                             HStack() {
+                                                 Text("\(item4.businessOwnerDept ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item4.businessOwnerName ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             
+                                             HStack() {
+                                                 Text("\(item4.shipmentDept ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item4.shipmentOwnerName ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             
+                                             
+                                             
                                              Spacer()
-                                             Spacer()
-                                         }.frame(maxWidth: .infinity, alignment: .leading)
+                                         }
                                          
-                                         HStack() {
-                                             Text("\(item4.businessOwnerDept ?? "" )")
-                                             Spacer()
-                                             Text("\(item4.businessOwnerName ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
                                          
-                                      
-                                         HStack() {
-                                             Text("\(item4.shipmentDept ?? "" )")
-                                             Spacer()
-                                             Text("\(item4.shipmentOwnerName ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                         
-                                        
-                                         
-                                      
-                                         Spacer()
+                                         .padding(15)
                                      }
-                                     
-                                     
-                                     .padding(15)
                                
                                  } //end foreach
                                 
@@ -523,42 +552,51 @@ struct ProductView: View {
                                  
                              }, expanded: ExpandedView{
                                  VStack(alignment: .leading) {
-                                     ForEach(itemview4, id: \.sampleNItemNo) { item5 in
-                                        
+                                     if(itemview4.count == 0 ){
                                          Spacer()
                                          HStack() {
-                                             Text("\(item5.sampleNewItemNo ?? "" )")
+                                             Text("데이터가 없습니다")
+                                             
+                                         }.frame(maxWidth: .infinity, maxHeight: 50 ,  alignment: .leading)
+                                             .padding()
+                                     }else{
+                                         ForEach(itemview4, id: \.sampleNItemNo) { item5 in
+                                             
                                              Spacer()
-                                             Text("\(item5.sampleNItemNo ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                         
-                                         HStack() {
-                                             Text("\(item5.sampleCsNoteNo ?? "" )")
+                                             HStack() {
+                                                 Text("\(item5.sampleNewItemNo ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item5.sampleNItemNo ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             HStack() {
+                                                 Text("\(item5.sampleCsNoteNo ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item5.sampleCsNoteItemNo ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             HStack() {
+                                                 Text("\(item5.exhName ?? "" )")
+                                                 Spacer()
+                                                 Text("\(item5.exhPeriod ?? "" )")
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             HStack() {
+                                                 Text("\(item5.exhDetail ?? "" )")
+                                                     .fixedSize(horizontal: false, vertical: true)
+                                                 // Text("ehdgoanf동해물 과 백두산이 마르고 \n   닳도록 ehdgoanf동해물과 백두산이 마르고 닳도록 ehdgoanf동해물 과\n 백두산이 마르고 닳도록 ehdgoanf동해물 과 백두산이 마르고 닳도록 ")
+                                                     .lineLimit(10)
+                                                     .frame(minHeight:30 , maxHeight:100)
+                                             }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                             
+                                             
+                                             
                                              Spacer()
-                                             Text("\(item5.sampleCsNoteItemNo ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                         
-                                         HStack() {
-                                             Text("\(item5.exhName ?? "" )")
-                                             Spacer()
-                                             Text("\(item5.exhPeriod ?? "" )")
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
-                                         
-                                         HStack() {
-                                          Text("\(item5.exhDetail ?? "" )")
-                                             .fixedSize(horizontal: false, vertical: true)
-                                            // Text("ehdgoanf동해물 과 백두산이 마르고 \n   닳도록 ehdgoanf동해물과 백두산이 마르고 닳도록 ehdgoanf동해물 과\n 백두산이 마르고 닳도록 ehdgoanf동해물 과 백두산이 마르고 닳도록 ")
-                                                 .lineLimit(10)
-                                                 .frame(minHeight:30 , maxHeight:100)
-                                         }.frame(maxWidth: .infinity, maxHeight: 5 ,  alignment: .leading)
+                                         }
                                          
                                          
-                                      
-                                         Spacer()
+                                         .padding(15)
                                      }
-                                     
-                                     
-                                     .padding(15)
                                
                                  } //end foreach
                                 
@@ -879,7 +917,7 @@ struct ProductView: View {
     func INIT_1(){
         
         let attrComcode = UserDefaults.standard.string(forKey: "LoginCompanyCode") // 로그인회사코드
-        if(attrComcode == "00000"){
+        if(attrComcode == "10005"){
             Tabshowing = true
         }else{
             //거래처조회에서 넘어왔다면

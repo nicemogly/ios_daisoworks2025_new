@@ -1,0 +1,136 @@
+2024-12-05 21:22:36 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x35149dc60; archive(resolved)="<IDEArchive: 0x60001f79b560>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team(resolved)="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x35149dc60; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionProcessingPipelineContext: 0x3a6566380; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x35885de50; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x34b2b1430; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x3a53dc5a0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x35945dc50; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x15d0e5eb0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x15d0e56a0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x345e28ff0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="<IDEProvisioningDisambiguatableBasicTeam: 0x600000575e00; teamID='ECNA8MFJJ8', teamName='DAISO A-SUNG CORP.', teamType='Enterprise', username='(null)', isFreeProvisioningTeam='0'>">
+	<IDEDistributionContext: 0x3587259c0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="(null)">
+	<IDEDistributionContext: 0x3a536ae10; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="(null)">
+	<IDEDistributionContext: 0x3a984f060; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="(null)">
+	<IDEDistributionContext: 0x3a65480f0; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="<IDEDistributionMethodiOSEnterprise: 0x600005ee38b0>", team="(null)">
+	<IDEDistributionContext: 0x34b2d2f70; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="(null)", team="(null)">
+	<IDEDistributionContext: 0x358843110; archive = "<IDEArchive: 0x60001f79b560>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x35149dc60>
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionCreateDestRootStep
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionCopyItemStep
+2024-12-05 21:22:36 +0000  Running /usr/bin/ditto '-V' '/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app' '/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app'
+2024-12-05 21:22:36 +0000  >>> Copying /Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app 
+2024-12-05 21:22:36 +0000  copying file ./_CodeSignature/CodeResources ... 
+2024-12-05 21:22:36 +0000  2981 bytes for ./_CodeSignature/CodeResources
+2024-12-05 21:22:36 +0000  copying file ./daisoworks_iOS_SwiftUI ... 
+2024-12-05 21:22:36 +0000  1065104 bytes for ./daisoworks_iOS_SwiftUI
+2024-12-05 21:22:36 +0000  copying file ./AppIcon60x60@2x.png ... 
+2024-12-05 21:22:36 +0000  6450 bytes for ./AppIcon60x60@2x.png
+2024-12-05 21:22:36 +0000  copying file ./Assets.car ... 
+2024-12-05 21:22:36 +0000  501232 bytes for ./Assets.car
+2024-12-05 21:22:36 +0000  copying file ./.gitignore ... 
+2024-12-05 21:22:36 +0000  21 bytes for ./.gitignore
+2024-12-05 21:22:36 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2024-12-05 21:22:36 +0000  8650 bytes for ./AppIcon76x76@2x~ipad.png
+2024-12-05 21:22:36 +0000  copying file ./embedded.mobileprovision ... 
+2024-12-05 21:22:36 +0000  20793 bytes for ./embedded.mobileprovision
+2024-12-05 21:22:36 +0000  copying file ./Info.plist ... 
+2024-12-05 21:22:36 +0000  1832 bytes for ./Info.plist
+2024-12-05 21:22:36 +0000  copying file ./PkgInfo ... 
+2024-12-05 21:22:36 +0000  8 bytes for ./PkgInfo
+2024-12-05 21:22:36 +0000  /usr/bin/ditto exited with 0
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionEmbedProfileStep
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionInfoPlistStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionInfoPlistStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionSymbolsStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionAppThinningStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionArchThinningStep
+2024-12-05 21:22:36 +0000  Item /Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app doesn't have the entitlement com.apple.developer.web-browser-engine.host enabled, returning ["arm64e"]
+2024-12-05 21:22:36 +0000  Archs to thin for item /Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app are ["arm64e"]
+2024-12-05 21:22:36 +0000  Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI' '-verify_arch' 'arm64e'
+2024-12-05 21:22:36 +0000  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2024-12-05 21:22:36 +0000  Skipping architecture thinning for item "daisoworks_iOS_SwiftUI" because arch "arm64e" wasn't found
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionODRStep
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionStripXattrsStep
+2024-12-05 21:22:36 +0000  Skipping stripping extended attributes because the codesign step will strip them.
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionCodesignStep
+2024-12-05 21:22:36 +0000  Entitlements for <IDEDistributionItem: 0x600023810f60; bundleID='kr.co.daiso.daisoworks1', path='<DVTFilePath:0x60001f799180:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001fdf83c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000e9a1680; name='Apple Development: janghoon yoon (6QGU76F65D)', hash='596075734D0A0557F26B69CF1EF2AD54AFA06DEB', serialNumber='1FAAA0AC367F176FEDB11E35120A157B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2024-11-20 07:16:56 +0000''>', entitlements='{
+    "application-identifier" = "ECNA8MFJJ8.kr.co.daiso.daisoworks1";
+    "com.apple.developer.team-identifier" = ECNA8MFJJ8;
+    "get-task-allow" = 1;
+}', teamID='ECNA8MFJJ8', identifier='kr.co.daiso.daisoworks1', executablePath='<DVTFilePath:0x60001f79b9c0:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "ECNA8MFJJ8.kr.co.daiso.daisoworks1";
+    "com.apple.developer.team-identifier" = ECNA8MFJJ8;
+    "get-task-allow" = 0;
+}
+2024-12-05 21:22:36 +0000  Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2024-12-05 21:22:36 +0000  Entitlements for <IDEDistributionItem: 0x600023810f60; bundleID='kr.co.daiso.daisoworks1', path='<DVTFilePath:0x60001f799180:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001fdf83c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000e9a06c0; name='Apple Development: janghoon yoon (6QGU76F65D)', hash='596075734D0A0557F26B69CF1EF2AD54AFA06DEB', serialNumber='1FAAA0AC367F176FEDB11E35120A157B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2024-11-20 07:16:56 +0000''>', entitlements='{
+    "application-identifier" = "ECNA8MFJJ8.kr.co.daiso.daisoworks1";
+    "com.apple.developer.team-identifier" = ECNA8MFJJ8;
+    "get-task-allow" = 1;
+}', teamID='ECNA8MFJJ8', identifier='kr.co.daiso.daisoworks1', executablePath='<DVTFilePath:0x60001f79b9c0:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "ECNA8MFJJ8.kr.co.daiso.daisoworks1";
+    "com.apple.developer.team-identifier" = ECNA8MFJJ8;
+    "get-task-allow" = 0;
+}
+2024-12-05 21:22:36 +0000  Writing entitlements for <IDEDistributionItem: 0x600023810f60; bundleID='kr.co.daiso.daisoworks1', path='<DVTFilePath:0x60001f799180:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x60001fdf83c0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x60000e9a24c0; name='Apple Development: janghoon yoon (6QGU76F65D)', hash='596075734D0A0557F26B69CF1EF2AD54AFA06DEB', serialNumber='1FAAA0AC367F176FEDB11E35120A157B', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2024-11-20 07:16:56 +0000''>', entitlements='{
+    "application-identifier" = "ECNA8MFJJ8.kr.co.daiso.daisoworks1";
+    "com.apple.developer.team-identifier" = ECNA8MFJJ8;
+    "get-task-allow" = 1;
+}', teamID='ECNA8MFJJ8', identifier='kr.co.daiso.daisoworks1', executablePath='<DVTFilePath:0x60001f79b9c0:'/Users/ad2201016p02/Library/Developer/Xcode/Archives/2024-12-05/daisoworks_iOS_SwiftUI 12-5-24, 13.20.xcarchive/Products/Applications/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI'>', hardenedRuntime='0'>'> to: /var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/entitlements~~~qzFWk9
+2024-12-05 21:22:36 +0000  invoking codesign: <NSConcreteTask: 0x60001fdf7660; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    E71B604D55FACC6BCAB9DBC3DBB98E23F9D8C898,
+    "--entitlements",
+    "/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/entitlements~~~qzFWk9",
+    "--preserve-metadata=identifier,flags,runtime",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app"
+)'>
+2024-12-05 21:22:36 +0000  codesign output: /var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app: replacing existing signature
+/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app: signed app bundle with Mach-O thin (arm64) [kr.co.daiso.daisoworks1]
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionZipODRItemStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionZipODRItemStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionCreateIPAStep
+2024-12-05 21:22:36 +0000  Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root' '/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Packages/daisoworks_iOS_SwiftUI.ipa'
+2024-12-05 21:22:36 +0000  >>> Copying /var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root 
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/_CodeSignature/CodeResources ... 
+2024-12-05 21:22:36 +0000  2981 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/_CodeSignature/CodeResources
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI ... 
+2024-12-05 21:22:36 +0000  1065088 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/daisoworks_iOS_SwiftUI
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/AppIcon60x60@2x.png ... 
+2024-12-05 21:22:36 +0000  6450 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/AppIcon60x60@2x.png
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/Assets.car ... 
+2024-12-05 21:22:36 +0000  501232 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/Assets.car
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/.gitignore ... 
+2024-12-05 21:22:36 +0000  21 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/.gitignore
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/AppIcon76x76@2x~ipad.png ... 
+2024-12-05 21:22:36 +0000  8650 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/AppIcon76x76@2x~ipad.png
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/embedded.mobileprovision ... 
+2024-12-05 21:22:36 +0000  12066 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/embedded.mobileprovision
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/Info.plist ... 
+2024-12-05 21:22:36 +0000  1832 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/Info.plist
+2024-12-05 21:22:36 +0000  copying file ./Payload/daisoworks_iOS_SwiftUI.app/PkgInfo ... 
+2024-12-05 21:22:36 +0000  8 bytes for ./Payload/daisoworks_iOS_SwiftUI.app/PkgInfo
+2024-12-05 21:22:36 +0000  /usr/bin/ditto exited with 0
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionAppStoreInformationStep
+2024-12-05 21:22:36 +0000  Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionGenerateProcessedDistributionItems
+2024-12-05 21:22:36 +0000  IDEDistributionItem init <DVTFilePath:0x60002745b720:'/var/folders/wx/67ynzbsj56508g77nj4ggpk80000gn/T/XcodeDistPipeline.~~~KCYf9j/Root/Payload/daisoworks_iOS_SwiftUI.app'>
+2024-12-05 21:22:36 +0000  Processing step: IDEDistributionCreateManifestStep

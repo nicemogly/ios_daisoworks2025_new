@@ -19,6 +19,7 @@ enum SideMenuRowType: Int, CaseIterable{
     case company
     case suju
     case dms
+    case exhibition
     
     var title: String{
         switch self {
@@ -32,6 +33,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "수주조회"
         case .dms:
             return "디자인결재"
+        case .exhibition:
+            return "전시회상담관리"
         }
     }
     
@@ -47,6 +50,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "suju"
         case .dms:
             return "dms"
+        case .exhibition:
+            return "exhibition"
         }
     }
 }
@@ -75,9 +80,10 @@ struct SideMenuView: View {
                     ProfileImageView()
                         .frame(height: 140)
                         .padding(.bottom, 30)
-                    
+                  
                     ForEach(SideMenuRowType.allCases, id: \.self){ row in
                         RowView(isSelected: selectedSideMenuTab == row.rawValue, imageName: row.iconName, title: row.title) {
+                          
                             selectedSideMenuTab = row.rawValue
                             presentSideMenu.toggle()
                         }
@@ -132,6 +138,7 @@ struct SideMenuView: View {
     func RowView(isSelected: Bool, imageName: String, title: String, hideDivider: Bool = false, action: @escaping (()->())) -> some View{
         Button{
             action()
+            
         } label: {
             VStack(alignment: .leading){
                 HStack(spacing: 20){
@@ -147,9 +154,21 @@ struct SideMenuView: View {
                             .frame(width: 26, height: 26)
                     }
                     .frame(width: 30, height: 30)
-                    Text(title)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(isSelected ? .black : .gray)
+                    if(title=="전시회상담관리"){
+                      
+                            NavigationLink(destination: ExhibitionListView(presentSideMenu: $presentSideMenu) ){
+                                Text(title)
+                                    .font(.system(size: 14, weight: .regular))
+                                    .foregroundColor(isSelected ? .black : .gray)
+                            }
+                            
+                        
+                    } else {
+                        Text(title)
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(isSelected ? .black : .gray)
+                    }
+                        
                     Spacer()
                 }
             }

@@ -66,6 +66,15 @@ struct MuserData: Decodable {
     var corpcd: String  //회사코드
     var deptgbn: String //부서구분코드(영업등)
 }
+
+// HS user dept
+struct EuserData: Decodable {
+    var usrid: String   //사번
+    var divicd: String
+    var deptcde: String
+    var corpcd: String
+}
+
 // =======================Result Data Group End=====================
 
 // Login View Start
@@ -74,6 +83,7 @@ struct LoginView: View {
     //================= View : @State Group Define Start===============================
     @State private var results = [Result]()
     @State var muserdata = [MuserData]()
+    @State var euserdata = [EuserData]()
     @State var chkview1 = [Chkview1]()
     @State private var toggling = false
     @State private var id: String = ""
@@ -119,8 +129,10 @@ struct LoginView: View {
                 // TextField : id
                 TextField("사번", text: $id)
                     .textFieldStyle(.roundedBorder)
-                    .keyboardType(.emailAddress)
-                    .textInputAutocapitalization(.never)
+                   // .textCase(.uppercase)
+                
+                    //.keyboardType(.alphabet)
+                    .textInputAutocapitalization(.characters)
                     .focused($focusedField, equals: .id)
                     .textContentType(.givenName)
                 
@@ -157,9 +169,11 @@ struct LoginView: View {
             //Login Click Button
             Button {
                 
+                //print("IDID:\(id)")
                      //비동기 작업 : iOS 15 이하에서는  Task 안됨.
                      //Taks : View가 나타나기 전 또는 특정한 값이 변경될 때 수행할 비동기 작업을 추가함.
                      Task {
+                        await loadData2(str1: id) //HERP 부서정보
                         await loadData1(str1: id) //HR API Access Try -> 임원여부 T/F
                         await loadData(str1: id , str2: password) //HR API Access Try - > 직원여부 T/F
                               
@@ -183,7 +197,8 @@ struct LoginView: View {
             .alert(isPresented: $chkVersionAlert) {
                 Alert(title: Text("알림\n"),
                       message: Text("\(chkVerMsg)"),
-                      dismissButton: .default(Text("확인") , action: { self.urlStringL = "https://pmc.or.kr/app/ios.php"
+                      dismissButton: .default(Text("확인") ,
+                                action: { self.urlStringL = "https://hr.asungcorp.com/cm/service/html.ncd?view=/lgerp/hr/mobile/DmsAppDownload"
                       self.showSafariL = true // ios16부터 safari moddule을 앱 형태로 사용할수 있슴. 상단에 import 받아야함.
                 })
                 )
@@ -213,11 +228,11 @@ struct LoginView: View {
 //            return
 //        }
         
-        let appid = Bundle.main.apiKey
+     //   let appid = Bundle.main.apiKey
         
       
         
-        guard let url1 = URL(string: "http://59.10.47.222:3000/checkversion?apikey=\(appid)") else {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/checkversion?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -257,6 +272,7 @@ struct LoginView: View {
                 
                                 Task {
                                     await loadData2(str1: Userid!) //HERP 부서정보
+                                     loadData3(vstr1: Userid!) //HS dept
                                     await loadData1(str1: Userid!)  // HR 임원여부
                                     await loadData(str1: Userid! , str2: password!) // HR 로그인 여ㅂ
                                 }
@@ -266,6 +282,7 @@ struct LoginView: View {
                             chkVerMsg = self.chkview1[0].versionMsg
                             chkVersionAlert = true
                             notCorrectLogin = true
+                            loadData3(vstr1: Userid!) //HS dept
                         }
                       
                     }
@@ -288,8 +305,10 @@ struct LoginView: View {
     //HR 직원여부 API
     func loadData(str1: String,str2: String) async {
         guard let  vstr2 = str2.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        
-        guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1+"&IN_INPUT.VALUE="+vstr2) else {
+       
+        var vstr3 = vstr2.replacingOccurrences(of: "+", with: "%2B")
+        print("인코딩\(vstr3)")
+        guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1+"&IN_INPUT.VALUE="+vstr3) else {
             print("Invalid URL")
             
             return
@@ -309,23 +328,34 @@ struct LoginView: View {
                 
                 items?.forEach{ item in
                     guard let object = item as? [String : Any] else { return }
-                    let id = object["VALUE"] as! String
+                    var id = object["VALUE"] as! String
                     
+                    
+//                    if(str1=="HS1106470"){
+//                        id = "T"
+//                    }
                     //리턴 결과 T 이면
                     if(id=="T") {
+                        
+                        
                         if(self.toggling){
                             UserDefaults.standard.set("T", forKey: "autologin_Flag")
+                        }else{
+                            UserDefaults.standard.set("F", forKey: "autologin_Flag")
+                        }
                             UserDefaults.standard.set(str1, forKey: "Userid")
                             UserDefaults.standard.set(str2, forKey: "Passwd")
-                            
+                            UserDefaults.standard.set("", forKey: "hsid")
                             if(str1.prefix(2)=="AD"){
-                                UserDefaults.standard.set("00000", forKey: "LoginCompanyCode")
+                                UserDefaults.standard.set("10005", forKey: "LoginCompanyCode")
                             }else if(str1.prefix(2)=="AH"){
                                 UserDefaults.standard.set("10000", forKey: "LoginCompanyCode")
                             }else if(str1.prefix(2)=="AS"){
                                 UserDefaults.standard.set("00001", forKey: "LoginCompanyCode")
+                            }else if(str1.prefix(2)=="HS"){
+                                 loadData3(vstr1:str1 )
                             }
-                        }
+                        
                         notCorrectLogin = false
                         isActive = true
                         resultTxt = ""
@@ -341,6 +371,66 @@ struct LoginView: View {
         }
     }
     
+    //HS 계정으로 부서 가져오기
+    func loadData3(vstr1: String)  {
+        guard let url1 = URL(string: "http://59.10.47.222:3000/hsMember?userId=\(vstr1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            print("Invalid URL")
+            return
+        }
+        
+        let request1 = URLRequest(url: url1)
+        URLSession.shared.dataTask(with: request1) { data1, response, error in
+            if let data1 = data1 {
+                let decoder1 = JSONDecoder()
+                decoder1.dateDecodingStrategy = .iso8601
+                if let decodedResponse1 = try? decoder1.decode([EuserData].self, from: data1){
+                    DispatchQueue.main.async {
+                        self.euserdata = decodedResponse1
+                           
+                            var hsmem_usrid:String = ""
+                            var hsmem_divicd:String = ""
+                            var hsmem_deptcde:String = ""
+                            var hsmem_corpcd:String = ""
+                       
+                        if(self.muserdata.count == 0 ){
+                            
+                            UserDefaults.standard.set("", forKey: "hsid")
+                            UserDefaults.standard.set("" , forKey: "hnme")
+                        }else{
+                            self.euserdata.forEach {
+                                //                                UserDefaults.standard.set($0.deptgbn , forKey: "memdeptgbn")
+                                //                                UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
+                                //                                UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
+                                //                                UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
+                                hsmem_usrid = $0.usrid
+                                hsmem_divicd = $0.divicd
+                                hsmem_deptcde  = $0.deptcde
+                                hsmem_corpcd  = $0.corpcd
+                                
+                                if(hsmem_corpcd=="10000"){
+                                    UserDefaults.standard.set("10000", forKey: "LoginCompanyCode")
+                                    UserDefaults.standard.set($0.divicd, forKey: "hsid")
+                                }else if(hsmem_corpcd=="00001"){
+                                    UserDefaults.standard.set("00001", forKey: "LoginCompanyCode")
+                                    UserDefaults.standard.set($0.divicd, forKey: "hsid")
+                                }else if(hsmem_corpcd=="10005"){
+                                    UserDefaults.standard.set("10005", forKey: "LoginCompanyCode")
+                                    UserDefaults.standard.set($0.divicd, forKey: "hsid")
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                    return
+                
+                }
+            }
+        }.resume()
+        
+        
+    }
+    
     //임원여부 가져오기
     func loadData1(str1: String) async {
       
@@ -353,7 +443,7 @@ struct LoginView: View {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let json = try JSONSerialization.jsonObject(with: data,options: []) as? [String: [Any]]
-            print(json ?? "")
+          //  print(json ?? "")
             if(json==nil) {
                 isActive = false
             }else{
@@ -398,11 +488,13 @@ struct LoginView: View {
                             UserDefaults.standard.set("" , forKey: "memdeptgbn")
                             UserDefaults.standard.set("" , forKey: "memdeptnme")
                             UserDefaults.standard.set("" , forKey: "memdeptcde")
+                            UserDefaults.standard.set("" , forKey: "hnme")
                         }else{
                             self.muserdata.forEach {
                                 UserDefaults.standard.set($0.deptgbn , forKey: "memdeptgbn")
                                 UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
                                 UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
+                                UserDefaults.standard.set($0.hnme , forKey: "hnme")
                                 
                             }
                         }
