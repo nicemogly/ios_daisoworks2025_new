@@ -5,7 +5,7 @@
 //  Created by AD2201016P02 on 10/18/24.
 //
 
-import SwiftUI
+import SwiftUI 
 
 struct CardModifier: ViewModifier {
     func body(content: Content) -> some View {

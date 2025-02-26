@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-
+ 
 
 enum Field1: Hashable {
     case comId

@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 import Charts
-
+ 
 
 struct chartDmsA: Decodable{
    

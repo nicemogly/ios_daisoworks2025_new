@@ -11,7 +11,7 @@ import SwiftUI
 enum Field2: Hashable {
     case itemId
 }
-
+ 
 
 struct UserSuju: Decodable {
     var comName: String

@@ -7,7 +7,7 @@
 import SwiftUI
 import AVFoundation
 import Vision
-
+ 
 
 class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         var parent: ScannerView

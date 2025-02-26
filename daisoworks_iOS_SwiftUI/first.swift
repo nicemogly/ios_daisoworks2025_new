@@ -14,7 +14,7 @@
 import SwiftUI
 import Foundation
 import Charts
-
+ 
 // =======================Result Data Group Start=====================
 // 바이어별 년도별 챠트 Data Layout
 struct chartA: Decodable{

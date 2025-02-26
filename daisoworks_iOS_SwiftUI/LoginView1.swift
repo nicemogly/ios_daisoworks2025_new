@@ -11,7 +11,7 @@
 
 import SwiftUI
 import LocalAuthentication
-
+ 
 struct LoginView1: View {
     
     //================= View : @State Group Define Start===============================
@@ -88,6 +88,8 @@ struct LoginView1: View {
         }else{
             // Device does not support Face ID or Touch ID
             print("생체인증을 지원하지 않는 디바이스입니다.")
+            isFaceIdDone = true
+            isActiv = true
         }
     }
     

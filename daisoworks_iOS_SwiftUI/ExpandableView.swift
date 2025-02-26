@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExpandableView: View {
-    
+     
     @Namespace private var namespace
     @State private var show = false
     

@@ -11,7 +11,7 @@
 //                          3.HERP 부서코드,부서명 가져오기
 //                          4.AUTO Login Setting
 //=============================================================================================================================================================
-
+ 
 import SwiftUI
 import SafariServices
 
@@ -345,7 +345,7 @@ struct LoginView: View {
                         }
                             UserDefaults.standard.set(str1, forKey: "Userid")
                             UserDefaults.standard.set(str2, forKey: "Passwd")
-                            UserDefaults.standard.set("", forKey: "hsid")
+                           // UserDefaults.standard.set("", forKey: "hsid")
                             if(str1.prefix(2)=="AD"){
                                 UserDefaults.standard.set("10005", forKey: "LoginCompanyCode")
                             }else if(str1.prefix(2)=="AH"){
@@ -489,15 +489,21 @@ struct LoginView: View {
                             UserDefaults.standard.set("" , forKey: "memdeptnme")
                             UserDefaults.standard.set("" , forKey: "memdeptcde")
                             UserDefaults.standard.set("" , forKey: "hnme")
+                            UserDefaults.standard.set("", forKey: "hsid")
                         }else{
                             self.muserdata.forEach {
                                 UserDefaults.standard.set($0.deptgbn , forKey: "memdeptgbn")
                                 UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
                                 UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
                                 UserDefaults.standard.set($0.hnme , forKey: "hnme")
+                                UserDefaults.standard.set($0.deptcde, forKey: "hsid")
+                                let memempmgnum4 = UserDefaults.standard.string(forKey: "hsid")!
+                                print("===========부서코드1:\(memempmgnum4)")
                                 
                             }
                         }
+                        
+                       
                     }
                     return
                 

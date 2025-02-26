@@ -9,7 +9,7 @@ import SwiftUI
 struct SquareRadioButtonGroup: View {
     let options: [String]
     @Binding var selectedOption: String?
-  
+   
     
     var body: some View {
         HStack(alignment: .top) {

@@ -17,7 +17,7 @@ struct ImagePicker: UIViewControllerRepresentable {
         
         init(parent: ImagePicker){
             self.parent = parent
-        }
+        } 
         
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]){
             picker.dismiss(animated: true , completion: nil)

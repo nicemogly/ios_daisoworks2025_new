@@ -3,7 +3,7 @@
 //  daisoworks_iOS_SwiftUI
 //
 //  Created by AD2201016P02 on 2/17/25.
-//
+// 
 
 import SwiftUI
 import Combine
@@ -59,6 +59,7 @@ struct DataExhCounselNum: Decodable {
 
 struct DataClientSchDetail1: Decodable {
     var clientNoP: String = ""
+    var clientPreNoP: String = ""
     var clientBizNameK: String = ""
 }
 
@@ -92,12 +93,16 @@ struct ExhibitionWriteView: View {
     @FocusState private var  focusField7: Field8?
     @State var exhcomname : String = ""
     @State var exhcomname1 : String = ""
+    
+    @State var exhcomnamedept : String = ""
     @State private var partnerName : String = ""
     @State var resultflag = false
     @State private var showingAlert = false
     @State private var showingAlert1 = false
     @State private var showingAlert2 = false
     @State private var showingAlert3 = false
+    @State private var showingAlert4 = false
+    @State private var showingAlert5 = false
     @State private var isShowingSheet = false
     @State private var isShowingSheet1 = false
     @State private var resultText: String = "검색된 결과가 없습니다."
@@ -298,7 +303,7 @@ struct ExhibitionWriteView: View {
                                     
                                     Picker( "동반자 선택" , selection: $selection2) {
                                         
-                                        if selection2 == "동반자 선택" {
+                                        if(selection2 == "동반자 선택" || selection2.isEmpty ) {
                                             Text("동반자 선택").tag("동반자 선택")
                                         }
                                         
@@ -322,29 +327,35 @@ struct ExhibitionWriteView: View {
                                     
                                     Button("선택" , action: {
                                         
-                                        
-                                        //comId = selection1
-                                        let  str3 = selection2.split(separator: "^")
-                                        
-                                        let  str4 = str3[1]
-                                        partnerName = String(str4)
-                                        var vcomname1:String = ""
-                                        if(selection1=="10000"){
-                                            vcomname1 = "AH"
-                                        }else if(selection1=="00001"){
-                                            vcomname1 = "AS"
-                                        }else if(selection1=="10005"){
-                                            vcomname1 = "AD"
+                                        if(selection2 == "동반자 선택" || selection2.isEmpty ) {
+                                            showingAlert5 = true
+                                        }else{
+                                            //comId = selection1
+                                            let  str3 = selection2.split(separator: "^")
+                                            
+                                            let  str4 = str3[1]
+                                            partnerName = String(str4)
+                                            var vcomname1:String = ""
+                                            if(selection1=="10000"){
+                                                vcomname1 = "AH"
+                                            }else if(selection1=="00001"){
+                                                vcomname1 = "AS"
+                                            }else if(selection1=="10005"){
+                                                vcomname1 = "AD"
+                                            }
+                                            
+                                            
+                                            selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
+                                            selection_partner = String(str3[0])
+                                            isShowingSheet.toggle()
                                         }
-                                        
-                                        
-                                        selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
-                                        selection_partner = String(str3[0])
-                                        
-                                        isShowingSheet.toggle()
-                                        
-                                        
+                                            
+                                           
                                     })
+                                    .alert(isPresented : $showingAlert5) {
+                                        Alert(title: Text("알림") , message: Text("동반자 정보가 올바르게 선택되지 않았습니다."), dismissButton: .default(Text("확인")))
+                                    }
+                                   
                                     //Text("combo:\(selection1)")
                                    
                                     Spacer()
@@ -353,6 +364,7 @@ struct ExhibitionWriteView: View {
                                     })
                                 }.padding()
                             }
+
                         }
                         
                         VStack(alignment: .leading){
@@ -474,7 +486,7 @@ struct ExhibitionWriteView: View {
                                     
                                     ForEach(dataclientschdetail1, id: \.clientNoP) { item2 in
                                         // print("\(item2.ClietBizNameK)")
-                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)")
+                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
                                         
                                         
                                     }
@@ -491,18 +503,28 @@ struct ExhibitionWriteView: View {
                                 Button("선택" , action: {
                                     
                                     
-                                    //comId = selection1
-                                    let  str3 = selection4.split(separator: "^")
-                                    
-                                    let  str4 = str3[1]
-                                    exhcomname1 = String(str4)
-                                    isShowingSheet1.toggle()
-                                    
-                                    
+                                    if(selection4 == "업체 선택" || selection4.isEmpty ) {
+                                        showingAlert4 = true
+                                    }else{
+                                        
+                                        let  str3 = selection4.split(separator: "^")
+                                        
+                                        let  str4 = str3[1]
+                                        let strdept = str3[2]
+                                        exhcomname1 = String(str4)
+                                        exhcomnamedept =  String(strdept)
+                                        isShowingSheet1.toggle()
+                                    }
                                 })
+                                .alert(isPresented : $showingAlert4) {
+                                    Alert(title: Text("알림") , message: Text("업체 정보가 올바르게 선택되지 않았습니다."), dismissButton: .default(Text("확인")))
+                                }
                                 
                                 Spacer()
-                                Spacer()
+                                
+                                Button("닫기" , action: {
+                                    isShowingSheet1 = false
+                                })
                             }.padding()
                         }
                         
@@ -527,29 +549,48 @@ struct ExhibitionWriteView: View {
                         }.padding(.top,10)
                         
                         HStack{
-                            CustomTextField(placeholder:"상담샘플수", text: $exhsamp, onDone:{ hidekeyboard()})
+//                            CustomTextField(placeholder:"상담샘플수", text: $exhsamp, onDone:{ hidekeyboard()})
+//                                .padding()
+//                                .background(Color(uiColor: .secondarySystemBackground))
+//                                .focused($focusField6, equals: .exhsamp)
+//                                .font(.system(size: 14))
+//                                .onChange(of: exhsamp) { newValue in
+//                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
+//                                    if filteredValue != newValue {
+//                                        self.exhsamp = filteredValue
+//                                        print("exhsamp:\(self.exhsamp)")
+//                                    }else{
+//                                        print("exhsamp:\(self.exhsamp)")
+//                                    }
+//                                }
+                            
+                            
+                            TextField("상담샘플수", text: $exhsamp)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField6, equals: .exhsamp)
                                 .font(.system(size: 14))
-                                .onChange(of: exhsamp) { newValue in
-                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
-                                    if filteredValue != newValue {
-                                        self.exhsamp = filteredValue
-                                    }
-                                }
+//
+//                            CustomTextField(placeholder:"상담일지장수", text: $exhdaily, onDone:{ hidekeyboard()})
+//                                .padding()
+//                                .background(Color(uiColor: .secondarySystemBackground))
+//                                .focused($focusField7, equals: .exhdaily)
+//                                .font(.system(size: 14))
+//                                .onChange(of: exhdaily) { newValue in
+//                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
+//                                    if filteredValue != newValue {
+//                                        self.exhdaily = filteredValue
+//                                        
+//                                    }else {
+//                                        print("exhdaily:\(self.exhdaily)")
+//                                    }
+//                                }
                             
-                            CustomTextField(placeholder:"상담일지장수", text: $exhdaily, onDone:{ hidekeyboard()})
+                            TextField("상담일지장수", text: $exhdaily)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField7, equals: .exhdaily)
                                 .font(.system(size: 14))
-                                .onChange(of: exhdaily) { newValue in
-                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
-                                    if filteredValue != newValue {
-                                        self.exhdaily = filteredValue
-                                    }
-                                }
                             
                             Spacer()
                         }.padding(.leading,10)
@@ -727,14 +768,17 @@ struct ExhibitionWriteView: View {
     //memempmgnum
     func initData(){
         
+        var memempmgnum5 = UserDefaults.standard.string(forKey: "hsid")!
+        
+        print("memempmgnum1111\(memempmgnum5)")
        
         checkPhotoLibraryPermission()
         
         //authorizationStatus = PHPhotoLibrary.authorizationStatus()
         selectedOption = "신규"
         selectedOption1 = "Y"
-        exhsamp = "1"
-        exhdaily = "1"
+//        exhsamp = "1"
+//        exhdaily = "1"
         
         VLoginCompanyCode = UserDefaults.standard.string(forKey: "LoginCompanyCode")!
         
@@ -798,11 +842,15 @@ struct ExhibitionWriteView: View {
         
         let memempmgnum1 = memempmgnum
         let memempmgnum2 = memempmgnum
+        let memdeptcde  =  UserDefaults.standard.string(forKey: "memdeptcde")!
         let exhDate1 = exhselDadte
+        
         let exhdailyint = Int(exhdaily)
         let exhsampint = Int(exhsamp)
         
-        //print("Tes")
+   //     print("exhdailyint:\(exhdailyint)")
+        
+     //   print("exhsampint:\(exhsampint)")
        
 //        ForEach(selectedImagesData, id: \.self) { imageData in
 //            rint("\(imageData.)")
@@ -816,7 +864,7 @@ struct ExhibitionWriteView: View {
         
        
        
-        guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1068,6 +1116,8 @@ struct ExhibitionWriteView: View {
         
         memhnme = UserDefaults.standard.string(forKey: "hnme")!
         memempmgnum = UserDefaults.standard.string(forKey: "hsid")!
+        
+        print("memempmgnum\(memempmgnum)")
         id1 = UserDefaults.standard.string(forKey: "Userid")!
         
        // let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
@@ -1201,7 +1251,7 @@ struct ExhibitionWriteView: View {
             
             return
         }
-     
+     print("\(url)")
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
@@ -1214,12 +1264,12 @@ struct ExhibitionWriteView: View {
                         self.dataclientschdetail1 = decodedResponse
                          
                        
-                        if(self.dataclientschdetail1.count == 0 ){
+                       // if(self.dataclientschdetail1.count == 0 ){
                            
-                        }else{
+                       // }else{
                             isShowingSheet1 = true
                            
-                        }
+                       // }
                     }
                     return
                 }

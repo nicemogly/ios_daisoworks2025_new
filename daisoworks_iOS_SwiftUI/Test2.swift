@@ -10,7 +10,7 @@ import SwiftUI
 import PhotosUI
 
 
-
+ 
 struct Test2: View {
 
     @State private var selectedItems: [PhotosPickerItem] = []

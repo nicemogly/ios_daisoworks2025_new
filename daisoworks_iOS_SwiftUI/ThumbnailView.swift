@@ -15,4 +15,5 @@ struct ThumbnailView: View, Identifiable {
             AnyView(content)
         }
     }
-}
+} 
+ 

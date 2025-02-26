@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 import PhotosUI
-import UIKit
+import UIKit  
 
 import SafariServices
 
@@ -64,14 +64,13 @@ struct uDataExhCounselNum: Decodable {
 
 struct uDataClientSchDetail1: Decodable {
     var clientNoP: String = ""
+    var clientPreNoP: String = ""
     var clientBizNameK: String = ""
 }
 
 struct exhibitionUpdateData: Decodable {
     
-
-    
-    
+    var upoolno: String = ""
     var uvautonum : String
     var uexhDate : String
     var uvdateFormat1 : Int = 0
@@ -84,9 +83,6 @@ struct exhibitionUpdateData: Decodable {
     var umemempmgnum: Int = 0
     var upartnerEmpNo: Int = 0
     var uexhComName: String = ""
-//    var uexhDate1: Date
-//    var umemempmgnum1: Int = 0
-//    var umemempmgnum2: Int = 0
     var uexhSampleCnt: Int = 0
     var uexhSampleRtnYN1: String = ""
     
@@ -150,6 +146,8 @@ struct ExhibitionUpdateView: View {
     @State private var showingAlert1 = false
     @State private var showingAlert2 = false
     @State private var showingAlert3 = false
+    @State private var showingAlert4 = false
+    @State private var showingAlert5 = false
     @State private var isShowingSheet = false
     @State private var isShowingSheet1 = false
     @State private var resultText: String = "검색된 결과가 없습니다."
@@ -174,6 +172,7 @@ struct ExhibitionUpdateView: View {
     @State private var showAlert = false
     @State private var showAlert4 = false
     @State private var alertTitle = ""
+    @State var exhcomnamedept : String = ""
     @State private var alertMessage = ""
     @State private var autoCousNum = ""
     @State private var registStr = ""
@@ -380,29 +379,35 @@ struct ExhibitionUpdateView: View {
                                     
                                     Button("선택" , action: {
                                         
-                                        
-                                        //comId = selection1
-                                        let  str3 = selection2.split(separator: "^")
-                                        
-                                        let  str4 = str3[1]
-                                        partnerName = String(str4)
-                                        var vcomname1:String = ""
-                                        if(selection1=="10000"){
-                                            vcomname1 = "AH"
-                                        }else if(selection1=="00001"){
-                                            vcomname1 = "AS"
-                                        }else if(selection1=="10005"){
-                                            vcomname1 = "AD"
+                                        if(selection2 == "동반자 선택" || selection2.isEmpty ) {
+                                            showingAlert5 = true
+                                        }else{
+                                            //comId = selection1
+                                            let  str3 = selection2.split(separator: "^")
+                                            
+                                            let  str4 = str3[1]
+                                            partnerName = String(str4)
+                                            var vcomname1:String = ""
+                                            if(selection1=="10000"){
+                                                vcomname1 = "AH"
+                                            }else if(selection1=="00001"){
+                                                vcomname1 = "AS"
+                                            }else if(selection1=="10005"){
+                                                vcomname1 = "AD"
+                                            }
+                                            
+                                            
+                                            selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
+                                            selection_partner = String(str3[0])
+                                            isShowingSheet.toggle()
                                         }
                                         
                                         
-                                        selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
-                                        selection_partner = String(str3[0])
-                                        
-                                        isShowingSheet.toggle()
-                                        
-                                        
                                     })
+                                    .alert(isPresented : $showingAlert5) {
+                                        Alert(title: Text("알림") , message: Text("동반자 정보가 올바르게 선택되지 않았습니다."), dismissButton: .default(Text("확인")))
+                                    }
+                                   
                                     //Text("combo:\(selection1)")
                                    
                                     Spacer()
@@ -532,8 +537,8 @@ struct ExhibitionUpdateView: View {
                                     
                                     ForEach(dataclientschdetail1, id: \.clientNoP) { item2 in
                                         // print("\(item2.ClietBizNameK)")
-                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)")
-                                        
+                                        //Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)")
+                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
                                         
                                     }
                                     
@@ -548,19 +553,29 @@ struct ExhibitionUpdateView: View {
                                 
                                 Button("선택" , action: {
                                     
-                                    
-                                    //comId = selection1
-                                    let  str3 = selection4.split(separator: "^")
-                                    
-                                    let  str4 = str3[1]
-                                    exhcomname1 = String(str4)
-                                    isShowingSheet1.toggle()
+                                    if(selection4 == "업체 선택" || selection4.isEmpty ) {
+                                        showingAlert4 = true
+                                    }else{
+                                        
+                                        let  str3 = selection4.split(separator: "^")
+                                        
+                                        let  str4 = str3[1]
+                                        let strdept = str3[2]
+                                        exhcomname1 = String(str4)
+                                        exhcomnamedept =  String(strdept)
+                                        isShowingSheet1.toggle()
+                                    }
+                       
                                     
                                     
                                 })
-                                
+                                .alert(isPresented : $showingAlert4) {
+                                    Alert(title: Text("알림") , message: Text("업체 정보가 올바르게 선택되지 않았습니다."), dismissButton: .default(Text("확인")))
+                                }
                                 Spacer()
-                                Spacer()
+                                Button("닫기" , action: {
+                                    isShowingSheet1 = false
+                                })
                             }.padding()
                         }
                         
@@ -585,30 +600,42 @@ struct ExhibitionUpdateView: View {
                         }.padding(.top,10)
                         
                         HStack{
-                            CustomTextField(placeholder:"상담샘플수", text: $exhsamp, onDone:{ hidekeyboard()})
+//                            CustomTextField(placeholder:"상담샘플수", text: $exhsamp, onDone:{ hidekeyboard()})
+//                                .padding()
+//                                .background(Color(uiColor: .secondarySystemBackground))
+//                                .focused($focusField6, equals: .exhsamp)
+//                               
+//                                .font(.system(size: 14))
+//                                .onChange(of: exhsamp) { newValue in
+//                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
+//                                    if filteredValue != newValue {
+//                                        self.exhsamp = filteredValue
+//                                    }
+//                                }
+                            
+                            TextField("상담샘플수", text: $exhsamp)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField6, equals: .exhsamp)
-                               
                                 .font(.system(size: 14))
-                                .onChange(of: exhsamp) { newValue in
-                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
-                                    if filteredValue != newValue {
-                                        self.exhsamp = filteredValue
-                                    }
-                                }
                             
-                            CustomTextField(placeholder:"상담일지장수", text: $exhdaily, onDone:{ hidekeyboard()})
+                            TextField("상담일지장수", text: $exhdaily)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField7, equals: .exhdaily)
                                 .font(.system(size: 14))
-                                .onChange(of: exhdaily) { newValue in
-                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
-                                    if filteredValue != newValue {
-                                        self.exhdaily = filteredValue
-                                    }
-                                }
+                            
+//                            CustomTextField(placeholder:"상담일지장수", text: $exhdaily, onDone:{ hidekeyboard()})
+//                                .padding()
+//                                .background(Color(uiColor: .secondarySystemBackground))
+//                                .focused($focusField7, equals: .exhdaily)
+//                                .font(.system(size: 14))
+//                                .onChange(of: exhdaily) { newValue in
+//                                    let filteredValue = newValue.filter { ("0"..."9").contains($0) }
+//                                    if filteredValue != newValue {
+//                                        self.exhdaily = filteredValue
+//                                    }
+//                                }
                             
                             Spacer()
                         }.padding(.leading,10)
@@ -907,10 +934,11 @@ struct ExhibitionUpdateView: View {
         checkPhotoLibraryPermission()
         
         //authorizationStatus = PHPhotoLibrary.authorizationStatus()
+    
         selectedOption = "신규"
         selectedOption1 = "Y"
-        exhsamp = "1"
-        exhdaily = "1"
+//        exhsamp = "1"
+//        exhdaily = "1"
         VLoginCompanyCode = UserDefaults.standard.string(forKey: "LoginCompanyCode")!
         //print("paramname1::::\(paramname1)")
         if(!paramname1.isEmpty){
@@ -982,10 +1010,13 @@ struct ExhibitionUpdateView: View {
         
         let memempmgnum1 = memempmgnum
         let memempmgnum2 = memempmgnum
+        let memdeptcde  =  UserDefaults.standard.string(forKey: "memdeptcde")!
         let exhDate1 = exhselDadte
         let exhdailyint = Int(exhdaily)
         let exhsampint = Int(exhsamp)
-        
+        if(selectedOption=="신규"){
+            exhcomnamedept = ""
+        }
         //print("Tes")
        
 //        ForEach(selectedImagesData, id: \.self) { imageData in
@@ -1000,7 +1031,7 @@ struct ExhibitionUpdateView: View {
         
        
        
-        guard let url = URL(string: "http://59.10.47.222:3000/exhupdate1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://59.10.47.222:3000/exhupdate1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1297,7 +1328,7 @@ struct ExhibitionUpdateView: View {
     }
     
     func getExhUpdate(){
-        //print("paramvalueparamname11111\(paramname1)")
+        print("paramvalueparamname11111\(paramname1)")
         memhnme = UserDefaults.standard.string(forKey: "hnme")!
         memempmgnum = UserDefaults.standard.string(forKey: "hsid")!
         id1 = UserDefaults.standard.string(forKey: "Userid")!
@@ -1349,10 +1380,17 @@ struct ExhibitionUpdateView: View {
                                 selectedOption1 = "N"
                             }
                             
+                            exhcomnamedept = self.dataexhibitionupdatedata[0].upoolno.replacingOccurrences(of: " ", with: "")
+                            
+                            if(exhcomnamedept.isEmpty){
+                                selectedOption = "신규"
+                            }else{
+                                selectedOption = "기존"
+                            }
+                            //print("testest\(exhcomnamedept)")
                             loadexhdetail(vparamname1: paramname1)
                             
-                            
-                           // print("memempmgnum:\(memempmgnum)")
+                         
                         }
                         
                         
@@ -1594,12 +1632,12 @@ struct ExhibitionUpdateView: View {
                         self.dataclientschdetail1 = decodedResponse
                          
                        
-                        if(self.dataclientschdetail1.count == 0 ){
-                           
-                        }else{
+//                        if(self.dataclientschdetail1.count == 0 ){
+//                           
+//                        }else{
                             isShowingSheet1 = true
                            
-                        }
+                       // }
                     }
                     return
                 }

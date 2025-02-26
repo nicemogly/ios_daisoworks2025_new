@@ -20,8 +20,8 @@ struct ContentView: View {
                  .scrollIndicators(.never)
                  .padding()
              }
-        
-    }
+         
+    } 
 }
 
 #Preview {

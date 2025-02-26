@@ -8,7 +8,7 @@ import SwiftUI
 import AVFoundation
 import Vision
 
-
+ 
 struct ScannerView: UIViewControllerRepresentable {
     
     @Binding var scannedString: String
