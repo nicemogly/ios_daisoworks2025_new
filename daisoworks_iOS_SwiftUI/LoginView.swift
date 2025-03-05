@@ -330,6 +330,8 @@ struct LoginView: View {
                     guard let object = item as? [String : Any] else { return }
                     var id = object["VALUE"] as! String
                     
+                  //test
+                    
                     
 //                    if(str1=="HS1106470"){
 //                        id = "T"
