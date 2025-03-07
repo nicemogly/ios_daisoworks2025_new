@@ -782,12 +782,31 @@ struct ExhibitionWriteView: View {
         
         VLoginCompanyCode = UserDefaults.standard.string(forKey: "LoginCompanyCode")!
         
+        let kautoExhFlag = UserDefaults.standard.string(forKey: "autoExhFlag")
+        if(kautoExhFlag == nil || kautoExhFlag == ""  || kautoExhFlag == "N"){
+            
+        }else{
+           let  aselection = UserDefaults.standard.string(forKey: "autoExhselection")
+           selection = aselection!
+            
+           let  aselection1 = UserDefaults.standard.string(forKey: "autoExhdate")
+           exhselDadte = aselection1!
+            
+           let  aselection2 = UserDefaults.standard.string(forKey: "autoExhselection3")
+           selection3 = aselection2!
+            
+           let  aselection3 = UserDefaults.standard.string(forKey: "autoExhselect_partner")
+           selection_partner = aselection3!
+          
+            
+        }
+        
     }
     
     func loadDataAutonum() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMM"
-        var vyymm = formatter.string(from: Date())
+        let vyymm = formatter.string(from: Date())
        
         //yyyymm , apikey
         guard let url = URL(string: "http://59.10.47.222:3000/autonum?yyyymm=\(vyymm)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
@@ -826,7 +845,7 @@ struct ExhibitionWriteView: View {
     func loadDataRegist() {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMM"
-        var vyymm = Int(formatter.string(from: Date()))
+        let vyymm = Int(formatter.string(from: Date()))
        
         //BN2025020132
         let start = autoCousNum.index(autoCousNum.startIndex, offsetBy:8)
@@ -970,7 +989,7 @@ struct ExhibitionWriteView: View {
            // let data = image.jpegData(compressionQuality: 1.0)!
             
             
-            var kindex = index+1
+            let kindex = index+1
             var fileName = autoCousNum+"_"+String(kindex)
              fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
            
@@ -982,12 +1001,12 @@ struct ExhibitionWriteView: View {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy"
-        var vyear = formatter.string(from: Date())
+        let vyear = formatter.string(from: Date())
         
         
         let formatter1 = DateFormatter()
         formatter1.dateFormat = "MM"
-        var vmonth = formatter1.string(from: Date())
+        let vmonth = formatter1.string(from: Date())
         
         additionalParameters["vyear"] = vyear
         additionalParameters["vmonth"] = vmonth
@@ -1244,7 +1263,7 @@ struct ExhibitionWriteView: View {
     }
     
     func loadData3(){
-          var vexhcomname = "%"+exhcomname+"%"
+          let vexhcomname = "%"+exhcomname+"%"
 
         guard let url = URL(string: "http://59.10.47.222:3000/comview11?comCode=\(VLoginCompanyCode)&comNum=\(vexhcomname)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")

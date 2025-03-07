@@ -27,7 +27,11 @@ struct ExhibitionItemView: View {
    @State private var isLoading = false
    @State private var showAlert = false
    @State private var data = "original data"
-   
+   @State private var isSheetPresented: Bool = false
+   @State private var isToggleOn: Bool = false
+ 
+    
+    
         var body: some View {
           
             NavigationView {
@@ -93,6 +97,27 @@ struct ExhibitionItemView: View {
                         }.background(Color(.bottomcolor))
                             .frame(maxWidth: .infinity)
                         
+                        VStack{
+                            Toggle(isOn: $isToggleOn){
+                                Text("자동입력")
+                                .foregroundColor(isToggleOn ? .green : .red)
+                            }
+                            .toggleStyle(SwitchToggleStyle(tint: .blue))
+                            .padding()
+                            .onChange(of: isToggleOn) { newValue in
+                                if newValue {
+                                    isSheetPresented = true
+                                }else{
+                                    UserDefaults.standard.set("N", forKey: "autoExhFlag")
+                                }
+                            }
+                        }
+                        .frame(height:30)
+                        .sheet(isPresented: $isSheetPresented, onDismiss: {
+                            isToggleOn = true
+                        }) {
+                            ExhAutoSetView(isSheetPresented: self.$isSheetPresented)
+                        }
                         
                         ScrollView {
                             
@@ -193,6 +218,11 @@ struct ExhibitionItemView: View {
         startDate = formattedDate(edate!)
         endDate = formattedDate(date)
         
+        var kautoExhFlag = UserDefaults.standard.string(forKey: "autoExhFlag")
+        if(kautoExhFlag=="Y"){
+            isToggleOn = true
+        }
+         
         loadData1()
     }
   
@@ -252,6 +282,341 @@ struct ExhibitionItemView: View {
     }
 }
        
+
+
+struct ExhAutoSetView: View {
+  @Binding var isSheetPresented: Bool
+    @State private var aselection  = "전시회 선택"
+    @State var exhlistitem = [ExhListItem]()
+    @State var aexhselDadte: String = ""
+    @State private var selectedDate =  Date()
+    @State private var showDatePicker: Bool = false
+    @State private var isTextFieldFocused: Bool = false
+    @State private var selection1 = "선택"
+    @State private var selection2 = "동반자 선택"
+    @State private var selection_partner = ""
+    @State private var partnerName : String = ""
+    @FocusState private var  focusField: Field3?
+    @State var resultflag = false
+    @State private var showingAlert = false
+//    @State private var showingAlert1 = false
+//    @State private var showingAlert2 = false
+//    @State private var showingAlert3 = false
+//    @State private var showingAlert4 = false
+    @State private var showingAlert5 = false
+    @State private var isShowingSheet = false
+    @State private var isShowingSheet1 = false
+    @State private var resultText: String = "검색된 결과가 없습니다."
+    @State var dataexhpartner = [DataExhPartner]()
+    @State private var selection3 = ""
+    
+   
+
+    var body: some View {
+        VStack {
+            
+            
+            VStack(alignment: .center){
+             
+                    Text("전시회 자동항목 입력")
+                        .font(.system(size: 22, weight: .heavy) )
+                 
+            }.padding(.top,30)
+                .padding(.leading,10)
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            
+            VStack(alignment: .leading){
+                HStack{
+                    Text("전시회 선택")
+                        .font(.system(size: 18, weight: .heavy) )
+                    Spacer()
+                }.padding(.leading,10)
+                
+            }.padding(.top,10)
+            
+            
+            Picker( selection: $aselection , label: Text("전시회 선택")) {
+                
+                if aselection == "전시회 선택" {
+                    Text("전시회 선택").tag("전시회 선택")
+                }
+                
+                
+                ForEach(exhlistitem, id: \.ckey) { item in
+                    Text(item.cname).tag(item.ckey)
+                }
+            }.frame(  maxWidth: .infinity  , minHeight:50 , alignment: .leading)
+                .background(Color(uiColor: .secondarySystemBackground))
+                .onAppear(perform: loadData)
+                .padding(.leading,10)
+                .padding(.trailing,10)
+            
+            
+            VStack(alignment: .leading){
+                HStack{
+                    Text("상담일자")
+                        .font(.system(size: 18, weight: .heavy) )
+                    Spacer()
+                }.padding(.leading,10)
+                
+            }.padding(.top,10)
+            
+            HStack(alignment: .top) {
+                
+                TextField("상담일자", text: $aexhselDadte)
+                    .padding()
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(8)
+                    .frame(width:300)
+                    .font(.system(size: 14))
+                    .modifier(RemoveFocusModifier(isFocused: $isTextFieldFocused))
+                
+                
+                Image(systemName: "calendar")
+                    .font(.system(size: 45))
+                    .onTapGesture {
+                        self.showDatePicker.toggle()
+                    }
+                
+                Spacer()
+            }.padding(5)
+                .sheet(isPresented: $showDatePicker) {
+                    DatePickerView(showDatePicker: self.$showDatePicker , selectDate: self.$selectedDate, dDate: self.$aexhselDadte)
+                }
+            
+            
+            VStack(alignment: .leading){
+                HStack{
+                    Text("동반자 정보")
+                        .font(.system(size: 18, weight: .heavy) )
+                    Spacer()
+                }.padding(.leading,10)
+                
+            }.padding(.top,10)
+            
+            
+            HStack{
+                
+                Picker( selection: $selection1 , label: Text("선택")) {
+                    
+                    Text("선택").tag("선택")
+                    Text("아성HMP").tag("10000")
+                    Text("아성").tag("00001")
+                    Text("아성다이소").tag("10005")
+                }
+                
+                TextField("동반자 성명", text: $partnerName)
+                    .padding()
+                    .background(Color(uiColor: .secondarySystemBackground))
+                    .focused($focusField, equals: .partnerName)
+                    .font(.system(size: 14))
+                
+                
+                
+                Button{
+                  
+                    if selection1 == "선택" {
+                        self.showingAlert = true
+                    }
+                    
+                    if partnerName.isEmpty {
+                        focusField = .partnerName
+                        self.showingAlert = true
+                    }
+                    
+                    
+                    self.endTextEditing()
+                    
+                    
+                    
+                    if self.showingAlert == false {
+                        loadData1()
+                    }
+                    
+                }label:{
+                    Text("Search")
+                        .fontWeight(.bold)
+                        .frame(width:80 , height:50)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .buttonStyle(PlainButtonStyle())
+                        .padding()
+                }
+                .alert(isPresented : $showingAlert) {
+                    Alert(title: Text("알림") , message: Text("동반자 성명이 유효하지 않습니다"), dismissButton: .default(Text("확인")))
+                }
+                .sheet(isPresented: $isShowingSheet , onDismiss: didDismiss) {
+                    VStack {
+                        Text("동반자 선택").fontWeight(.bold)
+                        
+                        
+                        Picker( "동반자 선택" , selection: $selection2) {
+                            
+                            if(selection2 == "동반자 선택" || selection2.isEmpty ) {
+                                Text("동반자 선택").tag("동반자 선택")
+                            }
+                            
+                            
+                            ForEach(dataexhpartner, id: \.nme) { item1 in
+                                
+                                // Text(item1.hnme).tag(item1.nme + "^" + item1.hnme )
+                                Text("\(item1.hnme)(\(item1.nme))").tag("\(item1.nme)^\(item1.hnme)")
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                        }.frame(  maxWidth: .infinity  , minHeight:50 , alignment: .leading)
+                            .background(Color(uiColor: .secondarySystemBackground))
+                        
+                            .onAppear(perform: loadData1)
+                        //  Text("combo\(selection1)")
+                        
+                        Button("선택" , action: {
+                            
+                            if(selection2 == "동반자 선택" || selection2.isEmpty ) {
+                                showingAlert5 = true
+                            }else{
+                                //comId = selection1
+                                let  str3 = selection2.split(separator: "^")
+                                
+                                let  str4 = str3[1]
+                                partnerName = String(str4)
+                                var vcomname1:String = ""
+                                if(selection1=="10000"){
+                                    vcomname1 = "AH"
+                                }else if(selection1=="00001"){
+                                    vcomname1 = "AS"
+                                }else if(selection1=="10005"){
+                                    vcomname1 = "AD"
+                                }
+                                
+                                
+                                selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
+                                selection_partner = String(str3[0])
+                                isShowingSheet.toggle()
+                            }
+                                
+                               
+                        })
+                        .alert(isPresented : $showingAlert5) {
+                            Alert(title: Text("알림") , message: Text("동반자 정보가 올바르게 선택되지 않았습니다."), dismissButton: .default(Text("확인")))
+                        }
+                       
+                        //Text("combo:\(selection1)")
+                       
+                        Spacer()
+                        Button("확인" , action: {
+                           
+                         
+                            
+                            isShowingSheet = false
+                        })
+                    }.padding()
+                }
+
+            }
+            
+            Button("확인") {
+                
+                //전시회코드, 전시회일자, 동반자정보(selection3, selection_partner)
+                  UserDefaults.standard.set("Y", forKey: "autoExhFlag")
+                  UserDefaults.standard.set("\(aselection)", forKey: "autoExhselection")
+                  UserDefaults.standard.set("\(aexhselDadte)", forKey: "autoExhdate")
+                  UserDefaults.standard.set("\(selection3)", forKey: "autoExhselection3")
+                  UserDefaults.standard.set("\(selection_partner)", forKey: "autoExhselect_partner")
+                  
+//                  print("aselection:\(aselection)")
+//                  print("aexhselDadte:\(aexhselDadte)")
+//                  print("selection3:\(selection3)")
+//                  print("selection_partner:\(selection_partner)")
+                
+             isSheetPresented = false
+            }
+            .padding()
+        }
+        
+        Spacer()
+        Spacer()
+    }
+    
+
+       
+    
+  
+    
+    func loadData(){
+        
+        guard let url = URL(string: "http://59.10.47.222:3000/exhList?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                
+                decoder.dateDecodingStrategy = .iso8601
+                
+                if let decodedResponse = try? decoder.decode([ExhListItem].self, from: data){
+                    DispatchQueue.main.async {
+                        self.exhlistitem = decodedResponse
+                    }
+                    return
+                    
+                }
+            }
+        }.resume()
+        
+       
+    }
+    
+    
+    
+    func loadData1(){
+          let partnerName1 = "%"+partnerName+"%"
+
+        guard let url = URL(string: "http://59.10.47.222:3000/exhPartner?comCode=\(selection1)&uname=\(partnerName1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                
+                decoder.dateDecodingStrategy = .iso8601
+                
+                if let decodedResponse = try? decoder.decode([DataExhPartner].self, from: data){
+                    DispatchQueue.main.async {
+                        self.dataexhpartner = decodedResponse
+                            isShowingSheet = true
+                        if(self.dataexhpartner.count == 0 ){
+                            resultflag = false
+                            resultText = "검색된 결과가 없습니다."
+                        }else{
+                            resultText = ""
+                           // startLoading()
+                        }
+                    }
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    func didDismiss() {
+        
+    }
+}
 
 
 #Preview {

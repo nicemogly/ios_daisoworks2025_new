@@ -1328,7 +1328,7 @@ struct ExhibitionUpdateView: View {
     }
     
     func getExhUpdate(){
-        print("paramvalueparamname11111\(paramname1)")
+       // print("paramvalueparamname11111\(paramname1)")
         memhnme = UserDefaults.standard.string(forKey: "hnme")!
         memempmgnum = UserDefaults.standard.string(forKey: "hsid")!
         id1 = UserDefaults.standard.string(forKey: "Userid")!
