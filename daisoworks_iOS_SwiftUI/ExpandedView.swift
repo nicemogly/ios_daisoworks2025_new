@@ -16,5 +16,7 @@ struct ExpandedView: View {
             AnyView(content)
         }
     }
-} 
+}
+
+
 

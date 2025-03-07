@@ -529,6 +529,7 @@ struct ExhAutoSetView: View {
                   UserDefaults.standard.set("\(selection3)", forKey: "autoExhselection3")
                   UserDefaults.standard.set("\(selection_partner)", forKey: "autoExhselect_partner")
                   
+                
 //                  print("aselection:\(aselection)")
 //                  print("aexhselDadte:\(aexhselDadte)")
 //                  print("selection3:\(selection3)")

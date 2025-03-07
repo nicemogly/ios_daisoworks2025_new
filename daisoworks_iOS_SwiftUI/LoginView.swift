@@ -340,6 +340,7 @@ struct LoginView: View {
                     if(id=="T") {
                         
                         
+                        
                         if(self.toggling){
                             UserDefaults.standard.set("T", forKey: "autologin_Flag")
                         }else{

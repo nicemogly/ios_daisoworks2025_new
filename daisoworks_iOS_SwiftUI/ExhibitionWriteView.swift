@@ -779,6 +779,7 @@ struct ExhibitionWriteView: View {
         selectedOption1 = "Y"
 //        exhsamp = "1"
 //        exhdaily = "1"
+     
         
         VLoginCompanyCode = UserDefaults.standard.string(forKey: "LoginCompanyCode")!
         

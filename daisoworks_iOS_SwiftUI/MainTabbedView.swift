@@ -153,6 +153,7 @@ struct MainTabbedView: View {
                                 UserDefaults.standard.set("", forKey: "memdeptcde")
                               UserDefaults.standard.set("", forKey: "autoExhFlag")
                               
+                              
                               self.tag1 = 1
                      })
                       } label: {

@@ -95,6 +95,7 @@ struct ExhibitionListView: View {
             }
             .modifier(AppearanceModifier())
         }
+        
     
       
         .onDisappear() {
