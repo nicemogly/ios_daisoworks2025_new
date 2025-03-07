@@ -518,7 +518,7 @@ struct ExhAutoSetView: View {
                     }.padding()
                 }
 
-            }
+            }  
             
             Button("확인") {
                 

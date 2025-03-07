@@ -88,7 +88,7 @@ struct ExhibitionListView: View {
                     }
                    
                     
-                }
+                }  
                 //
                
                 

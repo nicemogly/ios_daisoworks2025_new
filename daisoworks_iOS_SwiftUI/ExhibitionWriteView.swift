@@ -780,7 +780,7 @@ struct ExhibitionWriteView: View {
 //        exhsamp = "1"
 //        exhdaily = "1"
      
-        
+          
         VLoginCompanyCode = UserDefaults.standard.string(forKey: "LoginCompanyCode")!
         
         let kautoExhFlag = UserDefaults.standard.string(forKey: "autoExhFlag")
