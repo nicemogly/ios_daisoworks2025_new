@@ -228,15 +228,16 @@ struct ExhibitionItemView: View {
   
     func loadData1(){
        // let Userid = UserDefaults.standard.string(forKey: "Userid")
-      //  let ID1 = UserDefaults.standard.string(forKey: "Userid")
+        let ID1 = UserDefaults.standard.string(forKey: "Userid")!
         var vempno = UserDefaults.standard.string(forKey: "hsid")!
-//        if (vempno == nil || vempno?.isEmpty || vempno.equals("") || vempno=="") {
-//            let start = ID1.index(ID1.startIndex, offsetBy:2)
-//            let end = ID1.index(ID1.startIndex, offsetBy:8)
-//            let vdate0 = String(ID1[start..<end])
-//        }
+        if (vempno == nil || vempno.isEmpty ||  vempno=="") {
+            let start = ID1.index(ID1.startIndex, offsetBy:2)
+            let end = ID1.index(ID1.startIndex, offsetBy:9)
+            let vdate0 = String(ID1[start..<end])
+            vempno = vdate0
+        }
         
-       // print("\(vempno)")
+        //print("VEMPNO:\(vempno)")
         guard let url2 = URL(string: "http://59.10.47.222:3000/exhMyList?schsdate=\(startDate)&schedate=\(endDate)&empno=\(vempno)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
@@ -530,10 +531,6 @@ struct ExhAutoSetView: View {
                   UserDefaults.standard.set("\(selection_partner)", forKey: "autoExhselect_partner")
                   
                 
-//                  print("aselection:\(aselection)")
-//                  print("aexhselDadte:\(aexhselDadte)")
-//                  print("selection3:\(selection3)")
-//                  print("selection_partner:\(selection_partner)")
                 
              isSheetPresented = false
             }
