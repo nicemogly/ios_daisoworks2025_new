@@ -28,6 +28,8 @@
 		4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */; };
 		4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */; };
 		4B90F0DE2CC0AFA3007F3D8A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */; };
+		4BB6165E2D88D2EF0066C6DB /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6165D2D88D2E80066C6DB /* SampleView.swift */; };
+		4BB616602D89C87B0066C6DB /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6165F2D89C8720066C6DB /* QRCodeScannerView.swift */; };
 		4BB6CBC42CB9839A008569A4 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6CBC32CB98396008569A4 /* ThumbnailView.swift */; };
 		4BB6CBC62CB983C0008569A4 /* ExpandedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6CBC52CB983BD008569A4 /* ExpandedView.swift */; };
 		4BB6CBC82CB98A28008569A4 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB6CBC72CB98A25008569A4 /* ExpandableView.swift */; };
@@ -91,6 +93,8 @@
 		4B85C65E2CC7433A0045A338 /* DmsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DmsDetailView.swift; sourceTree = "<group>"; };
 		4B90F0DB2CC0AF2D007F3D8A /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		4B90F0DD2CC0AFA1007F3D8A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4BB6165D2D88D2E80066C6DB /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
+		4BB6165F2D89C8720066C6DB /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		4BB6CBC32CB98396008569A4 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
 		4BB6CBC52CB983BD008569A4 /* ExpandedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedView.swift; sourceTree = "<group>"; };
 		4BB6CBC72CB98A25008569A4 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
@@ -222,7 +226,9 @@
 		4BD6C0502CB47C4C000E8152 /* daisoworks_iOS_SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				4BB6165F2D89C8720066C6DB /* QRCodeScannerView.swift */,
 				4BD6C08E2CB607B5000E8152 /* daisoworks-iOS-SwiftUI-Info.plist */,
+				4BB6165D2D88D2E80066C6DB /* SampleView.swift */,
 				4B72FB962D6E22960055DFC2 /* CustomTextField.swift */,
 				4B72FB942D6E1E5E0055DFC2 /* KeyboardToolbar.swift */,
 				4B72FB922D6CD0230055DFC2 /* ExhibitionUpdateView.swift */,
@@ -496,7 +502,9 @@
 				4BD6C0892CB48F29000E8152 /* ProductView.swift in Sources */,
 				4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */,
 				4B72FB892D6695900055DFC2 /* ImagePicker.swift in Sources */,
+				4BB616602D89C87B0066C6DB /* QRCodeScannerView.swift in Sources */,
 				4B72FB912D682B120055DFC2 /* Test2.swift in Sources */,
+				4BB6165E2D88D2EF0066C6DB /* SampleView.swift in Sources */,
 				4BD6C0522CB47C4C000E8152 /* daisoworks_iOS_SwiftUIApp.swift in Sources */,
 				4BD6C08D2CB49025000E8152 /* first.swift in Sources */,
 				4B1C956E2D5E9F9000C30EAB /* ExhibitionListView.swift in Sources */,

@@ -20,6 +20,7 @@ enum SideMenuRowType: Int, CaseIterable{
     case suju
     case dms
     case exhibition
+    case sample
     
     var title: String{
         switch self {
@@ -35,6 +36,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "디자인결재"
         case .exhibition:
             return "전시회상담관리"
+        case .sample:
+            return "샘플관리"
         }
     }
     
@@ -52,6 +55,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "dms"
         case .exhibition:
             return "exhibition"
+        case .sample:
+            return "sample"
         }
     }
 }
@@ -155,14 +160,20 @@ struct SideMenuView: View {
                     }
                     .frame(width: 30, height: 30)
                     if(title=="전시회상담관리"){
-                      
-                            NavigationLink(destination: ExhibitionListView(presentSideMenu: $presentSideMenu) ){
-                                Text(title)
-                                    .font(.system(size: 14, weight: .regular))
-                                    .foregroundColor(isSelected ? .black : .gray)
-                            }
-                            
                         
+                        NavigationLink(destination: ExhibitionListView(presentSideMenu: $presentSideMenu) ){
+                            Text(title)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor(isSelected ? .black : .gray)
+                        }
+                        
+                    } else if(title=="샘플관리"){
+                        
+                        NavigationLink(destination: SampleView(presentSideMenu: $presentSideMenu) ){
+                            Text(title)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor(isSelected ? .black : .gray)
+                        }
                     } else {
                         Text(title)
                             .font(.system(size: 14, weight: .regular))
