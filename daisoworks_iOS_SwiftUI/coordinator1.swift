@@ -1,18 +1,19 @@
 //
-//  Untitled.swift
+//  coordinator1.swift
 //  daisoworks_iOS_SwiftUI
 //
-//  Created by AD2201016P02 on 10/16/24.
+//  Created by AD2201016P02 on 3/18/25.
 //
+
 import SwiftUI
 import AVFoundation
 import Vision
  
 
-class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-        var parent: ScannerView
+class Coordinator1: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+        var parent: ScannerView1
         
-        init(_ parent: ScannerView) {
+        init(_ parent: ScannerView1) {
             self.parent = parent
         }
         
@@ -30,9 +31,9 @@ class Coordinator: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 if let results = request.results, let payload = results.first?.payloadStringValue {
                     Task {
                         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-                        self.parent.scannedString = payload
-                        self.parent.itemId = payload
-                        self.parent.scnflag = false
+                        self.parent.scannedString1 = payload
+                        self.parent.itemId1 = payload
+                        self.parent.scnflag1 = false
                     }
                     // Optionally, stop scanning after first detection
                     // self.parent.captureSession.stopRunning()

@@ -123,11 +123,6 @@ struct ProductView: View {
 //    @Environment(\.dismiss) private var dismiss
     var body: some View {
         
-       
-        
-        
-        
-        
         VStack(alignment:.leading , spacing:0){
             
             VStack {
@@ -261,19 +256,19 @@ struct ProductView: View {
                 }
                 
             }
-            ZStack{
-                ProgressView()
-                    .frame(maxWidth: .infinity)
-                    .scaleEffect(4)
-              
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .opacity(isLoading ? 1 : 0)
-                Text("Loading...")
-                    
-                    .foregroundColor(Color.gray)
-                  
-                    .opacity(isLoading ? 1 : 0)
-            }
+//            ZStack{
+//                ProgressView()
+//                    .frame(maxWidth: .infinity)
+//                    .scaleEffect(4)
+//              
+//                    .progressViewStyle(CircularProgressViewStyle())
+//                    .opacity(isLoading ? 1 : 0)
+//                Text("Loading...")
+//                    
+//                    .foregroundColor(Color.gray)
+//                  
+//                    .opacity(isLoading ? 1 : 0)
+//            }
             
             if (resultflag == true) {
                
