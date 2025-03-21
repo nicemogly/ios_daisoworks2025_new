@@ -632,21 +632,6 @@ struct ExhibitionWriteView: View {
                             
                             .onChange(of: selectedItems) { newItems in
                                 Task {
-                                   // selectedImagesData = []
-//                                    for item in newItems {
-//                                        if let data = try? await item.loadTransferable(type: Data.self){
-//                                            selectedImagesData.append(data)
-//                                        }
-//                                    }
-                                    
-//                                    for item in newItems {
-//                                        if let data = try? await item.loadTransferable(type: Data.self){
-//                                            let fileName = item.itemIdentifier?.components(separatedBy: ".").first ?? UUID().uuidString
-//                                            let fileExtension = item.itemIdentifier?.components(separatedBy: ".").last ?? "unknown"
-//                                            selectedImagesData.append((data, fileName, fileExtension))
-//                                            }
-//                                        }
-                                    
                                     loadImages()
                                 }
                             }

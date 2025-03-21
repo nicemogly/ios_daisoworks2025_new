@@ -1707,7 +1707,7 @@ struct ExhibitionUpdateView: View {
         
         
       
-            prefixattr3 = "http://herpold.asunghmp.biz/FTP"
+        prefixattr3 = "http://herpold.asunghmp.biz/FTP"
    
         
         imgUrl1 = prefixattr3+v_attr7+v_attr5+"."+v_attr6
