@@ -110,6 +110,7 @@ struct ExhibitionUpdateView: View {
     
     @State var urlString = "https://www.naver.com"
     @State var showSafari = false
+    @State private var isDisabled = true
     
     @State private var selection  = "전시회 선택"
     @State private var selection1 = "선택"
@@ -446,6 +447,7 @@ struct ExhibitionUpdateView: View {
                                     .background(Color(uiColor: .secondarySystemBackground))
                                     .focused($focusField3, equals: .autoCodeNum)
                                     .font(.system(size: 14))
+                                    .disabled(isDisabled)
                                 
                                 Button{
                                     if(selection=="전시회 선택" || exhselDadte==""){
@@ -463,7 +465,9 @@ struct ExhibitionUpdateView: View {
                                         .foregroundColor(.white)
                                         .buttonStyle(PlainButtonStyle())
                                         .padding()
+                                        
                                 }
+                                .disabled(isDisabled)
                             }
                         }.padding(.leading,10)
                             .alert(isPresented : $showingAlert1) {

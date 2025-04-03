@@ -124,7 +124,7 @@ struct imageView: View {
             print("Invalid URL")
             return
         }
-        
+        print("testtest" , "1111111")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.timeoutInterval = 60
@@ -133,7 +133,7 @@ struct imageView: View {
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         let httpBody = NSMutableData()
-   
+        print("testtest" , "22222")
         for(index, imageData) in selectedImagesData.enumerated(){
             var fileName = "NA"+itemId1
             fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -162,7 +162,7 @@ struct imageView: View {
 
         }
 
-
+        print("testtest" , "33333")
 
         httpBody.appendString("--\(boundary)--")
 
@@ -172,7 +172,7 @@ struct imageView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
 
             if let error = error {
-
+                print("testtest" , "77777")
                 print("Error uploading images: \(error)")
                 isSaving = false
                 return
@@ -183,11 +183,13 @@ struct imageView: View {
             if let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 200 {
                // isSaving = false
                // onButtonPressed()
+                print("testtest" , "33")
                 uploadImages1()
             }
             
             if let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 304 {
                 //isSaving = false
+                print("testtest" , "333")
                 //onButtonPressed()
                 uploadImages1()
               
@@ -209,6 +211,8 @@ struct imageView: View {
             print("Invalid URL")
             return
         }
+        
+        print("testtest" , "dddddddd")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

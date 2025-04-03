@@ -1217,28 +1217,53 @@ struct ExhibitionWriteView: View {
                     DispatchQueue.main.async {
                         self.dataexhcounselnum = decodedResponse
                         
+                        var kautonum = dataexhcounselnum[0].counselautonum
+                        
+                        var kautoarray = exhselDadte.components(separatedBy: "-")
+                        var yy = kautoarray[0]
+                        var ym8 = Int(kautoarray[1])
+                        var ym = String(ym8!)
+                        var yd8 = Int(kautoarray[2])
+                        var yd = String(yd8!)
+                      // print("testtest\(yd)")
                         
                         if(self.dataexhcounselnum[0].counselautonum == "0" ){
-                            autoCodeNum = "T"+exhselDadte+"-01"
+                            //autoCodeNum = "T"+exhselDadte+"-01"
+                            autoCodeNum = yy+"-"+ym+"-"+yd+"-1"
                         }else{
                            //T2025-01-22-01
-                            var VautoCodeNum: String = ""
-                            VautoCodeNum = self.dataexhcounselnum[0].counselautonum
+//                            var VautoCodeNum: String = ""
+//                            VautoCodeNum = self.dataexhcounselnum[0].counselautonum
+//                            
+//                            let vstart = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:0)
+//                            let vend = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:11)
+//                            let start = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:12)
+//                            let end = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:14)
+//                            let vdate0 = String(VautoCodeNum[vstart..<vend])
+//                            let vdate = Int(VautoCodeNum[start..<end])!+1
+//                           
+//                           
+//                            var strvdate = String(vdate)
+//                            if vdate < 10 {
+//                                strvdate = "0"+strvdate
+//                            }
                             
-                            let vstart = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:0)
-                            let vend = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:11)
-                            let start = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:12)
-                            let end = VautoCodeNum.index(VautoCodeNum.startIndex, offsetBy:14)
-                            let vdate0 = String(VautoCodeNum[vstart..<vend])
-                            let vdate = Int(VautoCodeNum[start..<end])!+1
-                           
-                           
-                            var strvdate = String(vdate)
-                            if vdate < 10 {
-                                strvdate = "0"+strvdate
-                            }
+                            //autoCodeNum = vdate0+"-"+strvdate
                             
-                            autoCodeNum = vdate0+"-"+strvdate
+                            var kautonum2 = dataexhcounselnum[0].counselautonum
+                            
+                            var kautoarray2 = kautonum2.components(separatedBy: "-")
+                            var yy2 = kautoarray2[0]
+                            var ym5 = Int(kautoarray2[1])
+                            var ym2 = String(ym5!)
+                            var yd5 = Int(kautoarray2[2])
+                            var yd2 = String(yd5!)
+                            var ys5 = Int(kautoarray2[3])
+                            var ys2 = String(ys5!+1)
+                            //var ys3 = Int(ys2)!+1
+                            
+                            autoCodeNum = yy2+"-"+ym2+"-"+yd2+"-"+String(ys2)
+                            //print("testtest\(autoCodeNum)")
                         }
                        
                     }
