@@ -81,7 +81,7 @@ struct exhibitionUpdateData: Decodable {
     var uexhSelCode: String = ""
     var usuggbn: String = ""
     var umemempmgnum: Int = 0
-    var upartnerEmpNo: Int = 0
+    var upartnerEmpNo: String = ""
     var uexhComName: String = ""
     var uexhSampleCnt: Int = 0
     var uexhSampleRtnYN1: String = ""
@@ -400,6 +400,8 @@ struct ExhibitionUpdateView: View {
                                             
                                             selection3 = "["+vcomname1+"]"+str3[1]+"("+str3[0]+")"
                                             selection_partner = String(str3[0])
+                                            
+                                            print("aaa:\(selection_partner)")
                                             isShowingSheet.toggle()
                                         }
                                         
@@ -791,6 +793,8 @@ struct ExhibitionUpdateView: View {
                                 Button(action: {
                                     if(VLoginCompanyCode=="10005"){
                                         memempmgnum = String(id1.suffix(7))
+                                        
+                                      //  print("확인:\(memempmgnum)")
                                     }
                                     
                                     //전시회코드 체크
@@ -1033,7 +1037,7 @@ struct ExhibitionUpdateView: View {
 //            print("Image \(index + 1): \(fileName).\(fileExtension)")
 //        }
         
-       
+       //print("selection_partner:\(selection_partner)")
        
         guard let url = URL(string: "http://59.10.47.222:3000/exhupdate1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")

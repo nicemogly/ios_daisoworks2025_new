@@ -1,19 +1,20 @@
 //
-//  Untitled 2.swift
+//  ScannerView2.swift
 //  daisoworks_iOS_SwiftUI
 //
-//  Created by AD2201016P02 on 3/18/25.
+//  Created by AD2201016P02 on 4/4/25.
 //
+
 import SwiftUI
 import AVFoundation
 import Vision
 
  
-struct ScannerView1: UIViewControllerRepresentable {
+struct ScannerView2: UIViewControllerRepresentable {
     
     @Binding var scannedString1: String
     @Binding var scnflag1: Bool
-    @Binding var itemId1: String?
+    @Binding var itemId1: String
    
     
     let captureSession = AVCaptureSession()
@@ -49,8 +50,8 @@ struct ScannerView1: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
     
-    func makeCoordinator() -> Coordinator1 {
-        Coordinator1(self)
+    func makeCoordinator() -> Coordinator2 {
+        Coordinator2(self)
     }
     
 }

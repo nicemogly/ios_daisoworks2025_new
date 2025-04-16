@@ -332,10 +332,10 @@ struct LoginView: View {
                     
                   //test  
                     
-                    
-                    if(str1=="HS1106470"){
-                        id = "T"
-                    }
+//                    
+//                    if(str1=="HS0910260"){
+//                        id = "T"
+//                    }
                     //리턴 결과 T 이면
                     if(id=="T") {
                         
@@ -491,6 +491,7 @@ struct LoginView: View {
                             UserDefaults.standard.set("" , forKey: "memdeptgbn")
                             UserDefaults.standard.set("" , forKey: "memdeptnme")
                             UserDefaults.standard.set("" , forKey: "memdeptcde")
+                            UserDefaults.standard.set("" , forKey: "mempmgnum")
                             UserDefaults.standard.set("" , forKey: "hnme")
                             UserDefaults.standard.set("", forKey: "hsid")
                         }else{
@@ -500,6 +501,7 @@ struct LoginView: View {
                                 UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
                                 UserDefaults.standard.set($0.hnme , forKey: "hnme")
                                 UserDefaults.standard.set($0.deptcde, forKey: "hsid")
+                                UserDefaults.standard.set($0.empmgnum, forKey: "mempmgnum")
                                 let memempmgnum4 = UserDefaults.standard.string(forKey: "hsid")!
                                 print("===========부서코드1:\(memempmgnum4)")
                                 

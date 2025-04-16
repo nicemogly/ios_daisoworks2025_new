@@ -1122,7 +1122,7 @@ struct ExhibitionWriteView: View {
         memhnme = UserDefaults.standard.string(forKey: "hnme")!
         memempmgnum = UserDefaults.standard.string(forKey: "hsid")!
         
-        print("memempmgnum\(memempmgnum)")
+       // print("memempmgnum\(memempmgnum)")
         id1 = UserDefaults.standard.string(forKey: "Userid")!
         
        // let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")

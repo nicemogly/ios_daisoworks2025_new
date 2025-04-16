@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		126A2F2DF65174ED75DC9F02 /* Pods_daisoworks_iOS_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C098E62D349209629115FECC /* Pods_daisoworks_iOS_SwiftUITests.framework */; };
 		4B076D402CFA358600B7DA58 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 4B076D3F2CFA358600B7DA58 /* .gitignore */; };
+		4B0BF56C2D9F2DE500837AC0 /* SampleView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF56B2D9F2DE000837AC0 /* SampleView1.swift */; };
+		4B0BF56E2D9F4AD800837AC0 /* BottoSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF56D2D9F4AD100837AC0 /* BottoSheetView.swift */; };
+		4B0BF5742D9F55A800837AC0 /* QRCodeScannerView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF5732D9F559D00837AC0 /* QRCodeScannerView1.swift */; };
+		4B0BF5782DA0449300837AC0 /* ScannerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF5772DA0448C00837AC0 /* ScannerView2.swift */; };
+		4B0BF57A2DA044C700837AC0 /* coordinator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF5792DA044C000837AC0 /* coordinator2.swift */; };
+		4B0BF57C2DAD6CD000837AC0 /* SampleView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF57B2DAD6CB800837AC0 /* SampleView2.swift */; };
+		4B0BF57E2DAD908500837AC0 /* ScannerView3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF57D2DAD907D00837AC0 /* ScannerView3.swift */; };
+		4B0BF5802DAD90C400837AC0 /* coordinator3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BF57F2DAD90B600837AC0 /* coordinator3.swift */; };
 		4B1C956E2D5E9F9000C30EAB /* ExhibitionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C956D2D5E9F9000C30EAB /* ExhibitionListView.swift */; };
 		4B1C95702D5EFABE00C30EAB /* ExhibitionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C956F2D5EFABE00C30EAB /* ExhibitionItemView.swift */; };
 		4B1C95722D5FE0B100C30EAB /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1C95712D5FE0B100C30EAB /* DatePickerView.swift */; };
@@ -77,6 +85,14 @@
 		1ED78E98581776B447A911F7 /* Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests/Pods-daisoworks_iOS_SwiftUI-daisoworks_iOS_SwiftUIUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3B7711EAF25FC828B69C00D3 /* Pods-daisoworks_iOS_SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-daisoworks_iOS_SwiftUI/Pods-daisoworks_iOS_SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		4B076D3F2CFA358600B7DA58 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4B0BF56B2D9F2DE000837AC0 /* SampleView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView1.swift; sourceTree = "<group>"; };
+		4B0BF56D2D9F4AD100837AC0 /* BottoSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottoSheetView.swift; sourceTree = "<group>"; };
+		4B0BF5732D9F559D00837AC0 /* QRCodeScannerView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView1.swift; sourceTree = "<group>"; };
+		4B0BF5772DA0448C00837AC0 /* ScannerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView2.swift; sourceTree = "<group>"; };
+		4B0BF5792DA044C000837AC0 /* coordinator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coordinator2.swift; sourceTree = "<group>"; };
+		4B0BF57B2DAD6CB800837AC0 /* SampleView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView2.swift; sourceTree = "<group>"; };
+		4B0BF57D2DAD907D00837AC0 /* ScannerView3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView3.swift; sourceTree = "<group>"; };
+		4B0BF57F2DAD90B600837AC0 /* coordinator3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coordinator3.swift; sourceTree = "<group>"; };
 		4B1C956D2D5E9F9000C30EAB /* ExhibitionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionListView.swift; sourceTree = "<group>"; };
 		4B1C956F2D5EFABE00C30EAB /* ExhibitionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionItemView.swift; sourceTree = "<group>"; };
 		4B1C95712D5FE0B100C30EAB /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
@@ -235,7 +251,15 @@
 			isa = PBXGroup;
 			children = (
 				4BD6C08E2CB607B5000E8152 /* daisoworks-iOS-SwiftUI-Info.plist */,
+				4B0BF57F2DAD90B600837AC0 /* coordinator3.swift */,
+				4B0BF57D2DAD907D00837AC0 /* ScannerView3.swift */,
+				4B0BF57B2DAD6CB800837AC0 /* SampleView2.swift */,
+				4B0BF5792DA044C000837AC0 /* coordinator2.swift */,
+				4B0BF5732D9F559D00837AC0 /* QRCodeScannerView1.swift */,
+				4B0BF5772DA0448C00837AC0 /* ScannerView2.swift */,
+				4B0BF56D2D9F4AD100837AC0 /* BottoSheetView.swift */,
 				4BB616692D8B7E700066C6DB /* imageView.swift */,
+				4B0BF56B2D9F2DE000837AC0 /* SampleView1.swift */,
 				4BB6165D2D88D2E80066C6DB /* SampleView.swift */,
 				4BB616652D8A16860066C6DB /* coordinator1.swift */,
 				4BB616632D8A16000066C6DB /* ScannerView1.swift */,
@@ -492,9 +516,12 @@
 				4BB6CBD72CC02A15008569A4 /* SujuView.swift in Sources */,
 				4BD6C0582CB487AF000E8152 /* LoginView1.swift in Sources */,
 				4BD6C08B2CB48F34000E8152 /* CompanyView.swift in Sources */,
+				4B0BF57C2DAD6CD000837AC0 /* SampleView2.swift in Sources */,
+				4B0BF57A2DA044C700837AC0 /* coordinator2.swift in Sources */,
 				4B1C957A2D639C3F00C30EAB /* ExhibitionWriteView.swift in Sources */,
 				4B72FB952D6E1E680055DFC2 /* KeyboardToolbar.swift in Sources */,
 				4B833CA22CE59D2B000267FB /* SettingView.swift in Sources */,
+				4B0BF56C2D9F2DE500837AC0 /* SampleView1.swift in Sources */,
 				4B4EA3BD2CC30593001392E9 /* CardModifier.swift in Sources */,
 				4B1C957E2D65216200C30EAB /* SquareRadioButtonGroup.swift in Sources */,
 				4BD6C0832CB48E2E000E8152 /* SideMenuView.swift in Sources */,
@@ -505,17 +532,21 @@
 				4BB616642D8A16150066C6DB /* ScannerView1.swift in Sources */,
 				4B72FB972D6E229E0055DFC2 /* CustomTextField.swift in Sources */,
 				4B4EA3BB2CC1A96D001392E9 /* second.swift in Sources */,
+				4B0BF57E2DAD908500837AC0 /* ScannerView3.swift in Sources */,
 				4B1C95762D5FFE5C00C30EAB /* AppearanceModifier.swift in Sources */,
+				4B0BF56E2D9F4AD800837AC0 /* BottoSheetView.swift in Sources */,
 				4B90F0DE2CC0AFA3007F3D8A /* Coordinator.swift in Sources */,
 				4BD6C0562CB47ECE000E8152 /* LoginView.swift in Sources */,
 				4BD6C0812CB48E07000E8152 /* SideMenu.swift in Sources */,
 				4BB6CBC62CB983C0008569A4 /* ExpandedView.swift in Sources */,
 				4BD6C0512CB47C4C000E8152 /* ContentView.swift in Sources */,
 				4BB616682D8B67B70066C6DB /* ImagePicker1.swift in Sources */,
+				4B0BF5802DAD90C400837AC0 /* coordinator3.swift in Sources */,
 				4B85C65F2CC743410045A338 /* DmsDetailView.swift in Sources */,
 				4B72FB932D6CD0310055DFC2 /* ExhibitionUpdateView.swift in Sources */,
 				4BD6C0892CB48F29000E8152 /* ProductView.swift in Sources */,
 				4B90F0DC2CC0AF32007F3D8A /* ScannerView.swift in Sources */,
+				4B0BF5742D9F55A800837AC0 /* QRCodeScannerView1.swift in Sources */,
 				4B72FB892D6695900055DFC2 /* ImagePicker.swift in Sources */,
 				4BB616662D8A169E0066C6DB /* coordinator1.swift in Sources */,
 				4BB616602D89C87B0066C6DB /* QRCodeScannerView.swift in Sources */,
@@ -526,6 +557,7 @@
 				4B1C956E2D5E9F9000C30EAB /* ExhibitionListView.swift in Sources */,
 				4BD6C07F2CB48C0F000E8152 /* MainTabbedView.swift in Sources */,
 				4B1C957C2D65206300C30EAB /* SquareRadioButtonLabel.swift in Sources */,
+				4B0BF5782DA0449300837AC0 /* ScannerView2.swift in Sources */,
 				4BB6CBC82CB98A28008569A4 /* ExpandableView.swift in Sources */,
 				4BD6C0872CB48F1F000E8152 /* DmsView.swift in Sources */,
 			);
@@ -696,7 +728,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -719,7 +751,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -737,7 +769,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.9;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
@@ -760,7 +792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

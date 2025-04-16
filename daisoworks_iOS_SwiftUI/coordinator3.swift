@@ -10,10 +10,10 @@ import AVFoundation
 import Vision
  
 
-class Coordinator1: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-        var parent: ScannerView1
+class Coordinator3: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+        var parent: ScannerView3
         
-        init(_ parent: ScannerView1) {
+        init(_ parent: ScannerView3) {
             self.parent = parent
         }
         
@@ -33,6 +33,7 @@ class Coordinator1: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                  
                         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
                         self.parent.scannedString1 = payload
+                        self.parent.itemId1 = ""
                         self.parent.itemId1 = payload
                         self.parent.scnflag1 = false
                     }

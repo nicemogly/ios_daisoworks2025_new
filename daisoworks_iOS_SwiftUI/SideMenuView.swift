@@ -21,6 +21,8 @@ enum SideMenuRowType: Int, CaseIterable{
     case dms
     case exhibition
     case sample
+    case sample1
+    case sample2
     
     var title: String{
         switch self {
@@ -37,8 +39,13 @@ enum SideMenuRowType: Int, CaseIterable{
         case .exhibition:
             return "전시회상담관리"
         case .sample:
-            return "샘플관리"
+            return "샘플 이미지등록"
+        case .sample1:
+            return "샘플 접수관리"
+        case .sample2:
+            return "스터디 결과등록"
         }
+        
     }
     
     var iconName: String{
@@ -57,6 +64,10 @@ enum SideMenuRowType: Int, CaseIterable{
             return "exhibition"
         case .sample:
             return "sample"
+        case .sample1:
+            return "sample1"
+        case .sample2:
+            return "sample2"
         }
     }
 }
@@ -167,9 +178,23 @@ struct SideMenuView: View {
                                 .foregroundColor(isSelected ? .black : .gray)
                         }
                         
-                    } else if(title=="샘플관리"){
+                    } else if(title=="샘플 이미지등록"){
                         
                         NavigationLink(destination: SampleView(presentSideMenu: $presentSideMenu) ){
+                            Text(title)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor(isSelected ? .black : .gray)
+                        }
+                    } else if(title=="샘플 접수관리"){
+                        
+                        NavigationLink(destination: SampleView1(presentSideMenu: $presentSideMenu) ){
+                            Text(title)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor(isSelected ? .black : .gray)
+                        }
+                    } else if(title=="스터디 결과등록"){
+                        
+                        NavigationLink(destination: SampleView2(presentSideMenu: $presentSideMenu) ){
                             Text(title)
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(isSelected ? .black : .gray)

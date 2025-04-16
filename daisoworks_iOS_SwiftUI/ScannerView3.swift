@@ -9,7 +9,7 @@ import AVFoundation
 import Vision
 
  
-struct ScannerView1: UIViewControllerRepresentable {
+struct ScannerView3: UIViewControllerRepresentable {
     
     @Binding var scannedString1: String
     @Binding var scnflag1: Bool
@@ -39,7 +39,7 @@ struct ScannerView1: UIViewControllerRepresentable {
         //previewLayer.frame = CGRect(x: 50, y: 0, width: 300, height: 300)
         previewLayer.videoGravity = .resizeAspectFill
         viewController.view.layer.addSublayer(previewLayer)
-        
+       
         captureSession.startRunning()
         
        
@@ -49,8 +49,9 @@ struct ScannerView1: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
     
-    func makeCoordinator() -> Coordinator1 {
-        Coordinator1(self)
+    func makeCoordinator() -> Coordinator3 {
+        
+        Coordinator3(self)
     }
     
 }

@@ -171,8 +171,8 @@ struct SampleView: View {
         .onChange(of: itemId1) { newValue in
             if let value = newValue {
                 textFieldText88 = value
-        print("isUploading1 : \(isUploading1)")
-                print("imageURL: \(imageURL)")
+//        print("isUploading1 : \(isUploading1)")
+//                print("imageURL: \(imageURL)")
                 loadData1()
                
                 //isLoading = false

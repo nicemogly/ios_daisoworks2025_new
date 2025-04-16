@@ -140,6 +140,10 @@ struct SettingView: View {
                                 UserDefaults.standard.set("00001", forKey: "LoginCompanyCode")
                                 UserDefaults.standard.set("452", forKey: "hsid")
                                 UserDefaults.standard.set("최군", forKey: "hnme")
+                            }else if(vuserid=="AH1506150"){
+                                var  memempmgnum = UserDefaults.standard.string(forKey: "mempmgnum")!
+                                UserDefaults.standard.set("726", forKey: "mempmgnum")
+                                
                             }
                             
                             endTextEditing()
@@ -158,7 +162,7 @@ struct SettingView: View {
                         
                     }
                     HStack{
-                        Text("HS사용자").padding(5)  .font( .system(size: 14))
+                        Text("예시사용자").padding(5)  .font( .system(size: 14))
                         Spacer()
                        
                        
@@ -168,10 +172,12 @@ struct SettingView: View {
                         Text("김교령 HS1106470 HMP").padding(5)  .font( .system(size: 14))
                         
                         Text("최군 HS1106240 HS" ).padding(5)  .font( .system(size: 14))
+                        
+                      
                        
                     }
                     HStack{
-                        
+                        Text("정은빈 AH1506150 AH" ).padding(5)  .font( .system(size: 14))
                         
                     }
                         

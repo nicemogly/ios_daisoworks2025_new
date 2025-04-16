@@ -1,19 +1,20 @@
 //
-//  coordinator1.swift
+//  coordinator2.swift
 //  daisoworks_iOS_SwiftUI
 //
-//  Created by AD2201016P02 on 3/18/25.
+//  Created by AD2201016P02 on 4/4/25.
 //
+
 
 import SwiftUI
 import AVFoundation
 import Vision
  
 
-class Coordinator1: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-        var parent: ScannerView1
+class Coordinator2: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+        var parent: ScannerView2
         
-        init(_ parent: ScannerView1) {
+        init(_ parent: ScannerView2) {
             self.parent = parent
         }
         
@@ -38,6 +39,8 @@ class Coordinator1: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                     }
                     // Optionally, stop scanning after first detection
                     // self.parent.captureSession.stopRunning()
+                 
+                    
                 }
             } catch {
                 print("Barcode detection failed: \\(error)")
