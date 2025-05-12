@@ -336,9 +336,9 @@ struct LoginView: View {
                   //test  
                     
 //  AH1007010 , HS0910260
-                    if(str1=="HS1106240"){
-                        id = "T"
-                    }
+//                    if(str1=="HS1106240"){
+//                        id = "T"
+//                    }
                     //리턴 결과 T 이면
                     if(id=="T") {
                         
