@@ -132,14 +132,7 @@ struct ExhibitionWriteView: View {
     @State private var navigateToNextView = false
     @State private var progress = 0.0
 
-    
-    
-    
-    
-    
-    
-    
-
+   
     
     var body: some View {
         
@@ -290,7 +283,7 @@ struct ExhibitionWriteView: View {
                                     .frame(width:80 , height:50)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
-                                    .buttonStyle(PlainButtonStyle())
+                                   // .buttonStyle(PlainButtonStyle())
                                     .padding()
                             }
                             .alert(isPresented : $showingAlert) {
@@ -395,12 +388,12 @@ struct ExhibitionWriteView: View {
                                     .background(Color(uiColor: .secondarySystemBackground))
                                     .focused($focusField3, equals: .autoCodeNum)
                                     .font(.system(size: 14))
+                                    .modifier(RemoveFocusModifier(isFocused: $isTextFieldFocused))
                                 
                                 Button{
                                     if(selection=="전시회 선택" || exhselDadte==""){
                                         showingAlert1 = true
                                     }else{
-                                       
                                         loadData2()
                                         
                                     }
@@ -410,7 +403,7 @@ struct ExhibitionWriteView: View {
                                         .frame(width:80 , height:50)
                                         .background(Color.blue)
                                         .foregroundColor(.white)
-                                        .buttonStyle(PlainButtonStyle())
+                                        //.buttonStyle(PlainButtonStyle())
                                         .padding()
                                 }
                             }
@@ -711,7 +704,7 @@ struct ExhibitionWriteView: View {
                                     .frame(width:300 , height:50)
                                     .background(Color.blue)
                                     .foregroundColor(.white)
-                                    .buttonStyle(PlainButtonStyle())
+                                   // .buttonStyle(PlainButtonStyle())
                                     .padding()
                             }
                             .alert(isPresented: $showAlert){
@@ -867,9 +860,18 @@ struct ExhibitionWriteView: View {
 //            print("Image \(index + 1): \(fileName).\(fileExtension)")
 //        }
         
+        //20250507 동반자가 아성다이소의 경우 corp_cd = 10005로 변경함.
+        var tpartnerEmpNo:Int = selection_partner.count
+        var VLoginCompanyCode1 = ""
+        
+        if(tpartnerEmpNo == 7){
+            VLoginCompanyCode1 = "10005"
+        }else{
+            VLoginCompanyCode1 = VLoginCompanyCode
+        }
        
        
-        guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode1)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1197,9 +1199,9 @@ struct ExhibitionWriteView: View {
     
     //전시회 상담 번호 자동발번
     func loadData2(){
-        
-//        print("test\(selection)")
-//        print("test\(exhselDadte)")
+   // print("testtest2")
+       // print("testtest\(selection)")
+       // print("testtest\(exhselDadte)")
         guard let url = URL(string: "http://59.10.47.222:3000/exhCounselNum?exhnum=\(selection)&mdate=\(exhselDadte)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
@@ -1263,7 +1265,7 @@ struct ExhibitionWriteView: View {
                             //var ys3 = Int(ys2)!+1
                             
                             autoCodeNum = yy2+"-"+ym2+"-"+yd2+"-"+String(ys2)
-                            //print("testtest\(autoCodeNum)")
+                          //  print("testtest\(autoCodeNum)")
                         }
                        
                     }

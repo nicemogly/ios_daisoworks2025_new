@@ -23,6 +23,7 @@ enum SideMenuRowType: Int, CaseIterable{
     case sample
     case sample1
     case sample2
+    case sample3
     
     var title: String{
         switch self {
@@ -44,6 +45,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "샘플 접수관리"
         case .sample2:
             return "스터디 결과등록"
+        case .sample3:
+            return "샘플정보 조회"
         }
         
     }
@@ -68,6 +71,8 @@ enum SideMenuRowType: Int, CaseIterable{
             return "sample1"
         case .sample2:
             return "sample2"
+        case .sample3:
+            return "sample3"
         }
     }
 }
@@ -195,6 +200,14 @@ struct SideMenuView: View {
                     } else if(title=="스터디 결과등록"){
                         
                         NavigationLink(destination: SampleView2(presentSideMenu: $presentSideMenu) ){
+                            Text(title)
+                                .font(.system(size: 14, weight: .regular))
+                                .foregroundColor(isSelected ? .black : .gray)
+                        }
+                        
+                    } else if(title=="샘플정보 조회"){
+                        
+                        NavigationLink(destination: SampleView3(presentSideMenu: $presentSideMenu) ){
                             Text(title)
                                 .font(.system(size: 14, weight: .regular))
                                 .foregroundColor(isSelected ? .black : .gray)

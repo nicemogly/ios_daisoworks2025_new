@@ -21,6 +21,7 @@ struct SquareRadioButtonGroup: View {
                     ){
                         self.selectedOption = option
                     }
+                    .frame(width: 140 , alignment: .leading )
             }
         }.padding(.top,0)
     }

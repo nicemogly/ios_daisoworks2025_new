@@ -272,7 +272,10 @@ struct LoginView: View {
                 
                                 Task {
                                     await loadData2(str1: Userid!) //HERP 부서정보
-                                     loadData3(vstr1: Userid!) //HS dept
+                                    //20250424 추가
+                                    if(Userid!.prefix(2)=="HS"){
+                                        loadData3(vstr1: Userid!) //HS dept
+                                    }
                                     await loadData1(str1: Userid!)  // HR 임원여부
                                     await loadData(str1: Userid! , str2: password!) // HR 로그인 여ㅂ
                                 }
@@ -332,10 +335,10 @@ struct LoginView: View {
                     
                   //test  
                     
-//                    
-//                    if(str1=="HS0910260"){
-//                        id = "T"
-//                    }
+//  AH1007010 , HS0910260
+                    if(str1=="HS1106240"){
+                        id = "T"
+                    }
                     //리턴 결과 T 이면
                     if(id=="T") {
                         
@@ -381,6 +384,8 @@ struct LoginView: View {
             return
         }
         
+        
+     //  print("testtest:hshshs")
         let request1 = URLRequest(url: url1)
         URLSession.shared.dataTask(with: request1) { data1, response, error in
             if let data1 = data1 {
@@ -394,22 +399,24 @@ struct LoginView: View {
                             var hsmem_divicd:String = ""
                             var hsmem_deptcde:String = ""
                             var hsmem_corpcd:String = ""
-                       
+                        var test1 = self.muserdata.count
+                     //   print("testtestcnt:\(test1)")
+                        
+                        
                         if(self.muserdata.count == 0 ){
                             
                             UserDefaults.standard.set("", forKey: "hsid")
                             UserDefaults.standard.set("" , forKey: "hnme")
+                            
+                          //  print("testtest:no")
                         }else{
                             self.euserdata.forEach {
-                                //                                UserDefaults.standard.set($0.deptgbn , forKey: "memdeptgbn")
-                                //                                UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
-                                //                                UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
-                                //                                UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
                                 hsmem_usrid = $0.usrid
                                 hsmem_divicd = $0.divicd
                                 hsmem_deptcde  = $0.deptcde
                                 hsmem_corpcd  = $0.corpcd
                                 
+                                print("testtest:\(hsmem_usrid)")
                                 if(hsmem_corpcd=="10000"){
                                     UserDefaults.standard.set("10000", forKey: "LoginCompanyCode")
                                     UserDefaults.standard.set($0.divicd, forKey: "hsid")
@@ -477,7 +484,7 @@ struct LoginView: View {
             print("Invalid URL")
             return
         }
-        
+       // print("testtest:loadData2")
         let request1 = URLRequest(url: url1)
         URLSession.shared.dataTask(with: request1) { data1, response, error in
             if let data1 = data1 {
@@ -500,14 +507,14 @@ struct LoginView: View {
                                 UserDefaults.standard.set($0.deptnme , forKey: "memdeptnme")
                                 UserDefaults.standard.set($0.deptcde , forKey: "memdeptcde")
                                 UserDefaults.standard.set($0.hnme , forKey: "hnme")
-                                UserDefaults.standard.set($0.deptcde, forKey: "hsid")
+                                UserDefaults.standard.set($0.empmgnum, forKey: "hsid")
                                 UserDefaults.standard.set($0.empmgnum, forKey: "mempmgnum")
-                                let memempmgnum4 = UserDefaults.standard.string(forKey: "hsid")!
-                                print("===========부서코드1:\(memempmgnum4)")
+                               // let hsid = UserDefaults.standard.string(forKey: "hsid")!
+                               // print("===========부서코드1:\(memempmgnum4)")
                                 
                             }
                         }
-                        
+                        print("testtest:loadData3")
                        
                     }
                     return

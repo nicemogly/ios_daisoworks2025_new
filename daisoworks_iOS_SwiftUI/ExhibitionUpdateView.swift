@@ -491,15 +491,15 @@ struct ExhibitionUpdateView: View {
                             SquareRadioButtonGroup(options: ["신규","기존"], selectedOption: $selectedOption)
                             
                             if(selectedOption=="기존") {
-                                TextField("업체명 입력", text: $exhcomname)
-                                    .padding()
-                                    .background(Color(uiColor: .secondarySystemBackground))
-                                    .focused($focusField4, equals: .exhcomname)
-                                    .font(.system(size: 14))
-                                    .onDisappear{
-                                        exhcomname = ""
-                                        exhcomname1 = ""
-                                    }
+//                                TextField("업체명 입력", text: $exhcomname)
+//                                    .padding()
+//                                    .background(Color(uiColor: .secondarySystemBackground))
+//                                    .focused($focusField4, equals: .exhcomname)
+//                                    .font(.system(size: 14))
+//                                    .onDisappear{
+//                                        exhcomname = ""
+//                                        exhcomname1 = ""
+//                                    }
                                 
                                 Button{
                                     
@@ -520,7 +520,7 @@ struct ExhibitionUpdateView: View {
                                 }
                             }else{
                                 
-                                Spacer()
+                               // Spacer()
                             }
                             
                         }
@@ -1038,8 +1038,18 @@ struct ExhibitionUpdateView: View {
 //        }
         
        //print("selection_partner:\(selection_partner)")
+        //20250507 동반자가 아성다이소의 경우 corp_cd = 10005로 변경함.
+        var tpartnerEmpNo:Int = selection_partner.count
+        var VLoginCompanyCode1 = ""
+        
+        if(tpartnerEmpNo == 7){
+            VLoginCompanyCode1 = "10005"
+        }else{
+            VLoginCompanyCode1 = VLoginCompanyCode
+        }
+        
        
-        guard let url = URL(string: "http://59.10.47.222:3000/exhupdate1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://59.10.47.222:3000/exhupdate1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode1)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }

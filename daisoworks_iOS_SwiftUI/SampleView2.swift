@@ -132,10 +132,10 @@ struct SampleView2: View {
                             
                             VStack(alignment: .leading){
                                 ForEach(samplelist2, id: \.sammgno) { item2 in
-                                    Text("샘플번호:\(item2.samnm)")
+                                    Text("샘플명:\(item2.samnm)")
                                         .font(.system(size:16))
                                         .padding(.bottom, 10)
-                                    Text("샘플명:\(item2.clntnmkor)")
+                                    Text("업체명:\(item2.clntnmkor)")
                                         .font(.system(size:16))
                                         .padding(.bottom, 10)
                                     Text("담당부서:\(item2.deptsnme)")
