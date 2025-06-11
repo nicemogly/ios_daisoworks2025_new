@@ -188,7 +188,8 @@ struct SampleView: View {
     func  deleteImages(){
         
         isUploading1 = false
-        guard let url = URL(string: "http://59.10.47.222:3000/sampleImgDel?sammgno=\(itemId1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        let itemIdOri: String? = String(itemId1!.dropFirst(2))
+        guard let url = URL(string: "http://59.10.47.222:3000/sampleImgDel?sammgno=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -208,14 +209,16 @@ struct SampleView: View {
         resultflag = true
         isUploading = false
         showAlertDel = false
-        imageURL = "http://59.10.47.222:3000/static/NA\(itemId1!).JPG"
+       // imageURL = "http://59.10.47.222:3000/static/NA\(itemId1!).JPG"
+        imageURL = "http://59.10.47.222:3000/static/\(itemId1!).JPG"
     }
     
     func loadData1()  {
       
         //isUploading = true
         //startLoading()
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sampleload1?samcode=\(itemId1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        let itemIdOri: String? = String(itemId1!.dropFirst(2))
+        guard let url1 = URL(string: "http://59.10.47.222:3000/sampleload1?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -251,6 +254,12 @@ struct SampleView: View {
                                     
                                     requestGet(v_attr5:"NA"+($0.sammgnof ??  "") ,v_attr6:$0.filesec ??  "",v_attr7:$0.vtlpath ??  "")
                                     imageURL = "http://59.10.47.222:3000/static/NA"+$0.sammgnof+"."+$0.filesec
+                                    
+                                   // requestGet(v_attr5:""+($0.sammgnof ??  "") ,v_attr6:$0.filesec ??  "",v_attr7:$0.vtlpath ??  "")
+                                   // imageURL = "http://59.10.47.222:3000/static/"+$0.sammgnof+"."+$0.filesec
+                                   
+                                    
+                                    
                                     startLoading()
                                     showAlertDel = false
                                    // isUploading = false

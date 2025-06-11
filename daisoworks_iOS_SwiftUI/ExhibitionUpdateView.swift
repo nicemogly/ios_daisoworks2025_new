@@ -98,6 +98,7 @@ struct uDataExhPartner1: Decodable {
 struct uDataExhDetail1: Decodable {
     var tclntconno: String
     var seq: Int
+    var gbn: String
     var filenme: String
     var fileext: String
     var vtlpath: String
@@ -108,7 +109,9 @@ struct ExhibitionUpdateView: View {
     @Environment(\.presentationMode) var presentationMode
     var refreshData: () -> Void
     
-    @State var urlString = "https://www.naver.com"
+    @State private var selectedURL: IdentifiableURL? = nil
+    @State var urlString = ""
+    @State var urlString1 = ""
     @State var showSafari = false
     @State private var isDisabled = true
     
@@ -161,13 +164,17 @@ struct ExhibitionUpdateView: View {
     @State private var exhdaily: String = ""
     @State private var isLoading = false
     @State private var selectedImages: [UIImage] = []
+    @State private var selectedImages0: [UIImage] = []
     @State private var additionalParameters: [String: String] = ["vyear": "vyear" , "vmonth": "vmonth" , "vattr1": "value1", "vattr2": "0", "vattr3": "value3", "vattr4": "value4", "vattr5": "value5", "vattr6": "value6", "vattr7": "value7" , "apikey": "value8"]
-  
+    
+    @State private var additionalParameters0: [String: String] = ["vyear": "vyear" , "vmonth": "vmonth" , "vattr1": "value1", "vattr2": "0", "vattr3": "value3", "vattr4": "value4", "vattr5": "value5", "vattr6": "value6", "vattr7": "value7" , "apikey": "value8"]
     @State private var isImagePickerPresented = false
     @State private var authorizationStatus: PHAuthorizationStatus = .notDetermined
     @State private var selectedItems: [PhotosPickerItem] = []
+    @State private var selectedItems0: [PhotosPickerItem] = []
     
     @State private var selectedImagesData: [Data] = []
+    @State private var selectedImagesData0: [Data] = []
     
     //@State private var selectedImagesData: [(Data)] = []
     @State private var showAlert = false
@@ -180,6 +187,9 @@ struct ExhibitionUpdateView: View {
     @State private var navigateToNextView = false
     @State private var progress = 0.0
     var  paramname1 : String = ""  //파라미터 넘어온값
+    
+    @State private var imgCount: Int = 0
+    @State private var imgCount0: Int = 0
 
     
     
@@ -187,6 +197,7 @@ struct ExhibitionUpdateView: View {
     @State private var v_attr6 = ""
     @State private var v_attr7 = ""
     @State private var vvseq: Int = 0
+    @State private var v_gbn = ""
     
     
     
@@ -661,9 +672,148 @@ struct ExhibitionUpdateView: View {
                         }
                         
                         
+                        //상담일지 이미지 업로드
                         VStack(alignment: .leading){
                             HStack{
-                                Text("파일첨부 : 좌우 스크롤 가능(10장까지만 가능)")
+                                Text("상담일지  : 좌우 스크롤 가능(10장까지만 가능)")
+                                    .font(.system(size: 18, weight: .heavy) )
+                                Spacer()
+                            }.padding(.leading,10)
+                            
+                        }.padding(.top,10)
+                        
+                        
+                        
+                        if(v_attr5 != ""){
+                        
+                            ForEach(dataexhdetail1, id: \.filenme) { item4 in
+                                if(item4.gbn == "D") {
+                                    
+                                    VStack(alignment: .leading ){
+                                        
+                                        ScrollView(.horizontal){
+                                            
+                                            
+                                            HStack{
+                                                
+                                                Text("\(item4.filenme).\(item4.fileext)")
+                                                    .frame(width:200)
+                                                
+                                                
+                                                Button(action: {
+                                                    //   url =
+                                                    //  self.urlString = "http://59.10.47.222:3000/static/\(item4.filenme).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))"
+                                                    selectedURL = IdentifiableURL(url: URL(string: "http://59.10.47.222:3000/static/\(item4.filenme.trimmingCharacters(in: .whitespacesAndNewlines)).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))")!)
+                                                    // self.urlString = "http://59.10.47.222:3001/static/BN2025020172_1.JPG"
+                                                   
+                                                   // self.showSafari = true
+                                                }) {
+                                                    Text("이미지보기")
+                                                        .foregroundStyle(.white)
+                                                        .frame(maxWidth: .infinity)
+                                                    //  Text("\(urlString)")
+                                                }
+                                                .frame(maxWidth: .infinity , maxHeight:50, alignment: .center)
+                                                .buttonStyle(.borderedProminent)
+                                                .tint(.blue)
+                                                
+//                                                .sheet(isPresented: $showSafari) {
+//                                                    SafariView(url:URL(string:urlString)!)
+//
+//                                                }
+                                              
+                                            
+                                                
+                                                
+                                            }.padding(.leading , 10)
+                                                .font(.system(size: 14, weight: .heavy) )
+                                            
+                                            Spacer()
+                                            Divider()
+                                            
+                                                .frame(
+                                                    minWidth: 0 ,
+                                                    maxWidth: .infinity ,
+                                                    minHeight: 0,
+                                                    maxHeight: .infinity,
+                                                    alignment: .topLeading
+                                                )
+                                        }
+                                        
+                                    }
+                                }
+                          
+                            }//end foreach design info
+                          
+                            .sheet(item: $selectedURL) { IdentifiableURL in
+                                SafariView(url: IdentifiableURL.url)
+                            }
+                        }
+                        
+                        
+                        HStack{
+                            
+                            PhotosPicker(selection: $selectedItems0 , maxSelectionCount: 10, matching: .images){
+                                Text("선택")
+                                    .padding()
+                                    .background(Color.darkGraycolor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                    .frame(width:80, height: 50)
+                            }
+                            
+                            .onChange(of: selectedItems0) { newItems in
+                                Task {
+                                   // selectedImagesData = []
+//                                    for item in newItems {
+//                                        if let data = try? await item.loadTransferable(type: Data.self){
+//                                            selectedImagesData.append(data)
+//                                        }
+//                                    }
+                                    
+//                                    for item in newItems {
+//                                        if let data = try? await item.loadTransferable(type: Data.self){
+//                                            let fileName = item.itemIdentifier?.components(separatedBy: ".").first ?? UUID().uuidString
+//                                            let fileExtension = item.itemIdentifier?.components(separatedBy: ".").last ?? "unknown"
+//                                            selectedImagesData.append((data, fileName, fileExtension))
+//                                            }
+//                                        }
+                                    
+                                    loadImages0()
+                                }
+                            }
+                            .padding()
+                            
+                            if selectedImagesData0.isEmpty {
+                                
+                            }else {
+                                
+                                
+                                TabView {
+                                    ForEach(selectedImagesData0, id: \.self) { imageData in
+                                        if let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(maxHeight: 200)
+                                            
+                                            
+                                        }
+                                    }
+                                }
+                                .tabViewStyle(PageTabViewStyle())
+                                .frame(width: 200, height: 200)
+                            }
+                            
+                            Spacer()
+                        }
+                        
+                        
+                        
+                        //상담샘플 이미지 업로드
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text("상담샘플 : 좌우 스크롤 가능(10장까지만 가능)")
                                     .font(.system(size: 18, weight: .heavy) )
                                 Spacer()
                             }.padding(.leading,10)
@@ -676,57 +826,68 @@ struct ExhibitionUpdateView: View {
                         
                             ForEach(dataexhdetail1, id: \.filenme) { item4 in
                                 
-                                VStack(alignment: .leading ){
-                                    
-                                    ScrollView(.horizontal){
+                                if(item4.gbn == "O") {
+                                    VStack(alignment: .leading ){
                                         
+                                        ScrollView(.horizontal){
+                                            
+                                            
+                                            HStack{
+                                                
+                                                Text("\(item4.filenme).\(item4.fileext)")
+                                                    .frame(width:200)
+                                                
+                                                Button(action: {
+                                                    //   url =
+                                                    //  self.urlString = "http://59.10.47.222:3000/static/\(item4.filenme).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))"
+                                                    selectedURL = IdentifiableURL(url: URL(string: "http://59.10.47.222:3000/static/\(item4.filenme.trimmingCharacters(in: .whitespacesAndNewlines)).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))")!)
+                                                    // self.urlString = "http://59.10.47.222:3001/static/BN2025020172_1.JPG"
+                                                    
+                                                    urlString1 = urlString
+                                                    self.showSafari = true
+                                                }) {
+                                                    Text("이미지보기")
+                                                        .foregroundStyle(.white)
+                                                        .frame(maxWidth: .infinity)
+                                                    //  Text("\(urlString)")
+                                                }
+                                                .frame(maxWidth: .infinity , maxHeight:50, alignment: .center)
+                                                .buttonStyle(.borderedProminent)
+                                                .tint(.blue)
+//                                                
+//                                                .sheet(isPresented: $showSafari) {
+//                                                      
+//                                                    
+//                                                    SafariView(url:URL(string:urlString)!)
+//                                                      
+//                                                   
+//                                                }
+//                                                
+//                                               
+                                                
+                                                
+                                            }.padding(.leading , 10)
+                                                .font(.system(size: 14, weight: .heavy) )
+                                            
+                                            Spacer()
+                                            Divider()
+                                            
+                                                .frame(
+                                                    minWidth: 0 ,
+                                                    maxWidth: .infinity ,
+                                                    minHeight: 0,
+                                                    maxHeight: .infinity,
+                                                    alignment: .topLeading
+                                                )
+                                        }
                                         
-                                        HStack{
-                                            
-                                            Text("\(item4.filenme).\(item4.fileext)")
-                                                .frame(width:200)
-                                            
-                                            Button(action: {
-                                                //   url =
-                                              //  self.urlString = "http://59.10.47.222:3000/static/\(item4.filenme).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))"
-                                               urlString = "http://59.10.47.222:3000/static/\(item4.filenme.trimmingCharacters(in: .whitespacesAndNewlines)).\(item4.fileext.trimmingCharacters(in: .whitespacesAndNewlines))"
-                                               // self.urlString = "http://59.10.47.222:3001/static/BN2025020172_1.JPG"
-                                                self.showSafari = true
-                                            }) {
-                                                Text("이미지보기")
-                                                    .foregroundStyle(.white)
-                                                    .frame(maxWidth: .infinity)
-                                                //  Text("\(urlString)")
-                                            }
-                                            .frame(maxWidth: .infinity , maxHeight:50, alignment: .center)
-                                            .buttonStyle(.borderedProminent)
-                                            .tint(.blue)
-                                            
-                                            .sheet(isPresented: $showSafari) {
-                                                SafariView(url:URL(string:urlString)!)
-                                            }
-                                            
-                                            
-                                            
-                                        }.padding(.leading , 10)
-                                            .font(.system(size: 14, weight: .heavy) )
-                                        
-                                        Spacer()
-                                        Divider()
-                                        
-                                            .frame(
-                                                minWidth: 0 ,
-                                                maxWidth: .infinity ,
-                                                minHeight: 0,
-                                                maxHeight: .infinity,
-                                                alignment: .topLeading
-                                            )
                                     }
-                                   
                                 }
                                 
                             }//end foreach design info
-                          
+                            .sheet(item: $selectedURL) { IdentifiableURL in
+                                SafariView(url: IdentifiableURL.url)
+                            }
                         }
                         
                         
@@ -1071,11 +1232,11 @@ struct ExhibitionUpdateView: View {
                 registStr = responseStr
                 
                 
-                if(selectedImagesData.count == 0){
+                if(selectedImagesData.count == 0 && selectedImagesData0.count == 0){
                    
                 }else{
                     
-                    uploadImages()
+                    uploadImages0()
                 }
                
                
@@ -1102,6 +1263,36 @@ struct ExhibitionUpdateView: View {
       //  print("\(registStr)")
     }
    
+    
+    func loadImages0() {
+
+        selectedImagesData0.removeAll()
+
+        for item in selectedItems0 {
+
+            item.loadTransferable(type: Data.self) { result in
+
+                switch result {
+
+                case .success(let data?):
+
+                    selectedImagesData0.append(data)
+
+                case .success(nil):
+
+                    print("No data found")
+
+                case .failure(let error):
+
+                    print("Error loading image data: \(error.localizedDescription)")
+
+                }
+
+            }
+
+        }
+
+    }
     
     
     func loadImages() {
@@ -1134,6 +1325,112 @@ struct ExhibitionUpdateView: View {
 
     }
 
+    
+    func uploadImages0(){
+    
+      //  guard !selectedImagesData.isEmpty else { return }
+        
+        //print("testest\(str1!)")
+        guard let url = URL(string: "http://59.10.47.222:3000/saveImg9") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.timeoutInterval = 60
+     
+
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let httpBody = NSMutableData()
+   
+        
+        //print("selectedImagesData.count:\(selectedImagesData.count)")
+        //print("selectedImagesData.vvseq:\(vvseq)")
+        
+        for(index, imageData) in selectedImagesData0.enumerated(){
+           // let data = image.jpegData(compressionQuality: 1.0)!
+            
+            
+            imgCount = index+1+vvseq
+            imgCount0 = index+1+vvseq
+            
+            
+            
+            //var kindex = index+1+vvseq
+            var fileName = autoCousNum + "_" + String(imgCount)
+           
+            
+            
+            httpBody.append(convertFileData(fieldName: "files0" , fileName: "\(fileName).JPG" , mimeType: "image/jpeg", fileData: imageData, using: boundary))
+
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        var vyear = formatter.string(from: Date())
+        
+        
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "MM"
+        var vmonth = formatter1.string(from: Date())
+        
+        additionalParameters0["vyear"] = vyear
+        additionalParameters0["vmonth"] = vmonth
+        additionalParameters0["vattr1"] = autoCousNum
+        additionalParameters0["vattr2"] = String(vvseq)
+        additionalParameters0["vattr4"] = memempmgnum
+        additionalParameters0["vattr5"] = memempmgnum
+        additionalParameters0["vattr6"] = "/IMAGES/CLNTCON/BCON/" + vyear + "/" + vmonth + "/"
+        additionalParameters0["vattr7"] = "\\IMAGES\\CLNTCON\\BCON\\" + vyear + "\\" + vmonth + "\\"
+        additionalParameters0["apikey"] = "WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10"
+        
+        
+        
+        
+        
+        for (key, value) in additionalParameters0 {
+
+            httpBody.appendString2("--\(boundary)\r\n")
+
+            httpBody.appendString2("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+
+            httpBody.appendString2("\(value)\r\n")
+
+        }
+
+
+
+        httpBody.appendString2("--\(boundary)--")
+
+        request.httpBody = httpBody as Data
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            if let error = error {
+
+                print("Error uploading images: \(error)")
+
+                return
+
+            }
+         //   isLoading = false
+           // print("Upload successful")
+            uploadImages()
+
+        }.resume()
+        
+      
+     
+        
+        
+    }
     
     
     func uploadImages(){
@@ -1450,18 +1747,21 @@ struct ExhibitionUpdateView: View {
                         self.dataexhdetail1 = decodedResponse
                             //isShowingSheet = true
                         
-                        print("tttt\(self.dataexhdetail1.count)")
+                       // print("tttt\(self.dataexhdetail1.count)")
                         if(self.dataexhdetail1.count == 0 ){
                             resultflag = false
                             resultText = "검색된 결과가 없습니다."
                         }else{
                             var ktint: Int = 0
-                            print("==============requestGET1==============2")
+                           // print("==============requestGET1==============2")
                             self.dataexhdetail1.forEach {
-                               
+                                
+                                v_gbn = $0.gbn.trimmingCharacters(in: .whitespacesAndNewlines)
                                 v_attr5 = $0.filenme.trimmingCharacters(in: .whitespacesAndNewlines)
                                 v_attr6 = $0.fileext.trimmingCharacters(in: .whitespacesAndNewlines)
                                 v_attr7 = $0.vtlpath.trimmingCharacters(in: .whitespacesAndNewlines)
+                                
+                                
                                
                                 
 //                                print("v_attr5:\(v_attr5)")
@@ -1475,6 +1775,7 @@ struct ExhibitionUpdateView: View {
                                 if(ktint == 0) {
                                     self.urlString = "http://59.10.47.222:3000/static/\($0.filenme.trimmingCharacters(in: .whitespacesAndNewlines)).\($0.fileext.trimmingCharacters(in: .whitespacesAndNewlines))"
                                   //  print("\(self.urlString)")
+                                   // urlString = ""
                                 }
                                 ktint = ktint + 1
                                 vvseq = ktint
@@ -1768,6 +2069,11 @@ struct ExhibitionUpdateView: View {
         
     }
     
+}
+
+struct IdentifiableURL: Identifiable {
+    let id = UUID()
+    let url: URL
 }
 
 extension NSMutableData {

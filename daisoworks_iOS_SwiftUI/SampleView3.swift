@@ -235,7 +235,9 @@ struct SampleView3: View {
     
     func loadData1()  {
         //itemId1 = "20250314178"
-        guard let url1 = URL(string: "http://59.10.47.222:3000/samplesch?samcode=\(itemId1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        let itemIdOri: String? = String(itemId1!.dropFirst(2))
+
+        guard let url1 = URL(string: "http://59.10.47.222:3000/samplesch?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }

@@ -310,7 +310,7 @@ struct LoginView: View {
         guard let  vstr2 = str2.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
        
         var vstr3 = vstr2.replacingOccurrences(of: "+", with: "%2B")
-        print("인코딩\(vstr3)")
+            //  print("인코딩\(vstr3)")
         guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1+"&IN_INPUT.VALUE="+vstr3) else {
             print("Invalid URL")
             
@@ -336,9 +336,9 @@ struct LoginView: View {
                   //test  
                     
 //  AH1007010 , HS0910260
-//                    if(str1=="HS1106240"){
-//                        id = "T"
-//                    }
+                    if(str1=="AH1007010"){
+                        id = "T"
+                    }
                     //리턴 결과 T 이면
                     if(id=="T") {
                         

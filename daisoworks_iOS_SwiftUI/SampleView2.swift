@@ -50,8 +50,10 @@ struct SampleView2: View {
     @State private var uploadflag: Bool = false
     @State private var showAlert4: Bool = false
     @State private var showAlertDel: Bool = false
-    @State private var registStr = ""
+    //@State private var registStr = ""
     @State private var selection1 = "사유를 선택하세요"
+    
+   //@State private var selection1 = ""
     @State private var selectedOption = "미채택"
     let options = ["미채택","채택","보완"]
     @State private var isPickerEnabled: Bool = true
@@ -157,7 +159,7 @@ struct SampleView2: View {
                                     Picker(selection: $selection1 , label: Text("사유를 선택하세요")) {
                                         
                                         if selection1 == "사유를 선택하세요" {
-                                            Text("사유를 선택하세요").tag("사유를 선택하세요")
+                                            Text("사유를 선택하세요").tag("")
                                         }
                                       
                                         ForEach(samplelist4, id: \.rsncde) { item in
@@ -233,12 +235,15 @@ struct SampleView2: View {
         resultflag = true
         isUploading = false
         showAlertDel = false
-        imageURL = "http://59.10.47.222:3000/static/NA\(itemId1!).JPG"
+        //imageURL = "http://59.10.47.222:3000/static/NA\(itemId1!).JPG"
+        imageURL = "http://59.10.47.222:3000/static/\(itemId1!).JPG"
     }
     
     func loadData1()  {
        
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sampleload2?samcode=\(itemId1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        let itemIdOri: String? = String(itemId1!.dropFirst(2))
+        
+        guard let url1 = URL(string: "http://59.10.47.222:3000/sampleload2?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -287,7 +292,7 @@ struct SampleView2: View {
                                         isPickerEnabled = true
                                     }
                                     
-                                    selection1 = $0.rsncde ?? "사유를 선택하세요"
+                                    selection1 = $0.rsncde ?? ""
                                     //selection1 = "사유를 선택하세요"
                                     if($0.vtlpath == " " || $0.vtlpath == nil  || $0.vtlpath == ""){
                                         imageURL = ""
@@ -323,7 +328,7 @@ struct SampleView2: View {
         startLoading()
         
         var SaveStatus : String = ""
-        
+        print("testest\(selection1)")
         if(selectedOption == "미채택"){
             SaveStatus = "0"
         }else if(selectedOption == "채택"){
@@ -334,7 +339,10 @@ struct SampleView2: View {
             selection1 = ""
         }
         
-        guard let url1 = URL(string: "http://59.10.47.222:3000/samplesave?samplestatus=\(SaveStatus)&samplereason=\(selection1)&samplecode=\(itemId1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        let itemIdOri: String? = String(itemId1!.dropFirst(2))
+        
+        
+        guard let url1 = URL(string: "http://59.10.47.222:3000/samplesave?samplestatus=\(SaveStatus)&samplereason=\(selection1)&samplecode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }

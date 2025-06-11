@@ -116,12 +116,16 @@ struct ExhibitionWriteView: View {
     @State private var isLoading = false
     @State private var selectedImages: [UIImage] = []
     @State private var additionalParameters: [String: String] = ["vyear": "vyear" , "vmonth": "vmonth" , "vattr1": "value1", "vattr2": "0", "vattr3": "value3", "vattr4": "value4", "vattr5": "value5", "vattr6": "value6", "vattr7": "value7" , "apikey": "value8"]
+    
+    @State private var additionalParameters0: [String: String] = ["vyear": "vyear" , "vmonth": "vmonth" , "vattr1": "value1", "vattr2": "0", "vattr3": "value3", "vattr4": "value4", "vattr5": "value5", "vattr6": "value6", "vattr7": "value7" , "apikey": "value8"]
   
     @State private var isImagePickerPresented = false
     @State private var authorizationStatus: PHAuthorizationStatus = .notDetermined
-    @State private var selectedItems: [PhotosPickerItem] = []
+    @State private var selectedItems0: [PhotosPickerItem] = [] // 상담일지이미지
+    @State private var selectedItems: [PhotosPickerItem] = [] // 상담샘플이미지
     
-    @State private var selectedImagesData: [Data] = []
+    @State private var selectedImagesData: [Data] = [] // 상담일지이미지
+    @State private var selectedImagesData0: [Data] = [] // 상담샘플이미지
     
     //@State private var selectedImagesData: [(Data)] = []
     @State private var showAlert = false
@@ -131,7 +135,8 @@ struct ExhibitionWriteView: View {
     @State private var registStr = ""
     @State private var navigateToNextView = false
     @State private var progress = 0.0
-
+    @State private var imgCount: Int = 0
+    @State private var imgCount0: Int = 0
    
     
     var body: some View {
@@ -605,13 +610,67 @@ struct ExhibitionWriteView: View {
                         
                         VStack(alignment: .leading){
                             HStack{
-                                Text("파일첨부 : 좌우 스크롤 가능(10장까지만 가능)")
+                                Text("상담일지 : 좌우 스크롤 가능(10장까지만 가능)")
                                     .font(.system(size: 18, weight: .heavy) )
                                 Spacer()
                             }.padding(.leading,10)
                             
                         }.padding(.top,10)
                         
+                        
+                        // 상담일지 등록
+                        HStack{
+                            
+                            PhotosPicker(selection: $selectedItems0 , maxSelectionCount: 10, matching: .images){
+                                Text("선택")
+                                    .padding()
+                                    .background(Color.darkGraycolor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                                    .frame(width:80, height: 50)
+                            }
+                            
+                            .onChange(of: selectedItems0) { newItems in
+                                Task {
+                                    loadImages0()
+                                }
+                            }
+                            .padding()
+                            
+                            if selectedImagesData0.isEmpty {
+                                
+                            }else {
+                                
+                                
+                                TabView {
+                                    ForEach(selectedImagesData0, id: \.self) { imageData in
+                                        if let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(maxHeight: 200)
+                                            
+                                            
+                                        }
+                                    }
+                                }
+                                .tabViewStyle(PageTabViewStyle())
+                                .frame(width: 200, height: 200)
+                            }
+                            
+                            Spacer()
+                        }
+                        
+                        VStack(alignment: .leading){
+                            HStack{
+                                Text("샘플이미지 : 좌우 스크롤 가능(10장까지만 가능)")
+                                    .font(.system(size: 18, weight: .heavy) )
+                                Spacer()
+                            }.padding(.leading,10)
+                            
+                        }.padding(.top,10)
+                        
+                        // 상담샘플이미지
                         HStack{
                             
                             PhotosPicker(selection: $selectedItems , maxSelectionCount: 10, matching: .images){
@@ -748,7 +807,7 @@ struct ExhibitionWriteView: View {
         
         var memempmgnum5 = UserDefaults.standard.string(forKey: "hsid")!
         
-        print("memempmgnum1111\(memempmgnum5)")
+        //print("memempmgnum1111\(memempmgnum5)")
        
         checkPhotoLibraryPermission()
         
@@ -869,7 +928,9 @@ struct ExhibitionWriteView: View {
         }else{
             VLoginCompanyCode1 = VLoginCompanyCode
         }
-       
+        
+        //VLoginCompanyCode1 = selection1
+        //print("testtest\(selection1)")
        
         guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode1)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
@@ -893,7 +954,7 @@ struct ExhibitionWriteView: View {
                 registStr = responseStr
                 
              
-                uploadImages()
+                uploadImages0()
                
                
                 
@@ -916,6 +977,37 @@ struct ExhibitionWriteView: View {
       //  print("\(registStr)")
     }
    
+    
+    func loadImages0() {
+
+        selectedImagesData0.removeAll()
+
+        for item in selectedItems0 {
+
+            item.loadTransferable(type: Data.self) { result in
+
+                switch result {
+
+                case .success(let data?):
+
+                    selectedImagesData0.append(data)
+
+                case .success(nil):
+
+                    print("No data found")
+
+                case .failure(let error):
+
+                    print("Error loading image data: \(error.localizedDescription)")
+
+                }
+
+            }
+
+        }
+
+    }
+    
     
     
     func loadImages() {
@@ -948,12 +1040,111 @@ struct ExhibitionWriteView: View {
 
     }
 
+   
+    func uploadImages0(){
+    
+      //  guard !selectedImagesData.isEmpty else { return }
+        
+        //print("testest\(str1!)")
+        guard let url = URL(string: "http://59.10.47.222:3000/saveImg9") else {
+            print("Invalid URL")
+            
+            return
+        }
+        
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.timeoutInterval = 60
+     
+
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let httpBody = NSMutableData()
+   
+        for(index, imageData) in selectedImagesData0.enumerated(){
+           // let data = image.jpegData(compressionQuality: 1.0)!
+            
+            
+            imgCount = index+1
+            imgCount0 = index+1
+            var fileName = autoCousNum+"_"+String(imgCount)
+             fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
+           
+            
+            
+            httpBody.append(convertFileData(fieldName: "files0" , fileName: "\(fileName).JPG" , mimeType: "image/jpeg", fileData: imageData, using: boundary))
+
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        let vyear = formatter.string(from: Date())
+        
+        
+        let formatter1 = DateFormatter()
+        formatter1.dateFormat = "MM"
+        let vmonth = formatter1.string(from: Date())
+        
+        additionalParameters0["vyear"] = vyear
+        additionalParameters0["vmonth"] = vmonth
+        additionalParameters0["vattr1"] = autoCousNum
+        additionalParameters0["vattr4"] = memempmgnum
+        additionalParameters0["vattr5"] = memempmgnum
+        additionalParameters0["vattr6"] = "/IMAGES/CLNTCON/BCON/" + vyear + "/" + vmonth + "/"
+        additionalParameters0["vattr7"] = "\\IMAGES\\CLNTCON\\BCON\\" + vyear + "\\" + vmonth + "\\"
+        additionalParameters0["apikey"] = "WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10"
+        
+        
+        
+        
+        
+        for (key, value) in additionalParameters0 {
+
+            httpBody.appendString("--\(boundary)\r\n")
+
+            httpBody.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+
+            httpBody.appendString("\(value)\r\n")
+
+        }
+
+
+
+        httpBody.appendString("--\(boundary)--")
+
+        request.httpBody = httpBody as Data
+        
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            if let error = error {
+
+                print("Error uploading images: \(error)")
+
+                return
+
+            }
+          //  isLoading = false
+           // print("Upload successful")
+           
+            uploadImages()
+          
+        }.resume()
+        
+      
+        
+        
+        
+    }
     
     
     func uploadImages(){
     
       //  guard !selectedImagesData.isEmpty else { return }
-        
+       
         //print("testest\(str1!)")
         guard let url = URL(string: "http://59.10.47.222:3000/saveImg") else {
             print("Invalid URL")
@@ -977,8 +1168,9 @@ struct ExhibitionWriteView: View {
            // let data = image.jpegData(compressionQuality: 1.0)!
             
             
-            let kindex = index+1
-            var fileName = autoCousNum+"_"+String(kindex)
+            imgCount = imgCount+1
+            print("imgCount\(imgCount)")
+            var fileName = autoCousNum+"_"+String(imgCount)
              fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
            
             
@@ -999,6 +1191,7 @@ struct ExhibitionWriteView: View {
         additionalParameters["vyear"] = vyear
         additionalParameters["vmonth"] = vmonth
         additionalParameters["vattr1"] = autoCousNum
+        additionalParameters["vattr2"] = String(imgCount0)
         additionalParameters["vattr4"] = memempmgnum
         additionalParameters["vattr5"] = memempmgnum
         additionalParameters["vattr6"] = "/IMAGES/CLNTCON/BCON/" + vyear + "/" + vmonth + "/"
@@ -1041,56 +1234,6 @@ struct ExhibitionWriteView: View {
         }.resume()
         
       
-        
-        
-//        print("test0\(selectedImagesData.count)")
-//        
-//        
-//        guard !selectedImagesData.isEmpty else { return }
-//        
-//        let url = URL(string: "http://59.10.47.222:3000/db/postImg?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10")!
-//        print("test1")
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        
-//        let boundary = UUID().uuidString
-//        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//        
-//        let httpBody = NSMutableData()
-//        print("test2")
-//        for(index, imageData) in selectedImagesData.enumerated(){
-//           // let data = image.jpegData(compressionQuality: 1.0)!
-//            httpBody.append(convertFileData(fieldName: "file\(index)" , fileName: "image\(index).jpg" , mimeType: "image/jpeg", fileData: imageData, using: boundary))
-//        print("test2_1")
-//        }
-//        
-//        print("test3")
-//        for(key, value) in additionalParameters {
-//            httpBody.appendString("--\(boundary)\r\n")
-//            httpBody.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-//            httpBody.appendString("\(value)\r\n")
-//            print("test3_1")
-//        }
-//        
-//        httpBody.appendString("--\(boundary)--")
-//        request.httpBody = httpBody as Data
-//        
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let error = error {
-//                print("Error: \(error)")
-//                return
-//            }else {
-//                print("upload successful")
-//            }
-//                
-//        }.resume()
-//        
-//        for (index , imageData) in selectedImagesData.enumerated() {
-//            var kindex = index+1
-//            let fileName = autoCousNum + "_" + String(kindex)
-//            let fileExtension = imageData.2
-//            print("Image \(index + 1): \(fileName).\(fileExtension)")
-//        }
         
         
         
@@ -1202,7 +1345,7 @@ struct ExhibitionWriteView: View {
    // print("testtest2")
        // print("testtest\(selection)")
        // print("testtest\(exhselDadte)")
-        guard let url = URL(string: "http://59.10.47.222:3000/exhCounselNum?exhnum=\(selection)&mdate=\(exhselDadte)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://59.10.47.222:3000/exhCounselNum?exhnum=\(selection)&mdate=\(exhselDadte)&empnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -1227,7 +1370,7 @@ struct ExhibitionWriteView: View {
                         var ym = String(ym8!)
                         var yd8 = Int(kautoarray[2])
                         var yd = String(yd8!)
-                      // print("testtest\(yd)")
+                       print("kautonum\(kautonum)")
                         
                         if(self.dataexhcounselnum[0].counselautonum == "0" ){
                             //autoCodeNum = "T"+exhselDadte+"-01"
@@ -1260,6 +1403,7 @@ struct ExhibitionWriteView: View {
                             var ym2 = String(ym5!)
                             var yd5 = Int(kautoarray2[2])
                             var yd2 = String(yd5!)
+                            print("kautonum2\(kautonum2)")
                             var ys5 = Int(kautoarray2[3])
                             var ys2 = String(ys5!+1)
                             //var ys3 = Int(ys2)!+1
@@ -1347,6 +1491,25 @@ struct ExhibitionWriteView: View {
             return "unknown"
         }
     }
+    
+    
+    func getFileName0(from item: PhotosPickerItem) async -> String {
+        
+        //print("test1\(item.itemIdentifier)")
+        return item.itemIdentifier ?? UUID().uuidString
+    }
+    
+    func getFileExtension0(from item: PhotosPickerItem) async -> String {
+        
+      //  print("test2")
+        if let assetType = item.supportedContentTypes.first?.preferredFilenameExtension {
+            return assetType
+            
+        }else {
+            return "unknown"
+        }
+    }
+    
     
     func checkPhotoLibraryPermission() {
         PHPhotoLibrary.requestAuthorization { status in

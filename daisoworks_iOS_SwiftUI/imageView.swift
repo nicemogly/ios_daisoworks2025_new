@@ -124,7 +124,7 @@ struct imageView: View {
             print("Invalid URL")
             return
         }
-        print("testtest" , "1111111")
+        //print("testtest" , "1111111")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.timeoutInterval = 60
@@ -133,9 +133,10 @@ struct imageView: View {
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         let httpBody = NSMutableData()
-        print("testtest" , "22222")
+        //print("testtest" , "22222")
         for(index, imageData) in selectedImagesData.enumerated(){
-            var fileName = "NA"+itemId1
+            //var fileName = "NA"+itemId1
+            var fileName = itemId1
             fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
             httpBody.append(convertFileData(fieldName: "files" , fileName: "\(fileName).JPG" , mimeType: "image/jpeg", fileData: imageData, using: boundary))
         }
@@ -144,11 +145,14 @@ struct imageView: View {
         formatter.dateFormat = "yyyy"
         let vyear = formatter.string(from: Date())
         
-        additionalParameters["vattr1"] = itemId1
+        
+        let itemIdOri: String = String(itemId1.dropFirst(2))
+        
+        additionalParameters["vattr1"] = itemIdOri
         additionalParameters["vattr2"] = "/IMAGES/SIN/" + vyear + "/"
         additionalParameters["vattr3"] = "\\IMAGES\\SIN\\" + vyear + "\\"
         additionalParameters["vattr4"] = ss
-        additionalParameters["vattr5"] = itemId1
+        additionalParameters["vattr5"] = itemIdOri
         
         additionalParameters["apikey"] = "WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10"
         
@@ -162,7 +166,7 @@ struct imageView: View {
 
         }
 
-        print("testtest" , "33333")
+        //print("testtest" , "33333")
 
         httpBody.appendString("--\(boundary)--")
 
@@ -172,8 +176,8 @@ struct imageView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
 
             if let error = error {
-                print("testtest" , "77777")
-                print("Error uploading images: \(error)")
+                //print("testtest" , "77777")
+                //print("Error uploading images: \(error)")
                 isSaving = false
                 return
 
@@ -183,13 +187,13 @@ struct imageView: View {
             if let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 200 {
                // isSaving = false
                // onButtonPressed()
-                print("testtest" , "33")
+                //print("testtest" , "33")
                 uploadImages1()
             }
             
             if let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 304 {
                 //isSaving = false
-                print("testtest" , "333")
+               // print("testtest" , "333")
                 //onButtonPressed()
                 uploadImages1()
               
@@ -212,7 +216,7 @@ struct imageView: View {
             return
         }
         
-        print("testtest" , "dddddddd")
+        //print("testtest" , "dddddddd")
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -224,7 +228,8 @@ struct imageView: View {
         let httpBody = NSMutableData()
    
         for(index, imageData) in selectedImagesData.enumerated(){
-            var fileName = "NA"+itemId1
+            //var fileName = "NA"+itemId1
+            var fileName = itemId1
             fileName = fileName.trimmingCharacters(in: .whitespacesAndNewlines)
             httpBody.append(convertFileData(fieldName: "files" , fileName: "\(fileName).JPG" , mimeType: "image/jpeg", fileData: imageData, using: boundary))
         }
@@ -233,11 +238,13 @@ struct imageView: View {
         formatter.dateFormat = "yyyy"
         let vyear = formatter.string(from: Date())
         
-        additionalParameters["vattr1"] = itemId1
+        let itemIdOri: String = String(itemId1.dropFirst(2))
+        
+        additionalParameters["vattr1"] = itemIdOri
         additionalParameters["vattr2"] = "/IMAGES/SIN/" + vyear + "/"
         additionalParameters["vattr3"] = "\\IMAGES\\SIN\\" + vyear + "\\"
         additionalParameters["vattr4"] = ss
-        additionalParameters["vattr5"] = itemId1
+        additionalParameters["vattr5"] = itemIdOri
         
         additionalParameters["apikey"] = "WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10"
         

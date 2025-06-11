@@ -294,6 +294,8 @@ struct SampleView1: View {
     func unRegistSample(code: String ){
         var  memempmgnum = UserDefaults.standard.string(forKey: "mempmgnum")!
        
+        //let itemIdOri: String = String(code.dropFirst(2))
+        
         if code.isEmpty {
             
         }else{

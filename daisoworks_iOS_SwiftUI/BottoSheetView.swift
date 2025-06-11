@@ -186,13 +186,14 @@ struct BottomSheetView: View {
     func  AcceptSample(newCode: String){
         
        var  memempmgnum = UserDefaults.standard.string(forKey: "mempmgnum")!
-       // print("empno:\(memempmgnum)")
+        print("empno:\(memempmgnum)")
         
+        let itemIdOri: String = String(newCode.dropFirst(2))
         
         if memempmgnum.isEmpty {
             
         }else{
-            guard let url = URL(string: "http://59.10.47.222:3000/sampleaccept?memempmgnum=\(memempmgnum)&barcode=\(newCode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            guard let url = URL(string: "http://59.10.47.222:3000/sampleaccept?memempmgnum=\(memempmgnum)&barcode=\(itemIdOri)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
                 print("Invalid URL")
                 return
             }
@@ -200,7 +201,7 @@ struct BottomSheetView: View {
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data , let responseStr =  String(data: data, encoding: .utf8){
-                    print("\(responseStr)")
+                    print("testtest\(responseStr)")
                     
                     if (responseStr=="ok") {
                         
