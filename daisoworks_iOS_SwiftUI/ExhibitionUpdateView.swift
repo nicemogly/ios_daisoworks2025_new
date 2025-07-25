@@ -39,6 +39,10 @@ enum uField8: Hashable {
     case exhdaily
 }
 
+enum uField9: Hashable {
+    case exhcomowner
+}
+
 
 struct uExhAutonum: Decodable {
     var autonum: String
@@ -66,6 +70,8 @@ struct uDataClientSchDetail1: Decodable {
     var clientNoP: String = ""
     var clientPreNoP: String = ""
     var clientBizNameK: String = ""
+    var clientUser1: String = ""
+    var clientDept: String = ""
 }
 
 struct exhibitionUpdateData: Decodable {
@@ -85,6 +91,7 @@ struct exhibitionUpdateData: Decodable {
     var uexhComName: String = ""
     var uexhSampleCnt: Int = 0
     var uexhSampleRtnYN1: String = ""
+    var uuserdept : String = ""
     
 }
 
@@ -142,9 +149,12 @@ struct ExhibitionUpdateView: View {
     @FocusState private var  focusField5: Field6?
     @FocusState private var  focusField6: Field7?
     @FocusState private var  focusField7: Field8?
+    @FocusState private var  focusField8: uField9?
     @State var exhcomname : String = ""
     @State var exhcomname1 : String = ""
+    @State var exhcomowner : String = ""
     @State private var partnerName : String = ""
+    @State var exhcomname2 : String = ""
     @State var resultflag = false
     @State private var showingAlert = false
     @State private var showingAlert1 = false
@@ -502,15 +512,16 @@ struct ExhibitionUpdateView: View {
                             SquareRadioButtonGroup(options: ["신규","기존"], selectedOption: $selectedOption)
                             
                             if(selectedOption=="기존") {
-//                                TextField("업체명 입력", text: $exhcomname)
-//                                    .padding()
-//                                    .background(Color(uiColor: .secondarySystemBackground))
-//                                    .focused($focusField4, equals: .exhcomname)
-//                                    .font(.system(size: 14))
-//                                    .onDisappear{
-//                                        exhcomname = ""
-//                                        exhcomname1 = ""
-//                                    }
+                                TextField("업체명 입력", text: $exhcomname)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .focused($focusField4, equals: .exhcomname)
+                                    .font(.system(size: 14))
+                                    .onDisappear{
+                                        exhcomname = ""
+                                        exhcomname1 = ""
+                                        //exhcomowner = ""
+                                    }
                                 
                                 Button{
                                     
@@ -531,7 +542,7 @@ struct ExhibitionUpdateView: View {
                                 }
                             }else{
                                 
-                               // Spacer()
+                               Spacer()
                             }
                             
                         }
@@ -555,7 +566,9 @@ struct ExhibitionUpdateView: View {
                                     ForEach(dataclientschdetail1, id: \.clientNoP) { item2 in
                                         // print("\(item2.ClietBizNameK)")
                                         //Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)")
-                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
+                                        //Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
+                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)^\(item2.clientUser1)^\(item2.clientDept)")
+                                        
                                         
                                     }
                                     
@@ -580,6 +593,9 @@ struct ExhibitionUpdateView: View {
                                         let strdept = str3[2]
                                         exhcomname1 = String(str4)
                                         exhcomnamedept =  String(strdept)
+                                        
+                                        exhcomowner = str3[3] + " : " + str3[4]
+                                        print("test\(str4)")
                                         isShowingSheet1.toggle()
                                     }
                        
@@ -596,16 +612,41 @@ struct ExhibitionUpdateView: View {
                             }.padding()
                         }
                         
+                        
                         VStack(alignment: .leading){
                             
-                            TextField("상담업체명을 입력하세요", text: $exhcomname1)
+                            TextField("상담업체명을 입력하세요", text: $exhcomname1, axis: .vertical)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField5, equals: .exhcomname1)
                                 .font(.system(size: 14))
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
                         }.padding(10)
                         
+                        if(selectedOption=="기존") {
+                            VStack(alignment: .leading){
+                                HStack{
+                                    Text("업체 등록 담당부서 정보")
+                                        .font(.system(size: 18, weight: .heavy) )
+                                    Spacer()
+                                }.padding(.leading,10)
+                                
+                            }.padding(.top,10)
+                            
+                            VStack(alignment: .leading){
+                                
+                                TextField("담당부서 정보", text: $exhcomowner, axis: .vertical)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .focused($focusField8, equals: .exhcomowner)
+                                    .font(.system(size: 14))
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }.padding(10)
+                        }
                         
+                
                         
                         VStack(alignment: .leading){
                             HStack{
@@ -1688,21 +1729,23 @@ struct ExhibitionUpdateView: View {
                             exhcomname1 = self.dataexhibitionupdatedata[0].uexhComName
                             exhsamp = String(self.dataexhibitionupdatedata[0].uexhSampleCnt)
                             exhdaily = String(self.dataexhibitionupdatedata[0].uexhSangdamCnt)
+                           
                             var vselectedOption1 = self.dataexhibitionupdatedata[0].uexhSampleRtnYN1
                             if(vselectedOption1 == "0"){
                                 selectedOption1 = "Y"
                             }else{
                                 selectedOption1 = "N"
                             }
+                            exhcomowner = self.dataexhibitionupdatedata[0].uuserdept
                             
                             exhcomnamedept = self.dataexhibitionupdatedata[0].upoolno.replacingOccurrences(of: " ", with: "")
-                            
+                           //print("compoolno:\(exhcomnamedept)")
                             if(exhcomnamedept.isEmpty){
                                 selectedOption = "신규"
                             }else{
                                 selectedOption = "기존"
                             }
-                            //print("testest\(exhcomnamedept)")
+                           
                             loadexhdetail(vparamname1: paramname1)
                             
                          

@@ -213,10 +213,13 @@ struct ExhibitionItemView: View {
     
     func INIT_1(){
         
-        var date = Date()
-        var edate = Calendar.current.date(byAdding: .day, value: -7, to: date)
-        startDate = formattedDate(edate!)
-        endDate = formattedDate(date)
+        if(startDate==""){
+            var date = Date()
+            var edate = Calendar.current.date(byAdding: .day, value: -7, to: date)
+            startDate = formattedDate(edate!)
+            endDate = formattedDate(date)
+        }
+
         
         var kautoExhFlag = UserDefaults.standard.string(forKey: "autoExhFlag")
         if(kautoExhFlag=="Y"){
@@ -237,7 +240,7 @@ struct ExhibitionItemView: View {
             vempno = vdate0
         }
         
-        print("VEMPNO:\(vempno)")
+        //print("VEMPNO:\(vempno)")
         guard let url2 = URL(string: "http://59.10.47.222:3000/exhMyList?schsdate=\(startDate)&schedate=\(endDate)&empno=\(vempno)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             

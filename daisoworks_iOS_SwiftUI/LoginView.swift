@@ -151,6 +151,9 @@ struct LoginView: View {
                 .onChange(of: toggling) {  value in
                     tchange() // auto Login Toggle Changing Event
                 }
+                
+               
+                    
             }
             
             .onSubmit {
@@ -162,6 +165,12 @@ struct LoginView: View {
                 }
             }
             .padding()
+            
+            Text("로그인 안될시 버튼을 2~3초간 눌러주세요")
+                .foregroundStyle(.red)
+                .fontWeight(.bold)
+                .padding()
+            
             Text("\(resultTxt)")
                 .foregroundStyle(.red)
                 .fontWeight(.bold)

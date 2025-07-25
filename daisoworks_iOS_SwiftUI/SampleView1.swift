@@ -248,7 +248,7 @@ struct SampleView1: View {
     func  SampleAcceptList(){
         
        var  memempmgnum = UserDefaults.standard.string(forKey: "mempmgnum")!
-       // print("empno:\(memempmgnum)")
+        print("empno:\(memempmgnum)")
        
         
        // print("test1")

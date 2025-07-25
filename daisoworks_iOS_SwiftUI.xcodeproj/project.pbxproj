@@ -739,10 +739,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.4;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = ECNA8MFJJ8;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "daisoworks-iOS-SwiftUI-Info.plist";
@@ -767,6 +769,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = daiso_daisoworks1;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -780,10 +783,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2.4;
 				DEVELOPMENT_ASSET_PATHS = "\"daisoworks_iOS_SwiftUI/Preview Content\"";
-				DEVELOPMENT_TEAM = ECNA8MFJJ8;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ECNA8MFJJ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "daisoworks-iOS-SwiftUI-Info.plist";
@@ -808,6 +813,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = daiso_daisoworks1;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -827,7 +833,7 @@
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.daiso.daisoworks-iOS-SwiftUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -849,7 +855,7 @@
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MARKETING_VERSION = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.daiso.daisoworks-iOS-SwiftUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -868,7 +874,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.daiso.daisoworks-iOS-SwiftUIUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -887,7 +893,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Use Facd ID instead of a password to access your account";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				PRODUCT_BUNDLE_IDENTIFIER = "kr.co.daiso.daisoworks-iOS-SwiftUIUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.daiso.daisoworks1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

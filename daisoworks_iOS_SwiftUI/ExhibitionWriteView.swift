@@ -35,6 +35,10 @@ enum Field8: Hashable {
 }
 
 
+enum Field9: Hashable {
+    case exhcomowner
+}
+
 struct ExhAutonum: Decodable {
     var autonum: String
 }
@@ -61,6 +65,9 @@ struct DataClientSchDetail1: Decodable {
     var clientNoP: String = ""
     var clientPreNoP: String = ""
     var clientBizNameK: String = ""
+    var clientUser1: String = ""
+    var clientDept: String = ""
+    
 }
 
 struct ExhibitionWriteView: View {
@@ -91,8 +98,12 @@ struct ExhibitionWriteView: View {
     @FocusState private var  focusField5: Field6?
     @FocusState private var  focusField6: Field7?
     @FocusState private var  focusField7: Field8?
+    @FocusState private var  focusField8: Field9?
     @State var exhcomname : String = ""
     @State var exhcomname1 : String = ""
+    
+    @State var exhcomowner : String = ""
+    
     
     @State var exhcomnamedept : String = ""
     @State private var partnerName : String = ""
@@ -440,6 +451,7 @@ struct ExhibitionWriteView: View {
                                     .onDisappear{
                                         exhcomname = ""
                                         exhcomname1 = ""
+                                        exhcomowner = ""
                                     }
                                 
                                 Button{
@@ -484,13 +496,9 @@ struct ExhibitionWriteView: View {
                                     
                                     ForEach(dataclientschdetail1, id: \.clientNoP) { item2 in
                                         // print("\(item2.ClietBizNameK)")
-                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
-                                        
-                                        
+                                       // Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)")
+                                        Text("\(item2.clientBizNameK)(\(item2.clientNoP))").tag("\(item2.clientNoP)^\(item2.clientBizNameK)^\(item2.clientPreNoP)^\(item2.clientUser1)^\(item2.clientDept)")
                                     }
-                                    
-                                    
-                                    
                                     
                                 }.frame(  maxWidth: .infinity  , minHeight:50 , alignment: .leading)
                                     .background(Color(uiColor: .secondarySystemBackground))
@@ -511,6 +519,8 @@ struct ExhibitionWriteView: View {
                                         let strdept = str3[2]
                                         exhcomname1 = String(str4)
                                         exhcomnamedept =  String(strdept)
+                                        exhcomowner = str3[3] + " : " + str3[4]
+                                        
                                         isShowingSheet1.toggle()
                                     }
                                 })
@@ -528,12 +538,38 @@ struct ExhibitionWriteView: View {
                         
                         VStack(alignment: .leading){
                             
-                            TextField("상담업체명을 입력하세요", text: $exhcomname1)
+                            TextField("상담업체명을 입력하세요", text: $exhcomname1, axis: .vertical)
                                 .padding()
                                 .background(Color(uiColor: .secondarySystemBackground))
                                 .focused($focusField5, equals: .exhcomname1)
                                 .font(.system(size: 14))
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
                         }.padding(10)
+                        
+                        if(selectedOption=="기존") {
+                            VStack(alignment: .leading){
+                                HStack{
+                                    Text("업체 등록 담당부서 정보")
+                                        .font(.system(size: 18, weight: .heavy) )
+                                    Spacer()
+                                }.padding(.leading,10)
+                                
+                            }.padding(.top,10)
+                            
+                            VStack(alignment: .leading){
+                                
+                                TextField("담당부서 정보", text: $exhcomowner, axis: .vertical)
+                                    .padding()
+                                    .background(Color(uiColor: .secondarySystemBackground))
+                                    .focused($focusField8, equals: .exhcomowner)
+                                    .font(.system(size: 14))
+                                    .lineLimit(nil)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }.padding(10)
+                        }
+                        
+                        
                         
                         
                         
@@ -1427,7 +1463,7 @@ struct ExhibitionWriteView: View {
             
             return
         }
-     print("\(url)")
+   //  print("\(url)")
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
