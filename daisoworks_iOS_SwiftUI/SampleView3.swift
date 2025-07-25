@@ -1,42 +1,36 @@
 //
-//  SampleView2.swift
+//  SampleView3.swift
 //  daisoworks_iOS_SwiftUI
 //
 //  Created by AD2201016P02 on 3/17/25.
 //
 import SwiftUI
-
-
-
+ 
+ 
+ 
 struct SampleList5: Decodable {
-    var sammgno: String          //샘플번호
+    var sammgno: String          //샘플관리번호
+    var samnme: String?          //샘플명
+    var clntpoolno: String?      //업체풀번호
     var clntnme: String?         //업체명
-    var samnme: String?           //샘플명
-    var corpnme: String?         //회사
-    var hsdeptnme: String?       //지사,부서
-    var hmpdeptnme: String?      //관계사팀
-    var delinm: String?          //인도조건
-    var moq: Double?             //MOQ
-    var plcwidth: Double?        //규격_가로
-    var plcvrticl: Double?       //규격_세로
-    var plchg: Double?           //규격_높이
-    var plcwt: Double?           //규격_중량
-    var plccpcty: Double?        //규격_용량
-    var mtrgltcod1: String?      //재질1
-    var mtrgltcod2: String?      //재질2
-    var mtrgltcod3: String?      //재질3
-    var mtrgltcod4: String?      //재질4
-    var condte: String?          //상담일자
+    var neganatinm: String?      //원산지
+    var weit: String?            //무게
+    var pozast: String?          //포장
+    var cor: String?             //색상
+    var zae: String?             //재질
+    var gyu: String?             //규격
+    var hmpdeptnme: String?      //영업부서
+    var hsdeptnme: String?       //출하부서
+    var suggbn: String?          //제안구분
     var shownme: String?         //전시회명
-    var conhsempnme: String?     //HS상담자
-    var conhmpempnme: String?    //관계사상담자
-    var condaisoempnme: String?  //다이소상담자
-    var samrtnyn: String?        //반송대상
+    var origmgno: String?        //구매샘플번호
+    var congdschr: String?       //다이소MD
     var adpgbn: String?          //상담결과
+    var gdsno: String?           //품번
     
 }
-
-
+ 
+ 
 struct SampleView3: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var presentSideMenu: Bool
@@ -105,95 +99,74 @@ struct SampleView3: View {
                     
                             VStack(alignment: .leading){
                                 ForEach(samplelist5, id: \.sammgno) { item5 in
-                                    Text("샘플번호: NA\(item5.sammgno ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    Text("업체명: \(item5.clntnme ?? "-")")
+                                    Text("샘플관리번호: NA\(item5.sammgno ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
                                     Text("샘플명: \(item5.samnme ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("회사: \(item5.corpnme ?? "-")")
+                                    Text("업체풀번호: \(item5.clntpoolno ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("지사: \(item5.hsdeptnme ?? "-")")
+                                    Text("업체명: \(item5.clntnme ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("관계사팀: \(item5.hmpdeptnme ?? "-")")
+                                    Text("원산지: \(item5.neganatinm ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("인도조건: \(item5.delinm ?? "-")")
+                                    Text("무게: \(item5.weit ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("MOQ: \(item5.moq ?? 0)")
+                                    Text("포장: \(item5.pozast ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("규격_가로: \(item5.plcwidth ?? 0)")
+                                    Text("색상: \(item5.cor ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("규격_세로: \(item5.plcvrticl ?? 0)")
+                                    Text("재질: \(item5.zae ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("규격_높이: \(item5.plchg ?? 0)")
+                                    Text("규격: \(item5.gyu ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("규격_중량: \(item5.plcwt ?? 0)")
+                                    Text("영업부서: \(item5.hmpdeptnme ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("규격_용량: \(item5.plccpcty ?? 0)")
+                                    Text("출하부서: \(item5.hsdeptnme ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("재질1: \(item5.mtrgltcod1 ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    Text("재질2: \(item5.mtrgltcod2 ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    Text("재질3: \(item5.mtrgltcod3 ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    Text("재질4: \(item5.mtrgltcod4 ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    Text("상담일자: \(item5.condte ?? "-")")
+                                    Text("제안구분: \(item5.suggbn ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
                                     Text("전시회명: \(item5.shownme ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("HS상담자: \(item5.conhsempnme ?? "-")")
+                                    Text("구매샘플번호: \(item5.origmgno ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("관계사상담자: \(item5.conhmpempnme ?? "-")")
+                                    Text("다이소MD: \(item5.congdschr ?? "-")")
                                         .font(.system(size:16))
                                     Divider()
-                                    Text("다이소상담자: \(item5.condaisoempnme ?? "-")")
-                                        .font(.system(size:16))
-                                    Divider()
-                                    if(item5.samrtnyn=="1"){
-                                        Text("반송대상: Y")
-                                            .font(.system(size:16))
-                                            Divider()
-                                    }else{
-                                            Text("반송대상: N")
-                                                .font(.system(size:16))
-                                                Divider()
-                                    }
-                                    
                                     if(item5.adpgbn=="0"){
                                         Text("상담결과: 미채택")
                                             .font(.system(size:16))
+                                        Divider()
                                     } else  if(item5.adpgbn=="1"){
                                         Text("상담결과: 채택")
                                             .font(.system(size:16))
+                                        Divider()
                                     } else  if(item5.adpgbn=="8"){
                                         Text("상담결과: 보완")
                                             .font(.system(size:16))
+                                        Divider()
                                     }else{
-                                            Text("상담결과: -")
+                                        Text("상담결과: -")
                                             .font(.system(size:16))
+                                        Divider()
                                     }
+                                    Text("품번: \(item5.gdsno ?? "-")")
+                                        .font(.system(size:16))
+                                    Divider()
                                    
                                 }
                             }.padding()
@@ -236,7 +209,7 @@ struct SampleView3: View {
     func loadData1()  {
         //itemId1 = "20250314178"
         let itemIdOri: String? = String(itemId1!.dropFirst(2))
-
+ 
         guard let url1 = URL(string: "http://59.10.47.222:3000/samplesch?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
@@ -270,7 +243,7 @@ struct SampleView3: View {
                                     isUploading1 = false
                                 }else{
                                     startLoading()
-
+ 
                                     showAlertDel = false
                                    // isUploading = false
                                 }
@@ -288,7 +261,7 @@ struct SampleView3: View {
             }
         }.resume()
     }
-
+ 
     
   
     
