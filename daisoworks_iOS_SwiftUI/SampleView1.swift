@@ -257,7 +257,7 @@ struct SampleView1: View {
         }else{
             
            // print("test3")
-            guard let url = URL(string: "http://59.10.47.222:3000/samplelist?memempmgnum=\(memempmgnum)&startdate=\(startDate)&enddate=\(endDate)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            guard let url = URL(string: "http://112.175.40.40:3000/samplelist?memempmgnum=\(memempmgnum)&startdate=\(startDate)&enddate=\(endDate)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
                 print("Invalid URL")
                 return
             }
@@ -300,7 +300,7 @@ struct SampleView1: View {
             
         }else{
             
-            guard let url = URL(string: "http://59.10.47.222:3000/sampleunregist?samplecode=\(code)&memempmgnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            guard let url = URL(string: "http://112.175.40.40:3000/sampleunregist?samplecode=\(code)&memempmgnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
                 print("Invalid URL")
                 return
             }

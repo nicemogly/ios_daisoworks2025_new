@@ -228,7 +228,7 @@ struct second: View {
         let Userid = UserDefaults.standard.string(forKey: "Userid")
         
        // print("testest\(selection2)")
-        guard let url2 = URL(string: "http://59.10.47.222:3000/dmsnotice?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
+        guard let url2 = URL(string: "http://112.175.40.40:3000/dmsnotice?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
@@ -277,7 +277,7 @@ struct second: View {
         let Userid = UserDefaults.standard.string(forKey: "Userid")
         
         print("loadData2")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
@@ -329,7 +329,7 @@ struct second: View {
         
         
        // print("comcode: \(attrComcode)")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/chartdmsc?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(ss2!)&stdYear=\(attrYear)") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/chartdmsc?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(ss2!)&stdYear=\(attrYear)") else {
             print("Invalid URL")
             return
         }

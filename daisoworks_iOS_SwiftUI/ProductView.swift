@@ -305,7 +305,7 @@ struct ProductView: View {
                                             
                                             Spacer()
                                             
-                                            AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.itemNo!).jpg")){ image in
+                                            AsyncImage(url: URL(string: "http://112.175.40.40:3000/static/\(item2.itemNo!).jpg")){ image in
                                                 image.resizable()
                                                 
                                             } placeholder: {
@@ -654,7 +654,7 @@ struct ProductView: View {
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
       
         //print("testest\(str1!)")
-        guard let url = URL(string: "http://59.10.47.222:3000/buyersch?comCode=\(str1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/buyersch?comCode=\(str1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -687,7 +687,7 @@ struct ProductView: View {
       
 //        print("testest\(selection)")
 //        print("testest\(itemId)")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/itemcount?comCode=\(str1!)&buyCode=\(selection)&querytxt=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/itemcount?comCode=\(str1!)&buyCode=\(selection)&querytxt=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -743,7 +743,7 @@ struct ProductView: View {
     
     func loadData2(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url2 = URL(string: "http://59.10.47.222:3000/itemview1?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url2 = URL(string: "http://112.175.40.40:3000/itemview1?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -778,7 +778,7 @@ struct ProductView: View {
     
     func loadData3(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/itemview2?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/itemview2?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -801,7 +801,7 @@ struct ProductView: View {
     
     func loadData4(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url4 = URL(string: "http://59.10.47.222:3000/itemview3?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url4 = URL(string: "http://112.175.40.40:3000/itemview3?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -824,7 +824,7 @@ struct ProductView: View {
     
     func loadData5(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url5 = URL(string: "http://59.10.47.222:3000/itemview4?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url5 = URL(string: "http://112.175.40.40:3000/itemview4?comCode=\(str1!)&buyCode=\(selection)&BuyGdsBcd=\(selection1)&GdsNo=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -858,7 +858,7 @@ struct ProductView: View {
    
         print ("attr5: \(attr5)")
         print ("attr9: \(attr9)")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
             print("Invalid URL")
             
             return

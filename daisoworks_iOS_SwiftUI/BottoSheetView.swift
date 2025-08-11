@@ -159,7 +159,7 @@ struct BottomSheetView: View {
             
         }else{
             
-            guard let url = URL(string: "http://59.10.47.222:3000/sampleunregist?samplecode=\(code)&memempmgnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            guard let url = URL(string: "http://112.175.40.40:3000/sampleunregist?samplecode=\(code)&memempmgnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
                 print("Invalid URL")
                 return
             }
@@ -193,7 +193,7 @@ struct BottomSheetView: View {
         if memempmgnum.isEmpty {
             
         }else{
-            guard let url = URL(string: "http://59.10.47.222:3000/sampleaccept?memempmgnum=\(memempmgnum)&barcode=\(itemIdOri)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+            guard let url = URL(string: "http://112.175.40.40:3000/sampleaccept?memempmgnum=\(memempmgnum)&barcode=\(itemIdOri)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
                 print("Invalid URL")
                 return
             }

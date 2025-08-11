@@ -115,7 +115,7 @@ struct Test2: View {
 
 
 
-        let url = URL(string: "http://59.10.47.222:3000/upload")!
+        let url = URL(string: "http://112.175.40.40:3000/upload")!
 
         var request = URLRequest(url: url)
 

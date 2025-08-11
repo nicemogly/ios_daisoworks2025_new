@@ -168,7 +168,7 @@ struct DmsDetailView: View  {
                         VStack{
                             
                             // Image(systemName: "magnifyingglass.circle.fill" )
-                            AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.productCd!).jpg")) { image in
+                            AsyncImage(url: URL(string: "http://112.175.40.40:3000/static/\(item2.productCd!).jpg")) { image in
                                 image.resizable()
                                 
                             }placeholder: {
@@ -306,8 +306,8 @@ struct DmsDetailView: View  {
                             ScrollView(.horizontal){
                                 
                                 
-//                                var  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
-//                                //  let  url = "http://59.10.47.222:3000/static/202402_001472_025_01.png"
+//                                var  url = "http://112.175.40.40:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
+//                                //  let  url = "http://112.175.40.40:3000/static/202402_001472_025_01.png"
 //                                                            AsyncImage(url: URL(string: url)) { image in
 //                                                                image.resizable()
 //                                                                    .aspectRatio(contentMode: .fit)
@@ -327,7 +327,7 @@ struct DmsDetailView: View  {
 //                                                                .scaledToFit()
 //                                                                .padding(.bottom , 30   )
 //                                
-                                //                            Link(destination: URL(string: "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")!){
+                                //                            Link(destination: URL(string: "http://112.175.40.40:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)")!){
                                 //                                Text("확대보기")
                                 //                            }
                                 
@@ -335,7 +335,7 @@ struct DmsDetailView: View  {
                                 
                                 Button(action: {
                                     //   url =
-                                    self.urlString = "http://59.10.47.222:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)"
+                                    self.urlString = "http://112.175.40.40:3000/static/\(item4.origFileNm!).\(item4.origFileExt!)"
                                     self.showSafari = true
                                 }) {
                                     Text("이미지보기")
@@ -672,7 +672,7 @@ struct DmsDetailView: View  {
     func loadData1(){
         
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview2?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview2?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
             Swift.print("Invalid URL")
             
             return
@@ -755,7 +755,7 @@ struct DmsDetailView: View  {
         
         imgUrl1 = prefixattr3+v_attr3
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(imgUrl1)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(imgUrl1)") else {
             Swift.print("Invalid URL")
             
             return
@@ -807,7 +807,7 @@ struct DmsDetailView: View  {
         
         Swift.print ("attr8: \(attr8)")
         Swift.print ("attr9: \(attr9)")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr8)&imgUrl=\(attr9)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr8)&imgUrl=\(attr9)") else {
             Swift.print("Invalid URL")
             
             return
@@ -851,7 +851,7 @@ struct DmsDetailView: View  {
     
     func loadData2(){
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview3?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview3?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
             Swift.print("Invalid URL")
             
             return
@@ -899,7 +899,7 @@ struct DmsDetailView: View  {
     func onImageChange(targimg: String){
         
         print("\(targimg)")
-        AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(targimg)")) { image1 in
+        AsyncImage(url: URL(string: "http://112.175.40.40:3000/static/\(targimg)")) { image1 in
             image1.resizable()
                 .aspectRatio(contentMode: .fit)
                 .scaleEffect(currentScale * zoomFactor)
@@ -921,7 +921,7 @@ struct DmsDetailView: View  {
         
         
         print("==============requestGET1==============1")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview4?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview4?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)") else {
             print("Invalid URL")
             
             return
@@ -963,7 +963,7 @@ struct DmsDetailView: View  {
                                 
                                 requestGet1(v_attr5: v_attr5, v_attr6: v_attr6 , v_attr7: v_attr7)
                                 if(ktint == 0) {
-                                    self.urlString = "http://59.10.47.222:3000/static/\($0.origFileNm!).\($0.origFileExt!)"
+                                    self.urlString = "http://112.175.40.40:3000/static/\($0.origFileNm!).\($0.origFileExt!)"
                                 }
                                 ktint = ktint + 1
                             }
@@ -994,7 +994,7 @@ struct DmsDetailView: View  {
         // let Userid:String = "AH0403070" //이유용
         // print("OKAY Detail5===,여기51")
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&mUserId=\(Userid!)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview5?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&mUserId=\(Userid!)") else {
             
             print("Invalid URL")
             
@@ -1060,7 +1060,7 @@ struct DmsDetailView: View  {
         
         // let Userid:String = "AH0403070" //이유용
         
-        guard let url6 = URL(string: "http://59.10.47.222:3000/dmspost1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&apprTyp=\(apprTyp)&apprCfmFg=\(apprCfmg)&apprCmmt=\(apprCmmt)&mUserId=\(Userid!)") else {
+        guard let url6 = URL(string: "http://112.175.40.40:3000/dmspost1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqId=\(attr1)&revNo=\(attr2)&apprSeq=\(attr3)&apprTyp=\(apprTyp)&apprCfmFg=\(apprCfmg)&apprCmmt=\(apprCmmt)&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return
@@ -1106,11 +1106,11 @@ struct DmsDetailView: View  {
     func getUrlString (str1: String , str2: String) -> String {
         var components = URLComponents()
         components.scheme = "http"
-        components.host = "59.10.47.222:3000"
+        components.host = "112.175.40.40:3000"
         components.path = "/static/\(str1).\(str2)"
         
         
-        //  let  url = "http://59.10.47.222:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
+        //  let  url = "http://112.175.40.40:3000/static/\(item4.origFileNm).\(item4.origFileExt)"
         return components.string ?? ""
     }
 

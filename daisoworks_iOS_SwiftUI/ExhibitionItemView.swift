@@ -241,7 +241,7 @@ struct ExhibitionItemView: View {
         }
         
         //print("VEMPNO:\(vempno)")
-        guard let url2 = URL(string: "http://59.10.47.222:3000/exhMyList?schsdate=\(startDate)&schedate=\(endDate)&empno=\(vempno)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url2 = URL(string: "http://112.175.40.40:3000/exhMyList?schsdate=\(startDate)&schedate=\(endDate)&empno=\(vempno)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -551,7 +551,7 @@ struct ExhAutoSetView: View {
     
     func loadData(){
         
-        guard let url = URL(string: "http://59.10.47.222:3000/exhList?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhList?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -583,7 +583,7 @@ struct ExhAutoSetView: View {
     func loadData1(){
           let partnerName1 = "%"+partnerName+"%"
 
-        guard let url = URL(string: "http://59.10.47.222:3000/exhPartner?comCode=\(selection1)&uname=\(partnerName1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhPartner?comCode=\(selection1)&uname=\(partnerName1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return

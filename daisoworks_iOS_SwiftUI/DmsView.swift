@@ -270,7 +270,7 @@ struct DmsView: View {
     func loadData1(){
        
         let Userid = UserDefaults.standard.string(forKey: "Userid")
-      guard let url3 = URL(string: "http://59.10.47.222:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
+      guard let url3 = URL(string: "http://112.175.40.40:3000/dmsview1?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&mUserId=\(Userid!)") else {
             print("Invalid URL")
             
             return

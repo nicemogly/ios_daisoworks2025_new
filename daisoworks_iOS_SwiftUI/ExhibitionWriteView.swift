@@ -883,7 +883,7 @@ struct ExhibitionWriteView: View {
         let vyymm = formatter.string(from: Date())
        
         //yyyymm , apikey
-        guard let url = URL(string: "http://59.10.47.222:3000/autonum?yyyymm=\(vyymm)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/autonum?yyyymm=\(vyymm)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -968,7 +968,7 @@ struct ExhibitionWriteView: View {
         //VLoginCompanyCode1 = selection1
         //print("testtest\(selection1)")
        
-        guard let url = URL(string: "http://59.10.47.222:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode1)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhregist1?vautonum=\(autoCousNum)&exhDate=\(exhselDadte)&vdateFormat1=\(vyymm!)&kint1=\(vseq!)&comCd=\(VLoginCompanyCode1)&exhNum=\(autoCodeNum)&exhSangdamCnt=\(exhdailyint!)&exhSelCode=\(selection)&suggbn=\(suggbn)&memempmgnum=\(memempmgnum)&partnerEmpNo=\(selection_partner)&exhComName=\(exhcomname1)&exhDate1=\(exhDate1)&memempmgnum1=\(memempmgnum1)&memempmgnum2=\(memempmgnum2)&exhSampleRtnYN1=\(vselectedOption)&exhSampleCnt=\(exhsampint!)&exhDeptNum=\(memdeptcde)&exhClntPoolno=\(exhcomnamedept)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1082,7 +1082,7 @@ struct ExhibitionWriteView: View {
       //  guard !selectedImagesData.isEmpty else { return }
         
         //print("testest\(str1!)")
-        guard let url = URL(string: "http://59.10.47.222:3000/saveImg9") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/saveImg9") else {
             print("Invalid URL")
             
             return
@@ -1182,7 +1182,7 @@ struct ExhibitionWriteView: View {
       //  guard !selectedImagesData.isEmpty else { return }
        
         //print("testest\(str1!)")
-        guard let url = URL(string: "http://59.10.47.222:3000/saveImg") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/saveImg") else {
             print("Invalid URL")
             
             return
@@ -1309,7 +1309,7 @@ struct ExhibitionWriteView: View {
        // let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
         
         //print("testest\(str1!)")
-        guard let url = URL(string: "http://59.10.47.222:3000/exhList?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhList?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -1345,7 +1345,7 @@ struct ExhibitionWriteView: View {
     func loadData1(){
           let partnerName1 = "%"+partnerName+"%"
 
-        guard let url = URL(string: "http://59.10.47.222:3000/exhPartner?comCode=\(selection1)&uname=\(partnerName1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhPartner?comCode=\(selection1)&uname=\(partnerName1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -1381,7 +1381,7 @@ struct ExhibitionWriteView: View {
    // print("testtest2")
        // print("testtest\(selection)")
        // print("testtest\(exhselDadte)")
-        guard let url = URL(string: "http://59.10.47.222:3000/exhCounselNum?exhnum=\(selection)&mdate=\(exhselDadte)&empnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/exhCounselNum?exhnum=\(selection)&mdate=\(exhselDadte)&empnum=\(memempmgnum)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -1458,7 +1458,7 @@ struct ExhibitionWriteView: View {
     func loadData3(){
           let vexhcomname = "%"+exhcomname+"%"
 
-        guard let url = URL(string: "http://59.10.47.222:3000/comview11?comCode=\(VLoginCompanyCode)&comNum=\(vexhcomname)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/comview11?comCode=\(VLoginCompanyCode)&comNum=\(vexhcomname)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return

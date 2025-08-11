@@ -189,7 +189,7 @@ struct SampleView: View {
         
         isUploading1 = false
         let itemIdOri: String? = String(itemId1!.dropFirst(2))
-        guard let url = URL(string: "http://59.10.47.222:3000/sampleImgDel?sammgno=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/sampleImgDel?sammgno=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -209,8 +209,8 @@ struct SampleView: View {
         resultflag = true
         isUploading = false
         showAlertDel = false
-       // imageURL = "http://59.10.47.222:3000/static/NA\(itemId1!).JPG"
-        imageURL = "http://59.10.47.222:3000/static/\(itemId1!).JPG"
+       // imageURL = "http://112.175.40.40:3000/static/NA\(itemId1!).JPG"
+        imageURL = "http://112.175.40.40:3000/static/\(itemId1!).JPG"
     }
     
     func loadData1()  {
@@ -218,7 +218,7 @@ struct SampleView: View {
         //isUploading = true
         //startLoading()
         let itemIdOri: String? = String(itemId1!.dropFirst(2))
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sampleload1?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sampleload1?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -253,10 +253,10 @@ struct SampleView: View {
                                 }else{
                                     
                                     requestGet(v_attr5:"NA"+($0.sammgnof ??  "") ,v_attr6:$0.filesec ??  "",v_attr7:$0.vtlpath ??  "")
-                                    imageURL = "http://59.10.47.222:3000/static/NA"+$0.sammgnof+"."+$0.filesec
+                                    imageURL = "http://112.175.40.40:3000/static/NA"+$0.sammgnof+"."+$0.filesec
                                     
                                    // requestGet(v_attr5:""+($0.sammgnof ??  "") ,v_attr6:$0.filesec ??  "",v_attr7:$0.vtlpath ??  "")
-                                   // imageURL = "http://59.10.47.222:3000/static/"+$0.sammgnof+"."+$0.filesec
+                                   // imageURL = "http://112.175.40.40:3000/static/"+$0.sammgnof+"."+$0.filesec
                                    
                                     
                                     
@@ -304,7 +304,7 @@ struct SampleView: View {
         prefixattr3 = "http://herpold.asunghmp.biz/FTP"
         imgUrl1 = prefixattr3+v_attr7+v_attr5+"."+v_attr6
         
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(imgUrl1)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(imgUrl1)") else {
             Swift.print("Invalid URL")
             
             return

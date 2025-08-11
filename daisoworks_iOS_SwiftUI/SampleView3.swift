@@ -210,7 +210,7 @@ struct SampleView3: View {
         //itemId1 = "20250314178"
         let itemIdOri: String? = String(itemId1!.dropFirst(2))
  
-        guard let url1 = URL(string: "http://59.10.47.222:3000/samplesch?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/samplesch?samcode=\(itemIdOri!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }

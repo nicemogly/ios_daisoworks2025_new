@@ -88,7 +88,7 @@ struct imageView: View {
                         showAlert = true
                     }else{
                         //scnflag1.toggle()
-                        // imageURL="http://59.10.47.222/static/NA20250200001.JPG"
+                        // imageURL="http://112.175.40.40/static/NA20250200001.JPG"
                         // onButtonPressed()
                         // uploadImages()
                         isSaving = true
@@ -120,7 +120,7 @@ struct imageView: View {
     func uploadImages(){
         let ss = UserDefaults.standard.string(forKey: "LoginCompanyCode")
         
-         guard let url = URL(string: "http://59.10.47.222:3000/sampleImg") else {
+         guard let url = URL(string: "http://112.175.40.40:3000/sampleImg") else {
             print("Invalid URL")
             return
         }
@@ -211,7 +211,7 @@ struct imageView: View {
     func uploadImages1(){
         let ss = UserDefaults.standard.string(forKey: "LoginCompanyCode")
         
-         guard let url = URL(string: "http://59.10.47.222:3000/sampleImg1") else {
+         guard let url = URL(string: "http://112.175.40.40:3000/sampleImg1") else {
             print("Invalid URL")
             return
         }

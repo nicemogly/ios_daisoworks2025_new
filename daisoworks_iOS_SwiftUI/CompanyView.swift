@@ -536,7 +536,7 @@ struct CompanyView: View {
         let comId1 = "%"+comId+"%"
       print("\(comId1)")
         //print("testest\(str1!)")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/comview11?comCode=\(str1!)&comNum=\(comId1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/comview11?comCode=\(str1!)&comNum=\(comId1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -591,7 +591,7 @@ struct CompanyView: View {
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
  
         print("testest\(selection2)")
-        guard let url2 = URL(string: "http://59.10.47.222:3000/comview1?comCode=\(str1!)&comNum=\(selection2)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url2 = URL(string: "http://112.175.40.40:3000/comview1?comCode=\(str1!)&comNum=\(selection2)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -643,7 +643,7 @@ struct CompanyView: View {
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
  
         
-        guard let url2 = URL(string: "http://59.10.47.222:3000/comview2?comCode=\(str1!)&comNum=\(selection2)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url2 = URL(string: "http://112.175.40.40:3000/comview2?comCode=\(str1!)&comNum=\(selection2)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return

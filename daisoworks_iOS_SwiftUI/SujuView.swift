@@ -322,7 +322,7 @@ struct SujuView: View {
                                                 //
                                                 HStack {
                                                     Spacer()
-                                                    AsyncImage(url: URL(string: "http://59.10.47.222:3000/static/\(item2.sujubarcode!).jpg")){ image in
+                                                    AsyncImage(url: URL(string: "http://112.175.40.40:3000/static/\(item2.sujubarcode!).jpg")){ image in
                                                         image.resizable()
                                                         
                                                     } placeholder: {
@@ -733,7 +733,7 @@ struct SujuView: View {
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
         
         //print("testest\(str1!)")
-        guard let url = URL(string: "http://59.10.47.222:3000/buyersch?comCode=\(str1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url = URL(string: "http://112.175.40.40:3000/buyersch?comCode=\(str1!)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             
             return
@@ -761,7 +761,7 @@ struct SujuView: View {
     
     func loadData1(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujucount?comCode=\(str1!)&buyCode=\(selection)&querytxt=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujucount?comCode=\(str1!)&buyCode=\(selection)&querytxt=\(itemId)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -809,7 +809,7 @@ struct SujuView: View {
     func loadData2(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
 
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview1?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview1?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -879,7 +879,7 @@ struct SujuView: View {
    
         print ("attr5: \(attr5)")
         print ("attr9: \(attr9)")
-        guard let url3 = URL(string: "http://59.10.47.222:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
+        guard let url3 = URL(string: "http://112.175.40.40:3000/imgdownload?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10&reqno=\(attr5)&imgUrl=\(attr9)") else {
             print("Invalid URL")
             
             return
@@ -927,7 +927,7 @@ struct SujuView: View {
 //        print("selection-in:\(selection)")
 //        print("sujumgno-in:\(sujumgno)")
 //        print("sujubcode-in:\(sujubcode)")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview2?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview2?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -973,7 +973,7 @@ struct SujuView: View {
     
     func loadData4(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview3?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview3?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1019,7 +1019,7 @@ struct SujuView: View {
     
     func loadData5(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview4?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview4?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1066,7 +1066,7 @@ struct SujuView: View {
     
     func loadData6(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview5?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview5?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -1113,7 +1113,7 @@ struct SujuView: View {
     
     func loadData7(){
         let str1: String? = UserDefaults.standard.string(forKey: "LoginCompanyCode")
-        guard let url1 = URL(string: "http://59.10.47.222:3000/sujuview6?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/sujuview6?comCode=\(str1!)&buyCode=\(selection)&sujuMgNo=\(sujumgno)&BuyGdsBcd=\(sujubcode)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }

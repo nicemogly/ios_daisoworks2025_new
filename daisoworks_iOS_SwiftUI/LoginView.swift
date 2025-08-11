@@ -241,7 +241,7 @@ struct LoginView: View {
         
       
         
-        guard let url1 = URL(string: "http://59.10.47.222:3000/checkversion?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/checkversion?apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -388,7 +388,7 @@ struct LoginView: View {
     
     //HS 계정으로 부서 가져오기
     func loadData3(vstr1: String)  {
-        guard let url1 = URL(string: "http://59.10.47.222:3000/hsMember?userId=\(vstr1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/hsMember?userId=\(vstr1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
@@ -489,7 +489,7 @@ struct LoginView: View {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String  else {
             return
         }
-        guard let url1 = URL(string: "http://59.10.47.222:3000/memuser?mUserId=\(str1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
+        guard let url1 = URL(string: "http://112.175.40.40:3000/memuser?mUserId=\(str1)&apikey=WCE2HG6-CKQ4JPE-J39AY8B-VTJCQ10") else {
             print("Invalid URL")
             return
         }
