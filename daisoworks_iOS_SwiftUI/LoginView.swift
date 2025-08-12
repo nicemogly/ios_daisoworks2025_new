@@ -207,7 +207,7 @@ struct LoginView: View {
                 Alert(title: Text("알림\n"),
                       message: Text("\(chkVerMsg)"),
                       dismissButton: .default(Text("확인") ,
-                                action: { self.urlStringL = "https://hr.asungcorp.com/cm/service/html.ncd?view=/lgerp/hr/mobile/DmsAppDownload"
+                                action: { self.urlStringL = "https://hr.asungcorp.com:8443/cm/service/html.ncd?view=/lgerp/hr/mobile/DmsAppDownload"
                       self.showSafariL = true // ios16부터 safari moddule을 앱 형태로 사용할수 있슴. 상단에 import 받아야함.
                 })
                 )
@@ -320,7 +320,7 @@ struct LoginView: View {
        
         var vstr3 = vstr2.replacingOccurrences(of: "+", with: "%2B")
             //  print("인코딩\(vstr3)")
-        guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1+"&IN_INPUT.VALUE="+vstr3) else {
+        guard let url = URL(string: "https://hr.asungcorp.com:8443/cm/service/BRS_CM_RetrieveReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1+"&IN_INPUT.VALUE="+vstr3) else {
             print("Invalid URL")
             
             return
@@ -453,7 +453,7 @@ struct LoginView: View {
     //임원여부 가져오기
     func loadData1(str1: String) async {
       
-        guard let url = URL(string: "https://hr.asungcorp.com/cm/service/BRS_CM_RetrieveEmpTypeReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1) else {
+        guard let url = URL(string: "https://hr.asungcorp.com:8443/cm/service/BRS_CM_RetrieveEmpTypeReturnVal/ajax.ncd?baRq=IN_INPUT&baRs=OUT_RESULT&IN_INPUT.USER_NM="+str1) else {
             print("Invalid URL")
             
             return
