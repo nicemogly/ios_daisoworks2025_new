@@ -89,7 +89,9 @@ struct SettingView: View {
             
             let  ss22 = UserDefaults.standard.string(forKey: "Userid")!
             
-            if(ss22=="AD2201016" || ss22=="AD2201004" || ss22=="AD2201005"){
+            if(ss22=="AD2201016" || ss22=="AD2201004" || ss22=="AD2201005" || ss22=="AD2306053"
+               || ss22=="AD2201006" || ss22=="AD2201007" || ss22=="AD2201010"
+               || ss22=="AD2201013" || ss22=="AD2201015" || ss22=="AD2208072"){
                
                 HStack{
                     
